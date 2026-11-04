@@ -4,7 +4,7 @@ import type { APIRoute } from 'astro';
 
 export const GET: APIRoute = async () => {
   const publishedArticles = await getCollection('journal', ({ data }) => !data.draft);
-  const seriesEntries = await getCollection('series');
+  const seriesEntries = await getCollection('series', ({ data }) => data.isPublic);
   const projectEntries = await getCollection('projects', ({ data }) => !data.draft);
 
   const staticPages = [
@@ -16,6 +16,7 @@ export const GET: APIRoute = async () => {
     'interests',
     'contact',
     'privacy',
+    'evidence-checks',
   ];
 
   const urls: string[] = [

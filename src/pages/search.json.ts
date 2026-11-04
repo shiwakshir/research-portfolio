@@ -12,6 +12,7 @@ export const GET: APIRoute = async () => {
     category: article.data.category,
     tags: article.data.tags,
     readingTime: article.data.readingTime,
+    articleNumber: article.data.articleNumber || 1,
     slug: article.slug,
   }));
 

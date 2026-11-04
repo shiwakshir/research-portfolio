@@ -3,55 +3,54 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 import ProjectCard from '@/components/ProjectCard.astro';
 import { getCollection } from 'astro:content';
 
-const projects = await getCollection('projects', ({ data }) => !data.draft);
+const allProjects = await getCollection('projects', ({ data }) => !data.draft);
+const sortedProjects = allProjects.sort((a, b) => a.data.order - b.data.order);
 ---
 
 <BaseLayout
-  title="Projects & Case Studies"
-  description="Selected professional and independent research projects across UX research, human-centred interaction design, and evidence-informed product development."
+  title="Projects & Applied Research"
+  description="Consultancy research case studies and independent AI evaluation tools by Shiwakshi Rashmi."
 >
   <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
     
     <!-- Header -->
-    <header class="max-w-3xl mb-12 border-b border-parchment-300 dark:border-ink-800 pb-8">
+    <header class="max-w-3xl mb-12 border-b border-parchment-300 dark:border-darkSurface-750 pb-8">
       <span class="text-xs font-semibold uppercase tracking-wider text-forest-700 dark:text-forest-400 block mb-2">
-        Portfolio & Applied Research
+        Portfolio & Case Studies
       </span>
-      <h1 class="font-editorial-heading font-serif text-3xl sm:text-5xl font-bold tracking-tight text-ink-900 dark:text-ink-50 mb-4">
-        Projects & Frameworks
+      <h1 class="font-editorial-heading font-serif text-3xl sm:text-5xl font-bold tracking-tight text-ink-950 dark:text-ink-50 mb-4">
+        Projects & Applied Work
       </h1>
-      <p class="text-base sm:text-lg text-ink-700 dark:text-ink-300 leading-relaxed">
-        A selection of independent research explorations and professional UX methodology frameworks. Each project documents the core problem, research methods, evidence, and critical reflections.
+      <p class="text-base sm:text-lg text-ink-700 dark:text-ink-200 leading-relaxed font-normal">
+        A selection of independent AI research systems and consultancy UX research programs. Each project outlines the exact role, research methods, and sector context.
       </p>
     </header>
 
-    <!-- Projects Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      {projects.map((project) => (
+    <!-- Projects Grid / Stack -->
+    <div class="space-y-10">
+      {sortedProjects.map((project) => (
         <ProjectCard
           title={project.data.title}
           summary={project.data.summary}
           role={project.data.role}
-          problem={project.data.problem}
-          approach={project.data.approach}
+          sector={project.data.sector}
           methods={project.data.methods}
-          timeline={project.data.timeline}
-          status={project.data.status}
+          order={project.data.order}
+          isLead={project.data.isLead}
+          award={project.data.award}
+          techStack={project.data.techStack}
           slug={project.slug}
         />
       ))}
     </div>
 
-    <!-- Integrity & Confidentiality Note -->
-    <div class="mt-16 p-6 rounded bg-parchment-150 dark:bg-ink-900/40 border border-parchment-300 dark:border-ink-800 text-xs text-ink-600 dark:text-ink-400 leading-relaxed">
+    <!-- Confidentiality Note -->
+    <div class="mt-16 p-6 rounded bg-parchment-150 dark:bg-darkSurface-850 border border-parchment-300 dark:border-darkSurface-750 text-xs text-ink-600 dark:text-ink-400 leading-relaxed">
       <h3 class="font-serif font-semibold text-sm text-ink-900 dark:text-ink-100 mb-2">
-        Confidentiality & Ethical Disclosure Notice
+        Client Confidentiality & Research Ethics
       </h3>
-      <p class="mb-2">
-        To honor professional confidentiality and client trust, proprietary employer metrics, commercial intellectual property, and client names are strictly excluded. The case studies and frameworks documented here reflect research methodologies, conceptual models, and unclassified independent studies.
-      </p>
-      <p>
-        Additional case studies will be added over time as research phases conclude and findings are approved for public documentation.
+      <p class="mb-0">
+        In accordance with professional consultancy standards and non-disclosure agreements, commercial clients remain strictly anonymous. Proprietary client datasets, product roadmaps, and unreleased feature designs are omitted. All project descriptions reflect my verified roles and methodological contributions.
       </p>
     </div>
   </div>

@@ -1,15 +1,16 @@
 ---
-import Badge from './Badge.astro';
+import BrowserFrame from './BrowserFrame.astro';
 
 interface Props {
   title: string;
   summary: string;
   role: string;
-  problem: string;
-  approach: string;
+  sector: string;
   methods: string[];
-  timeline?: string;
-  status: string;
+  order: number;
+  isLead?: boolean;
+  award?: string;
+  techStack?: string[];
   slug?: string;
 }
 
@@ -17,26 +18,44 @@ const {
   title,
   summary,
   role,
-  problem,
-  approach,
+  sector,
   methods,
-  timeline,
-  status,
+  order,
+  isLead = false,
+  award,
+  techStack = [],
   slug,
 } = Astro.props;
 ---
-<div class="p-6 rounded bg-card/60 dark:bg-ink-900/40 border border-parchment-300 dark:border-ink-800 space-y-4">
-  <div class="flex flex-wrap items-center justify-between gap-2">
+<div class={`p-6 sm:p-8 rounded border transition-colors ${
+  isLead
+    ? 'bg-card dark:bg-darkSurface-850 border-forest-600/60 dark:border-forest-500/60 shadow-sm'
+    : 'bg-card/70 dark:bg-darkSurface-850/70 border-parchment-300 dark:border-darkSurface-750 hover:border-forest-600'
+}`}>
+  <!-- Top: Sector & Award -->
+  <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
     <div class="flex items-center gap-2">
-      <Badge variant="forest">{status}</Badge>
-      {timeline && <span class="text-xs text-ink-500 font-mono">{timeline}</span>}
+      <span class="text-xs font-mono font-bold text-forest-700 dark:text-forest-400">
+        Project No. 0{order}
+      </span>
+      <span class="text-ink-400">·</span>
+      <span class="text-xs font-medium text-ink-600 dark:text-ink-400">
+        Sector: <strong class="text-ink-900 dark:text-ink-100">{sector}</strong>
+      </span>
     </div>
-    <span class="text-xs font-medium text-ink-500 dark:text-ink-400">
-      Role: <strong class="text-ink-800 dark:text-ink-200">{role}</strong>
-    </span>
+
+    {award && (
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-forest-50 dark:bg-darkSurface-800 text-forest-800 dark:text-forest-200 border border-forest-200 dark:border-forest-800 text-[11px] font-semibold">
+        <svg class="w-3.5 h-3.5 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
+          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+        </svg>
+        {award}
+      </span>
+    )}
   </div>
 
-  <h3 class="font-editorial-heading font-serif text-xl sm:text-2xl font-semibold text-ink-900 dark:text-ink-50">
+  <!-- Title -->
+  <h3 class="font-editorial-heading font-serif text-2xl sm:text-3xl font-semibold text-ink-900 dark:text-ink-50 mb-3 leading-snug">
     {slug ? (
       <a href={`/projects/${slug}`} class="hover:text-forest-700 dark:hover:text-forest-300 transition-colors">
         {title}
@@ -46,42 +65,65 @@ const {
     )}
   </h3>
 
-  <p class="text-sm text-ink-700 dark:text-ink-300 leading-relaxed">
+  <!-- Summary -->
+  <p class="text-sm sm:text-base text-ink-700 dark:text-ink-300 leading-relaxed mb-6 font-normal">
     {summary}
   </p>
 
-  <!-- Problem & Approach Summary -->
-  <div class="space-y-3 pt-3 border-t border-parchment-200 dark:border-ink-800 text-xs text-ink-600 dark:text-ink-400">
-    <div>
-      <span class="font-semibold text-ink-900 dark:text-ink-200 block uppercase tracking-wider text-[11px] mb-1">
-        Research Problem
-      </span>
-      <p class="leading-relaxed">{problem}</p>
+  <!-- If BRIEF (lead project), render browser frame interactive layout -->
+  {isLead && (
+    <div class="my-6">
+      <BrowserFrame url="brief-evaluator.internal.ai" />
     </div>
-    <div>
-      <span class="font-semibold text-ink-900 dark:text-ink-200 block uppercase tracking-wider text-[11px] mb-1">
-        Approach & Scope
-      </span>
-      <p class="leading-relaxed">{approach}</p>
-    </div>
-  </div>
+  )}
 
-  <!-- Methods badges -->
-  <div class="pt-3 border-t border-parchment-200 dark:border-ink-800 flex flex-wrap gap-1.5">
-    {methods.map((method) => (
-      <span class="px-2 py-0.5 rounded bg-parchment-200 dark:bg-ink-800 text-[11px] text-ink-700 dark:text-ink-300 font-mono">
-        {method}
+  <!-- Exact Role & Metadata Lines -->
+  <div class="space-y-2.5 pt-4 border-t border-parchment-200 dark:border-darkSurface-750 text-xs">
+    <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2">
+      <span class="font-semibold uppercase tracking-wider text-[11px] text-ink-500 dark:text-ink-400 shrink-0">
+        My Role:
       </span>
-    ))}
+      <span class="text-ink-800 dark:text-ink-200 font-medium leading-relaxed">
+        {role}
+      </span>
+    </div>
+
+    <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2">
+      <span class="font-semibold uppercase tracking-wider text-[11px] text-ink-500 dark:text-ink-400 shrink-0">
+        Methods:
+      </span>
+      <div class="flex flex-wrap gap-1.5 pt-0.5">
+        {methods.map((method) => (
+          <span class="px-2 py-0.5 rounded bg-parchment-200 dark:bg-darkSurface-800 text-ink-700 dark:text-ink-300 font-mono text-[11px]">
+            {method}
+          </span>
+        ))}
+      </div>
+    </div>
+
+    {techStack.length > 0 && (
+      <div class="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2 pt-1">
+        <span class="font-semibold uppercase tracking-wider text-[11px] text-ink-500 dark:text-ink-400 shrink-0">
+          Stack:
+        </span>
+        <div class="flex flex-wrap gap-1.5">
+          {techStack.map((tech) => (
+            <span class="px-2 py-0.5 rounded bg-forest-50 dark:bg-darkSurface-750 text-forest-800 dark:text-forest-300 font-mono text-[11px]">
+              {tech}
+            </span>
+          ))}
+        </div>
+      </div>
+    )}
   </div>
 
   {slug && (
-    <div class="pt-2">
+    <div class="pt-5 mt-4 border-t border-parchment-200 dark:border-darkSurface-750">
       <a
         href={`/projects/${slug}`}
-        class="text-xs font-semibold text-forest-700 dark:text-forest-400 hover:underline inline-flex items-center gap-1"
+        class="text-xs font-semibold text-forest-700 dark:text-forest-400 hover:text-forest-800 dark:hover:text-forest-300 inline-flex items-center gap-1"
       >
-        View Full Case Study & Methodology →
+        View full case study →
       </a>
     </div>
   )}

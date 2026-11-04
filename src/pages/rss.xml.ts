@@ -16,12 +16,12 @@ export async function GET(context: APIContext) {
     description: SITE.description,
     site: context.site?.toString() || SITE.url,
     items: sortedArticles.map((article) => ({
-      title: article.data.title,
+      title: `No. ${String(article.data.articleNumber || 1).padStart(2, '0')}: ${article.data.title}`,
       description: article.data.abstract,
       pubDate: article.data.publishDate,
       link: `/journal/${article.slug}/`,
       categories: [article.data.category, ...(article.data.tags || [])],
     })),
-    customData: `<language>en-us</language>`,
+    customData: `<language>en-gb</language>`,
   });
 }

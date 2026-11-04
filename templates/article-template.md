@@ -7,49 +7,45 @@
 title: "Your Article Title: Clear, Substantive, and Descriptive"
 subtitle: "An optional clarifying subtitle framing the specific inquiry"
 publishDate: 2026-11-04
-# updatedDate: 2026-11-10 # Uncomment when making major substantive revisions
-author: "[Your Name]"
-readingTime: "8 min read" # Approximate reading duration
-category: "UX Research Methods" # Options: UX Research Methods | Digital Health | Human Behaviour | Methodology | Applied AI | Service Design
-tags: ["Sample Tag 1", "Sample Tag 2", "Methodology"]
+# updatedDate: 2026-11-10 # Uncomment when making substantive revisions
+author: "Shiwakshi Rashmi"
+articleNumber: 2 # Sequential editorial number (e.g. No. 02)
+readingTime: "8 min read"
+category: "UX Research Methods" # Options: UX Research Methods | Digital Health | Human Behaviour | Applied AI
+tags: ["Methodology", "Evidence-Based Design"] # Maximum 2 tags
 
-# The abstract is displayed in cards, search, and social sharing
-abstract: "A 2 to 3 sentence abstract summarizing the central question, literature examined, and core conclusions or reflections."
+abstract: "A concise 2 to 3 sentence abstract summarizing the central question, literature examined, and core conclusions or reflections."
 
 # Set to true while writing; change to false only when ready to publish publicly!
-# Draft articles never appear in public lists, search, RSS, or generated pages.
 draft: true
 
-# Research Status Badge:
-# Options: 'Literature Exploration' | 'Research in Progress' | 'Critical Review' | 'Field Note' | 'Methodological Inquiry' | 'Editorial Note'
-researchStatus: "Literature Exploration"
+# Research Status Badge (Links to /evidence-checks):
+# Options: 'Literature exploration' | 'Research in progress' | 'Critical review'
+researchStatus: "Literature exploration"
 
-# Optional: If part of a research series, uncomment and fill in:
+# Drop cap on first paragraph
+dropCap: true
+
+# Set to true ONLY if article deals with health management / illness (triggers medical disclaimer)
+isHealthRelated: false
+
+# Optional: If part of an approved research series, uncomment and fill in:
 # series:
 #   id: "living-with-fluctuating-health"
 #   title: "Living with Fluctuating Health"
 #   order: 1
 
-# Guiding research question (highlighted in header)
+# Guiding research question (highlighted in large serif italics at top)
 researchQuestion: "What is the primary question this paper or literature review investigates?"
 
-# Why this matters to practitioners or individuals
-whyItMatters: "Briefly explain the practical, human, or methodological significance."
-
-# Optional: Methods note callout
-methodsNote: "Describe your literature search criteria, qualitative methodology, or synthesis framework."
-
-# Optional: Limitations note callout
-limitationsNote: "Explicitly declare sample boundaries, literature exclusions, or unanswered questions."
-
-# Optional: Original source / DOI links
-# doi: "10.1000/182"
-# originalSourceUrl: "https://example.com/original-paper"
+# Why this matters to practitioners
+whyItMatters: "Briefly explain the practical or human significance."
 
 # Numbered bibliography / citations
 references:
   - number: 1
-    citation: "Author, A. A., & Author, B. B. (Year). Title of article. Title of Periodical, volume number(issue number), pages."
+    citation: "Author, A. A., & Author, B. B. (Year). Title of article. Title of Periodical, volume(issue), pages."
+    shortCitation: "Author & Author (Year) Short study title" # Displayed on desktop margins
     url: "https://example.com"
     doi: "10.1000/182"
 ---
@@ -74,7 +70,7 @@ Highlight conflicting viewpoints, contested findings, or edge cases.
 Transparently outline what remains unverified or where empirical data is sparse.
 
 ## 7. Implications and Open Questions
-Provide concrete takeaways for researchers, designers, or individuals.
+Provide concrete takeaways for researchers, designers, or product teams.
 
 ## 8. References
 (References listed in the frontmatter `references` array will automatically render with DOI links and source buttons below this article).

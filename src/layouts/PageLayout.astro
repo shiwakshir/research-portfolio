@@ -11,17 +11,17 @@ const { title, subtitle, description } = Astro.props;
 ---
 <BaseLayout title={title} description={description}>
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-    <header class="mb-12 border-b border-parchment-300 dark:border-ink-800 pb-8">
+    <header class="mb-12 border-b border-parchment-300 dark:border-darkSurface-750 pb-8">
       {subtitle && (
         <span class="text-xs font-semibold uppercase tracking-wider text-forest-700 dark:text-forest-400 block mb-2">
           {subtitle}
         </span>
       )}
-      <h1 class="font-editorial-heading font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-ink-900 dark:text-ink-50 mb-4">
+      <h1 class="font-editorial-heading font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-ink-950 dark:text-ink-50 mb-4">
         {title}
       </h1>
       {description && (
-        <p class="text-lg text-ink-700 dark:text-ink-300 max-w-2xl leading-relaxed">
+        <p class="text-base sm:text-lg text-ink-700 dark:text-ink-200 max-w-2xl leading-relaxed font-normal">
           {description}
         </p>
       )}

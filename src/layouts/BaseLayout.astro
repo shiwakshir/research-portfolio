@@ -23,7 +23,7 @@ const {
   canonicalUrl = Astro.url.href,
 } = Astro.props;
 
-const pageTitle = title === SITE.title ? `${SITE.title} · ${SITE.author.name}` : `${title} · ${SITE.name}`;
+const pageTitle = title === SITE.title ? `${SITE.author.name} · ${SITE.author.role}` : `${title} · ${SITE.author.name}`;
 
 // Structured Data (JSON-LD)
 const schema = articleDate ? {
@@ -34,7 +34,7 @@ const schema = articleDate ? {
   "author": {
     "@type": "Person",
     "name": articleAuthor,
-    "jobTitle": SITE.role,
+    "jobTitle": SITE.author.fullTitle,
   },
   "datePublished": articleDate.toISOString(),
   "mainEntityOfPage": canonicalUrl,
@@ -47,12 +47,12 @@ const schema = articleDate ? {
   "author": {
     "@type": "Person",
     "name": SITE.author.name,
-    "jobTitle": SITE.role,
+    "jobTitle": SITE.author.fullTitle,
   }
 };
 ---
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en-GB" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -78,13 +78,7 @@ const schema = articleDate ? {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate" type="application/rss+xml" title={`${SITE.name} RSS Feed`} href="/rss.xml" />
 
-    <!-- Google Fonts: Newsreader (Editorial Serif) & Inter (Sans) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;1,6..72,400;1,6..72,500&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Privacy conscious typography: No third-party font CDN requests -->
 
     <!-- Theme initialization script (prevents flash of incorrect theme) -->
     <script is:inline>
@@ -99,11 +93,11 @@ const schema = articleDate ? {
     <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   </head>
-  <body class="min-h-screen flex flex-col bg-parchment-100 dark:bg-ink-950 text-ink-900 dark:text-ink-100 antialiased selection:bg-forest-700 selection:text-parchment-50">
+  <body class="min-h-screen flex flex-col bg-parchment-100 dark:bg-darkSurface-900 text-ink-900 dark:text-ink-50 antialiased selection:bg-forest-700 selection:text-parchment-50 transition-colors duration-150">
     <!-- Accessible Skip to Content Link -->
     <a
       href="#main-content"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:bg-forest-700 focus:text-parchment-50 focus:rounded"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:bg-forest-700 focus:text-parchment-50 focus:rounded-sm focus:font-medium"
     >
       Skip to main content
     </a>

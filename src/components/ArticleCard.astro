@@ -1,5 +1,5 @@
 ---
-import Badge from './Badge.astro';
+import EvidenceStatusBadge from './EvidenceStatusBadge.astro';
 
 interface Props {
   title: string;
@@ -10,6 +10,8 @@ interface Props {
   category: string;
   abstract: string;
   researchStatus?: string;
+  researchQuestion?: string;
+  articleNumber?: number;
   tags?: string[];
   seriesTitle?: string;
 }
@@ -22,43 +24,45 @@ const {
   readingTime,
   category,
   abstract,
-  researchStatus,
+  researchStatus = 'Critical review',
+  researchQuestion,
+  articleNumber = 1,
   tags = [],
   seriesTitle,
 } = Astro.props;
 
-const formattedDate = publishDate.toLocaleDateString('en-US', {
-  year: 'numeric',
-  month: 'short',
+// Date format: "1 November 2026"
+const formattedDate = publishDate.toLocaleDateString('en-GB', {
   day: 'numeric',
+  month: 'long',
+  year: 'numeric',
 });
+
+const formattedNumber = String(articleNumber).padStart(2, '0');
 ---
-<article class="group relative flex flex-col justify-between p-6 rounded bg-card/60 dark:bg-ink-900/40 border border-parchment-300 dark:border-ink-800 hover:border-forest-600 dark:hover:border-forest-500 transition-all duration-200">
+<article class="group relative flex flex-col justify-between p-6 sm:p-7 rounded border border-parchment-300 dark:border-darkSurface-750 bg-card dark:bg-darkSurface-850 hover:border-forest-600 dark:hover:border-forest-500 transition-all duration-150">
   <div>
-    <!-- Top Metadata: Category, Status, Reading Time -->
-    <div class="flex flex-wrap items-center gap-2 mb-3 text-xs text-ink-500 dark:text-ink-400">
-      <Badge variant="forest">{category}</Badge>
-      {researchStatus && (
-        <Badge variant="subtle">{researchStatus}</Badge>
-      )}
-      <span class="text-ink-400 dark:text-ink-600">·</span>
+    <!-- Top Row: Editorial Number + Evidence Status + Category -->
+    <div class="flex items-center justify-between gap-3 mb-4 pb-3 border-b border-parchment-200 dark:border-darkSurface-750">
+      <span class="font-editorial-heading font-serif text-base font-bold text-forest-800 dark:text-forest-300">
+        No. {formattedNumber}
+      </span>
+      <div class="flex items-center gap-2">
+        <EvidenceStatusBadge status={researchStatus} />
+      </div>
+    </div>
+
+    <!-- Metadata Line: Category · Date · Reading Time -->
+    <div class="flex items-center gap-2 text-xs text-ink-500 dark:text-ink-400 mb-3 font-normal">
+      <span class="font-medium text-ink-800 dark:text-ink-200">{category}</span>
+      <span class="text-ink-300 dark:text-ink-600">·</span>
       <time datetime={publishDate.toISOString()}>{formattedDate}</time>
-      <span class="text-ink-400 dark:text-ink-600">·</span>
+      <span class="text-ink-300 dark:text-ink-600">·</span>
       <span>{readingTime}</span>
     </div>
 
-    <!-- Series indicator if applicable -->
-    {seriesTitle && (
-      <div class="text-xs font-medium text-slateAccent-700 dark:text-slateAccent-300 mb-2 flex items-center gap-1">
-        <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-        </svg>
-        <span>Series: {seriesTitle}</span>
-      </div>
-    )}
-
-    <!-- Title & Subtitle -->
-    <h3 class="font-editorial-heading font-serif text-xl sm:text-2xl font-semibold text-ink-900 dark:text-ink-50 group-hover:text-forest-700 dark:group-hover:text-forest-300 transition-colors leading-snug mb-2">
+    <!-- Title -->
+    <h3 class="font-editorial-heading font-serif text-xl sm:text-2xl font-semibold text-ink-900 dark:text-ink-50 group-hover:text-forest-700 dark:group-hover:text-forest-200 transition-colors leading-snug mb-2">
       <a href={`/journal/${slug}`} class="focus:outline-none">
         <span class="absolute inset-0" aria-hidden="true"></span>
         {title}
@@ -71,22 +75,29 @@ const formattedDate = publishDate.toLocaleDateString('en-US', {
       </p>
     )}
 
+    <!-- Research Question Feature if defined -->
+    {researchQuestion && (
+      <div class="my-3.5 pl-3 border-l-2 border-forest-600 dark:border-forest-400 text-sm font-editorial-heading font-serif italic text-ink-800 dark:text-ink-100 leading-relaxed">
+        "{researchQuestion}"
+      </div>
+    )}
+
     <!-- Abstract -->
     <p class="text-sm text-ink-700 dark:text-ink-300 line-clamp-3 leading-relaxed mb-4">
       {abstract}
     </p>
   </div>
 
-  <!-- Bottom: Tags & Arrow -->
-  <div class="pt-4 border-t border-parchment-200 dark:border-ink-800/80 flex items-center justify-between text-xs text-ink-500 dark:text-ink-400">
+  <!-- Bottom: Tags (max 2) & Read Link -->
+  <div class="pt-4 border-t border-parchment-200 dark:border-darkSurface-750 flex items-center justify-between text-xs text-ink-500 dark:text-ink-400">
     <div class="flex flex-wrap gap-1.5">
-      {tags.slice(0, 3).map((tag) => (
-        <span class="px-2 py-0.5 rounded bg-parchment-200 dark:bg-ink-800 text-[11px]">
+      {tags.slice(0, 2).map((tag) => (
+        <span class="px-2 py-0.5 rounded bg-parchment-150 dark:bg-darkSurface-800 text-[11px] text-ink-700 dark:text-ink-300 font-mono">
           #{tag}
         </span>
       ))}
     </div>
-    <span class="font-medium text-forest-700 dark:text-forest-400 flex items-center gap-1 group-hover:translate-x-0.5 transition-transform">
+    <span class="font-medium text-forest-700 dark:text-forest-400 flex items-center gap-1 group-hover:underline">
       Read Article →
     </span>
   </div>

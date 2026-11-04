@@ -2,30 +2,24 @@
 title: "The Invisible Work of Managing Illness"
 subtitle: "Part 2 of Living with Fluctuating Health: An Independent Research Exploration"
 publishDate: 2026-11-04
-author: "[Your Name]"
+author: "Shiwakshi Rashmi"
+articleNumber: 4
 readingTime: "8 min read"
 category: "Digital Health"
-tags: ["Invisible Labor", "Cognitive Burden", "Chronic Illness", "Series"]
-abstract: "Investigating the unmeasured cognitive, administrative, and emotional labor required to coordinate appointments, monitor symptoms, and manage prescription regimens."
+tags: ["Invisible Labour", "Cognitive Burden"]
+abstract: "Investigating the unmeasured cognitive, administrative, and emotional labour required to coordinate appointments, monitor symptoms, and manage prescription regimens."
 draft: true
-researchStatus: "Research in Progress"
+researchStatus: "Research in progress"
+isHealthRelated: true
 series:
   id: "living-with-fluctuating-health"
   title: "Living with Fluctuating Health"
   order: 2
-researchQuestion: "What constitutes the invisible administrative and cognitive overhead of living with a chronic condition, and how is it distributed across households?"
+researchQuestion: "What constitutes the invisible administrative and cognitive overhead of living with a chronic condition?"
 whyItMatters: "Failure to account for cognitive burden leads designers to build tools that increase rather than alleviate user fatigue."
-methodsNote: "Draft inquiry focusing on burden-of-treatment theory and cognitive load analysis."
-limitationsNote: "Preliminary framework under review."
 ---
 
 ## 1. Research Question
 What constitutes the invisible administrative and cognitive overhead of living with a chronic condition?
 
-## 2. Why This Matters
-Medical regimens frequently impose high cumulative treatment burdens on patients.
-
-## 3. Scope and Approach
-Review of Burden of Treatment Theory (May et al.) applied to digital interaction design.
-
-*(Draft content under active research)*
+*(Draft inquiry stored in private editorial plan)*

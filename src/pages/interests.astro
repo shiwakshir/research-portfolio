@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import { SITE } from '@/config/site';
 
 const detailedInterests = [
   {
@@ -12,18 +11,18 @@ const detailedInterests = [
       "How can software dynamically adapt its interface complexity based on momentary cognitive bandwidth?",
       "What is the difference between clinical treatment adherence and sustainable everyday pacing?"
     ],
-    literatureBasis: "Informed by burden-of-treatment theory, patient-reported outcome measures, and health human-computer interaction (HCI)."
+    theoreticalAnchor: "Informed by burden-of-treatment theory, patient-reported outcome measures, and health human-computer interaction (HCI)."
   },
   {
     number: "02",
     title: "Human Behaviour and Everyday Experiences",
-    summary: "Examining the divergence between designer assumptions, clinical models, and the messy, adaptive ways people organize their lives in domestic and workplace contexts.",
+    summary: "Examining the divergence between designer assumptions, clinical protocols, and the messy, adaptive ways people organise their lives in domestic and workplace contexts.",
     questions: [
       "How do people negotiate invisible trade-offs between managing health regimens and preserving vocational or social identity?",
       "What environmental workarounds do users invent that formal surveys routinely fail to measure?",
       "How does retrospective recall bias distort user feedback in health and lifestyle research?"
     ],
-    literatureBasis: "Informed by qualitative sociology (Strauss & Corbin), ecological momentary assessment, and behavioral economics."
+    theoreticalAnchor: "Informed by qualitative sociology (Strauss & Corbin), ecological momentary assessment, and behavioural economics."
   },
   {
     number: "03",
@@ -31,10 +30,10 @@ const detailedInterests = [
     summary: "Refining mixed-methods research architectures that integrate qualitative contextual depth with quantitative statistical validity.",
     questions: [
       "How can practitioners structure research roadmaps so generative discovery continuously sharpens survey design?",
-      "What are the boundary conditions of small-sample usability testing when designing for diverse or neurodivergent populations?",
+      "What are the boundary conditions of small-sample usability testing when designing for complex or fluctuating user states?",
       "How do we measure latent emotional burden rather than just task completion time?"
     ],
-    literatureBasis: "Informed by mixed-methods research design (Creswell), survey methodology, and six years of professional practice."
+    theoreticalAnchor: "Informed by mixed-methods research design (Creswell), survey methodology, and five years of consultancy practice."
   },
   {
     number: "04",
@@ -43,9 +42,9 @@ const detailedInterests = [
     questions: [
       "Can synthetic user personas ever accurately simulate the lived experience of fluctuating illness, or do they inevitably reinforce stereotypes?",
       "How can researchers use AI tools for thematic clustering while preserving raw human nuance and counter-narratives?",
-      "What audit trails are necessary to maintain research integrity when utilizing automated qualitative tagging?"
+      "What audit trails are necessary to maintain research integrity when deploying multi-agent evaluation systems like BRIEF?"
     ],
-    literatureBasis: "Informed by emerging HCI literature on human-AI collaboration, algorithmic bias, and research ethics."
+    theoreticalAnchor: "Informed by emerging HCI literature on human-AI collaboration, algorithmic bias, and research ethics."
   },
   {
     number: "05",
@@ -54,28 +53,28 @@ const detailedInterests = [
     questions: [
       "How do we communicate varying levels of research confidence transparently to cross-functional stakeholders?",
       "When is a prototype experiment sufficient to commit engineering resources, and when is longitudinal validation required?",
-      "How can teams resist the temptation of vanity analytics that measure vanity engagement rather than genuine human utility?"
+      "How can teams resist the temptation of vanity analytics that measure engagement rather than genuine human utility?"
     ],
-    literatureBasis: "Informed by decision science, epistemology of evidence, and user experience strategy."
+    theoreticalAnchor: "Informed by decision science, epistemology of evidence, and user experience strategy."
   }
 ];
 ---
 
 <BaseLayout
-  title="Research Interests & Ongoing Inquiries"
-  description="Current areas of independent investigation: digital health, chronic conditions, human behaviour, research methods, and applied AI."
+  title="Research Interests"
+  description="Current areas of independent investigation: digital health, chronic conditions, human behaviour, research methods, and applied AI by Shiwakshi Rashmi."
 >
   <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
     
     <!-- Header -->
-    <header class="mb-12 border-b border-parchment-300 dark:border-ink-800 pb-8">
+    <header class="mb-12 border-b border-parchment-300 dark:border-darkSurface-750 pb-8">
       <span class="text-xs font-semibold uppercase tracking-wider text-forest-700 dark:text-forest-400 block mb-2">
         Agenda & Exploration
       </span>
-      <h1 class="font-editorial-heading font-serif text-3xl sm:text-5xl font-bold tracking-tight text-ink-900 dark:text-ink-50 mb-4">
+      <h1 class="font-editorial-heading font-serif text-3xl sm:text-5xl font-bold tracking-tight text-ink-950 dark:text-ink-50 mb-4">
         Research Interests
       </h1>
-      <p class="text-base sm:text-lg text-ink-700 dark:text-ink-300 leading-relaxed max-w-2xl">
+      <p class="text-base sm:text-lg text-ink-700 dark:text-ink-200 leading-relaxed max-w-2xl font-normal">
         These are ongoing directions of inquiry, reading, and conceptual design. They represent active curiosity and structured investigation rather than claims of definitive academic authority.
       </p>
     </header>
@@ -83,24 +82,24 @@ const detailedInterests = [
     <!-- Interest Pillars -->
     <div class="space-y-12">
       {detailedInterests.map((interest) => (
-        <section class="p-8 rounded bg-card/70 dark:bg-ink-900/40 border border-parchment-300 dark:border-ink-800 space-y-4">
+        <section class="p-8 rounded border border-parchment-300 dark:border-darkSurface-750 bg-card dark:bg-darkSurface-850 space-y-4">
           <div class="flex items-center gap-3">
             <span class="text-xs font-mono font-bold text-forest-700 dark:text-forest-400">
               {interest.number}
             </span>
-            <div class="h-px flex-1 bg-parchment-200 dark:border-ink-800"></div>
+            <div class="h-px flex-1 bg-parchment-200 dark:border-darkSurface-750"></div>
           </div>
 
-          <h2 class="font-editorial-heading font-serif text-2xl sm:text-3xl font-semibold text-ink-900 dark:text-ink-50">
+          <h2 class="font-editorial-heading font-serif text-2xl sm:text-3xl font-bold text-ink-950 dark:text-ink-50">
             {interest.title}
           </h2>
 
-          <p class="text-sm sm:text-base text-ink-700 dark:text-ink-300 leading-relaxed">
+          <p class="text-sm sm:text-base text-ink-700 dark:text-ink-300 leading-relaxed font-normal">
             {interest.summary}
           </p>
 
-          <div class="pt-4 border-t border-parchment-200 dark:border-ink-800">
-            <span class="text-xs font-semibold uppercase tracking-wider text-ink-900 dark:text-ink-200 block mb-2">
+          <div class="pt-4 border-t border-parchment-200 dark:border-darkSurface-750">
+            <span class="text-xs font-semibold uppercase tracking-wider text-ink-900 dark:text-ink-100 block mb-2">
               Active Questions Under Study:
             </span>
             <ul class="space-y-2 text-xs sm:text-sm text-ink-600 dark:text-ink-400">
@@ -113,20 +112,20 @@ const detailedInterests = [
             </ul>
           </div>
 
-          <div class="pt-3 text-[11px] text-ink-500 italic">
-            <strong>Theoretical Anchor:</strong> {interest.literatureBasis}
+          <div class="pt-3 text-[11px] text-ink-500 dark:text-ink-400 italic">
+            <strong>Theoretical Anchor:</strong> {interest.theoreticalAnchor}
           </div>
         </section>
       ))}
     </div>
 
     <!-- Invitation -->
-    <div class="mt-16 p-8 rounded bg-parchment-150 dark:bg-ink-900/60 border border-parchment-300 dark:border-ink-800 text-center space-y-4">
-      <h3 class="font-serif text-xl font-semibold text-ink-900 dark:text-ink-50">
+    <div class="mt-16 p-8 rounded bg-parchment-150 dark:bg-darkSurface-850 border border-parchment-300 dark:border-darkSurface-750 text-center space-y-4">
+      <h3 class="font-serif text-xl font-bold text-ink-950 dark:text-ink-50">
         Shared Curiosity?
       </h3>
       <p class="text-xs sm:text-sm text-ink-700 dark:text-ink-300 max-w-lg mx-auto leading-relaxed">
-        If you are working on similar questions or have recommendations for relevant literature, I would be delighted to exchange notes.
+        If you are investigating similar questions or have literature recommendations, I would welcome an exchange of thoughts.
       </p>
       <a
         href="/contact"

@@ -4,40 +4,30 @@
 # Copy this file to src/content/projects/your-project-slug.md
 # ===================================================================
 
-title: "Project or Framework Title"
-summary: "A concise 2-sentence summary of the research initiative and what was investigated."
-role: "Insights Manager / Research Lead" # Your role on the initiative
-problem: "State the research or business challenge, untested assumptions, or human barrier."
-approach: "Outline the research methodology, recruitment parameters, and framework."
+title: "Project Title"
+summary: "Approved exact summary of the initiative."
+role: "Exact wording of your role on the project"
+sector: "Technology" # Options: Technology | Automotive | Financial Services | FMCG | Generative AI
+order: 5 # Integer ordering
+isLead: false # Set true for flagship tools like BRIEF
 methods:
-  - "Semi-Structured Interviews"
-  - "Quantitative Survey"
-  - "Contextual Inquiry"
-  - "Usability Testing"
-timeline: "6 Months / Independent Investigation"
-status: "Completed" # Options: 'Ongoing' | 'Completed' | 'Framework Exploration'
-featured: true # Set to true to highlight on the homepage
-draft: true # Set to false to publish
-
-evidenceFindings: "Summary of verified behavioral evidence, recurring themes, or framework outcomes."
-reflectionsLimitations: "Reflect on constraints, omitted proprietary details, and remaining questions."
+  - "Qualitative In-Depth Interviews"
+  - "Quantitative Survey Design"
+  - "Journey Mapping"
+techStack: [] # Optional tech stack badges
+award: "" # Optional award badge if applicable
+featured: true
+draft: false
 ---
 
-## Project Context & Background
-Provide non-confidential context on why this inquiry was initiated.
+## Project Overview
+State the non-confidential context and scope.
 
-## Research Questions
-* What were the central unknowns?
-* Which customer or user behaviors needed clarification?
+### Problem & Challenge
+Explain the research or product question.
 
-## Methodology & Fieldwork
-Explain the steps taken:
-1. Exploratory qualitative phase.
-2. Quantitative validation.
-3. Analysis and synthesis.
+### My Role & Methodological Contribution
+Detail your specific methods and fieldwork execution.
 
-## Synthesized Insights & Outcomes
-Describe what the evidence revealed and how it informed decisions.
-
-## Reflections & Lessons Learned
-What worked well? What would you investigate differently next time?
+### Outcomes & Impact
+Outline key insights and strategic outcomes while keeping client names and proprietary datasets strictly anonymous.

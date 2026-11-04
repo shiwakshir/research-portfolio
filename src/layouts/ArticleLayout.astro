@@ -4,8 +4,8 @@ import ReadingProgress from '@/components/ReadingProgress.astro';
 import TableOfContents from '@/components/TableOfContents.astro';
 import ShareButtons from '@/components/ShareButtons.astro';
 import ReferencesList from '@/components/ReferencesList.astro';
-import ResearchCallout from '@/components/ResearchCallout.astro';
-import Badge from '@/components/Badge.astro';
+import EvidenceStatusBadge from '@/components/EvidenceStatusBadge.astro';
+import { SITE } from '@/config/site';
 
 interface Props {
   entry: any;
@@ -17,19 +17,21 @@ interface Props {
 const { entry, headings, prevPost, nextPost } = Astro.props;
 const { data, slug } = entry;
 
-const formattedPublishDate = data.publishDate.toLocaleDateString('en-US', {
-  year: 'numeric',
-  month: 'long',
+// Date format: "1 November 2026"
+const formattedPublishDate = data.publishDate.toLocaleDateString('en-GB', {
   day: 'numeric',
+  month: 'long',
+  year: 'numeric',
 });
 
-const formattedUpdateDate = data.updatedDate ? data.updatedDate.toLocaleDateString('en-US', {
-  year: 'numeric',
-  month: 'long',
+const formattedUpdateDate = data.updatedDate ? data.updatedDate.toLocaleDateString('en-GB', {
   day: 'numeric',
+  month: 'long',
+  year: 'numeric',
 }) : null;
 
 const currentUrl = Astro.url.href;
+const formattedNumber = String(data.articleNumber || 1).padStart(2, '0');
 ---
 <BaseLayout
   title={data.title}
@@ -39,39 +41,26 @@ const currentUrl = Astro.url.href;
 >
   <ReadingProgress />
 
-  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
-    <!-- Breadcrumb & Category -->
-    <nav aria-label="Breadcrumb" class="mb-6 flex flex-wrap items-center gap-2 text-xs text-ink-500 dark:text-ink-400">
-      <a href="/journal" class="hover:text-forest-700 dark:hover:text-forest-300">Journal</a>
-      <span>/</span>
-      <Badge variant="forest">{data.category}</Badge>
-      {data.researchStatus && (
-        <>
-          <span>/</span>
-          <Badge variant="status">{data.researchStatus}</Badge>
-        </>
-      )}
-    </nav>
-
-    <!-- Series Banner if part of a series -->
-    {data.series && (
-      <div class="mb-6 p-4 rounded bg-slateAccent-50 dark:bg-slateAccent-950/40 border border-slateAccent-100 dark:border-slateAccent-800 text-xs flex items-center justify-between">
-        <div class="flex items-center gap-2">
-          <span class="font-semibold text-slateAccent-800 dark:text-slateAccent-200">
-            Series: {data.series.title}
-          </span>
-          <span class="text-ink-400">·</span>
-          <span class="text-ink-600 dark:text-ink-400">Part {data.series.order}</span>
-        </div>
-        <a href={`/series/${data.series.id}`} class="font-medium text-slateAccent-700 dark:text-slateAccent-300 hover:underline">
-          View full series →
-        </a>
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16 has-margin-notes">
+    
+    <!-- Header Meta: Number, Status, Category, Dates -->
+    <div class="mb-6 flex flex-wrap items-center justify-between gap-3 text-xs text-ink-500 dark:text-ink-400 border-b border-parchment-200 dark:border-darkSurface-750 pb-3">
+      <div class="flex items-center gap-3">
+        <span class="font-editorial-heading font-serif text-lg font-bold text-forest-800 dark:text-forest-300">
+          No. {formattedNumber}
+        </span>
+        <span class="text-ink-300 dark:text-ink-600">·</span>
+        <span class="font-medium uppercase tracking-wider text-ink-700 dark:text-ink-300">{data.category}</span>
       </div>
-    )}
+
+      <div class="flex items-center gap-2">
+        <EvidenceStatusBadge status={data.researchStatus} size="md" />
+      </div>
+    </div>
 
     <!-- Article Header -->
-    <header class="mb-10 border-b border-parchment-300 dark:border-ink-800 pb-8">
-      <h1 class="font-editorial-heading font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-ink-900 dark:text-ink-50 leading-[1.2] mb-4">
+    <header class="mb-10 pb-8 border-b border-parchment-300 dark:border-darkSurface-750">
+      <h1 class="font-editorial-heading font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-ink-950 dark:text-ink-50 leading-[1.15] mb-4">
         {data.title}
       </h1>
 
@@ -87,72 +76,88 @@ const currentUrl = Astro.url.href;
           <span>By </span>
           <strong class="text-ink-900 dark:text-ink-100 font-medium">{data.author}</strong>
         </div>
-        <span class="text-ink-400">·</span>
+        <span class="text-ink-300 dark:text-ink-600">·</span>
         <time datetime={data.publishDate.toISOString()}>Published {formattedPublishDate}</time>
         {formattedUpdateDate && (
           <>
-            <span class="text-ink-400">·</span>
+            <span class="text-ink-300 dark:text-ink-600">·</span>
             <span>Updated {formattedUpdateDate}</span>
           </>
         )}
-        <span class="text-ink-400">·</span>
+        <span class="text-ink-300 dark:text-ink-600">·</span>
         <span class="font-mono">{data.readingTime}</span>
       </div>
 
-      <!-- Abstract Card -->
-      <div class="mt-8 p-5 rounded bg-parchment-150 dark:bg-ink-900/70 border-l-4 border-forest-700 dark:border-forest-500 text-sm leading-relaxed text-ink-800 dark:text-ink-200">
-        <strong class="block text-xs uppercase tracking-wider font-semibold text-forest-800 dark:text-forest-300 mb-1.5">
-          Abstract / Inquiring Summary
-        </strong>
-        <p class="italic">{data.abstract}</p>
-      </div>
-
-      <!-- Research Question Callout if defined in frontmatter -->
+      <!-- Research Question Feature (Large Serif Italics) -->
       {data.researchQuestion && (
-        <div class="mt-4 p-4 rounded bg-slateAccent-50/50 dark:bg-slateAccent-950/20 border border-slateAccent-100 dark:border-slateAccent-900 text-xs text-ink-700 dark:text-ink-300">
-          <strong class="font-semibold text-slateAccent-800 dark:text-slateAccent-300 uppercase tracking-wider text-[11px] block mb-1">
-            Guiding Research Question:
-          </strong>
-          <p class="font-medium text-sm text-ink-900 dark:text-ink-100">{data.researchQuestion}</p>
+        <div class="mt-8 p-6 rounded bg-parchment-150/70 dark:bg-darkSurface-850 border-l-4 border-forest-700 dark:border-forest-500">
+          <span class="text-[11px] font-semibold uppercase tracking-wider text-forest-800 dark:text-forest-400 block mb-2">
+            Central Research Question
+          </span>
+          <p class="font-editorial-heading font-serif text-lg sm:text-xl italic text-ink-950 dark:text-ink-50 leading-relaxed m-0">
+            "{data.researchQuestion}"
+          </p>
         </div>
       )}
+
+      <!-- Abstract Card -->
+      <div class="mt-6 p-5 rounded bg-parchment-50 dark:bg-darkSurface-800 border border-parchment-200 dark:border-darkSurface-750 text-sm leading-relaxed text-ink-800 dark:text-ink-200">
+        <strong class="block text-xs uppercase tracking-wider font-semibold text-ink-900 dark:text-ink-100 mb-1.5">
+          Abstract
+        </strong>
+        <p class="italic text-ink-700 dark:text-ink-300 mb-0">{data.abstract}</p>
+      </div>
     </header>
 
     <!-- Table of Contents -->
     <TableOfContents headings={headings} />
 
-    <!-- Optional Methods Note -->
-    {data.methodsNote && (
-      <ResearchCallout type="methods">
-        <p>{data.methodsNote}</p>
-      </ResearchCallout>
+    <!-- Health-Related Disclaimer (ONLY on health articles!) -->
+    {data.isHealthRelated && (
+      <div class="my-6 p-4 rounded bg-amber-50/70 dark:bg-darkSurface-850 border-l-4 border-amber-600 text-xs text-amber-900 dark:text-amber-200">
+        <strong>Research Note:</strong> This article documents human-centred UX inquiry, cognitive load analysis, and literature synthesis. It does not provide medical or clinical advice.
+      </div>
     )}
 
-    <!-- Main Markdown Body -->
-    <div class="prose prose-lg dark:prose-invert max-w-none mt-8">
+    <!-- Main Markdown Body with optional drop cap -->
+    <div class={`prose prose-lg dark:prose-invert max-w-none mt-8 ${data.dropCap ? 'drop-cap' : ''}`}>
       <slot />
     </div>
 
-    <!-- Optional Limitations Note -->
-    {data.limitationsNote && (
-      <ResearchCallout type="limitations">
-        <p>{data.limitationsNote}</p>
-      </ResearchCallout>
-    )}
-
-    <!-- Numbered References -->
+    <!-- Numbered References & Margin Citations -->
     <ReferencesList references={data.references} />
 
-    <!-- Share Options -->
+    <!-- Share Buttons -->
     <ShareButtons title={data.title} url={currentUrl} />
 
-    <!-- Article Navigation (Previous / Next) -->
+    <!-- Compact Author Note -->
+    <div class="mt-12 p-6 rounded bg-parchment-150 dark:bg-darkSurface-850 border border-parchment-200 dark:border-darkSurface-750 flex flex-col sm:flex-row items-start sm:items-center gap-4 text-xs">
+      <div class="w-10 h-10 rounded-sm bg-forest-700 text-parchment-100 flex items-center justify-center font-serif text-sm font-bold shrink-0">
+        {SITE.author.monogram}
+      </div>
+      <div class="space-y-1">
+        <div class="font-semibold text-sm text-ink-900 dark:text-ink-100">
+          Written by {SITE.author.name}
+        </div>
+        <p class="text-ink-600 dark:text-ink-300 leading-relaxed mb-0">
+          {SITE.author.fullTitle} in {SITE.author.location}. {SITE.author.experienceSummary}
+        </p>
+      </div>
+      <a
+        href="/about"
+        class="shrink-0 text-xs font-semibold text-forest-700 dark:text-forest-400 hover:underline sm:ml-auto"
+      >
+        About the author →
+      </a>
+    </div>
+
+    <!-- Adjacent Article Navigation -->
     {(prevPost || nextPost) && (
-      <nav aria-label="Adjacent articles" class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8 pt-8 border-t border-parchment-300 dark:border-ink-800">
+      <nav aria-label="Adjacent articles" class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8 pt-8 border-t border-parchment-300 dark:border-darkSurface-750">
         {prevPost ? (
           <a
             href={`/journal/${prevPost.slug}`}
-            class="p-4 rounded border border-parchment-300 dark:border-ink-800 hover:border-forest-600 transition-colors block text-left"
+            class="p-4 rounded border border-parchment-300 dark:border-darkSurface-750 hover:border-forest-600 transition-colors block text-left"
           >
             <span class="text-xs uppercase tracking-wider text-ink-500 block mb-1">← Previous Article</span>
             <span class="font-serif font-semibold text-sm text-ink-900 dark:text-ink-100 line-clamp-2">
@@ -164,7 +169,7 @@ const currentUrl = Astro.url.href;
         {nextPost && (
           <a
             href={`/journal/${nextPost.slug}`}
-            class="p-4 rounded border border-parchment-300 dark:border-ink-800 hover:border-forest-600 transition-colors block text-right"
+            class="p-4 rounded border border-parchment-300 dark:border-darkSurface-750 hover:border-forest-600 transition-colors block text-right"
           >
             <span class="text-xs uppercase tracking-wider text-ink-500 block mb-1">Next Article →</span>
             <span class="font-serif font-semibold text-sm text-ink-900 dark:text-ink-100 line-clamp-2">

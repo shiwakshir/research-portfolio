@@ -2,13 +2,15 @@
 title: "When Technology Becomes Another Task"
 subtitle: "Part 5 of Living with Fluctuating Health: An Independent Research Exploration"
 publishDate: 2026-11-04
-author: "[Your Name]"
+author: "Shiwakshi Rashmi"
+articleNumber: 7
 readingTime: "9 min read"
-category: "Service Design"
-tags: ["Digital Fatigue", "App Abandonment", "Cognitive Load", "Series"]
+category: "Digital Health"
+tags: ["Digital Fatigue", "App Abandonment"]
 abstract: "Investigating why health apps experience high churn rates among chronic patients, focusing on manual data entry fatigue, notification overload, and miscalibrated expectations."
 draft: true
-researchStatus: "Methodological Inquiry"
+researchStatus: "Critical review"
+isHealthRelated: true
 series:
   id: "living-with-fluctuating-health"
   title: "Living with Fluctuating Health"
@@ -20,4 +22,4 @@ whyItMatters: "High churn in digital health tools frequently stems from excessiv
 ## 1. Research Question
 At what point does health technology cross into generating intrusive cognitive overhead?
 
-*(Draft content under active research)*
+*(Draft inquiry stored in private editorial plan)*

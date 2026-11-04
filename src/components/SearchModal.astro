@@ -2,17 +2,17 @@
 ---
 <div
   id="search-dialog"
-  class="fixed inset-0 z-50 hidden bg-ink-950/60 backdrop-blur-sm flex items-start justify-center pt-20 px-4"
+  class="fixed inset-0 z-50 hidden bg-ink-950/70 backdrop-blur-sm flex items-start justify-center pt-20 px-4"
   role="dialog"
   aria-modal="true"
   aria-labelledby="search-title"
 >
   <div
-    class="w-full max-w-xl bg-parchment-100 dark:bg-ink-900 border border-parchment-300 dark:border-ink-700 rounded-lg shadow-2xl overflow-hidden"
+    class="w-full max-w-xl bg-parchment-100 dark:bg-darkSurface-900 border border-parchment-300 dark:border-darkSurface-700 rounded-lg shadow-2xl overflow-hidden"
     id="search-container"
   >
     <!-- Search Input Bar -->
-    <div class="relative border-b border-parchment-300 dark:border-ink-800 p-4 flex items-center gap-3">
+    <div class="relative border-b border-parchment-300 dark:border-darkSurface-750 p-4 flex items-center gap-3">
       <svg class="w-5 h-5 text-ink-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
       </svg>
@@ -27,7 +27,7 @@
         id="search-close-btn"
         type="button"
         aria-label="Close search"
-        class="text-xs px-2 py-1 rounded bg-parchment-200 dark:bg-ink-800 text-ink-500 hover:text-ink-900 dark:hover:text-ink-200"
+        class="text-xs px-2 py-1 rounded bg-parchment-200 dark:bg-darkSurface-800 text-ink-500 hover:text-ink-900 dark:hover:text-ink-200"
       >
         ESC
       </button>
@@ -41,9 +41,9 @@
       <div id="search-results-list" class="space-y-2"></div>
     </div>
 
-    <div class="p-2.5 bg-parchment-200/50 dark:bg-ink-950 border-t border-parchment-300 dark:border-ink-800 text-[11px] text-ink-500 dark:text-ink-400 flex justify-between items-center px-4">
-      <span>Independent Research Publication Index</span>
-      <span>Press <kbd class="font-mono bg-parchment-200 dark:bg-ink-800 px-1 py-0.5 rounded">ESC</kbd> to exit</span>
+    <div class="p-2.5 bg-parchment-200/50 dark:bg-darkSurface-950 border-t border-parchment-300 dark:border-darkSurface-750 text-[11px] text-ink-500 dark:text-ink-400 flex justify-between items-center px-4">
+      <span>Shiwakshi Rashmi · Research Index</span>
+      <span>Press <kbd class="font-mono bg-parchment-200 dark:bg-darkSurface-800 px-1 py-0.5 rounded">ESC</kbd> to exit</span>
     </div>
   </div>
 </div>
@@ -143,14 +143,16 @@
     resultsContainer.innerHTML = matches.map(item => `
       <a
         href="/journal/${item.slug}"
-        class="block p-3 rounded bg-parchment-50 dark:bg-ink-800/80 hover:bg-parchment-200 dark:hover:bg-ink-700/80 transition-colors border border-parchment-200 dark:border-ink-700"
+        class="block p-3 rounded bg-parchment-50 dark:bg-darkSurface-800/80 hover:bg-parchment-200 dark:hover:bg-darkSurface-750 transition-colors border border-parchment-200 dark:border-darkSurface-700"
       >
         <div class="flex items-center gap-2 mb-1">
-          <span class="text-[10px] uppercase font-bold tracking-wider text-forest-700 dark:text-forest-400">${item.category}</span>
+          <span class="text-[10px] font-mono font-bold text-forest-700 dark:text-forest-400">No. 0${item.articleNumber || 1}</span>
+          <span class="text-xs text-ink-400">·</span>
+          <span class="text-[10px] uppercase font-bold tracking-wider text-ink-600 dark:text-ink-300">${item.category}</span>
           <span class="text-xs text-ink-400">·</span>
           <span class="text-xs text-ink-500">${item.readingTime}</span>
         </div>
-        <h4 class="font-serif font-semibold text-ink-900 dark:text-ink-50 text-base leading-snug">${item.title}</h4>
+        <h4 class="font-serif font-semibold text-ink-950 dark:text-ink-50 text-base leading-snug">${item.title}</h4>
         <p class="text-xs text-ink-600 dark:text-ink-300 line-clamp-1 mt-1">${item.abstract}</p>
       </a>
     `).join('');

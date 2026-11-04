@@ -2,13 +2,15 @@
 title: "Welcome & Research Direction: Exploring Human Experience, Health, and Technology"
 subtitle: "An editorial statement on why I founded this publication and what I intend to investigate."
 publishDate: 2026-11-04
-author: "[Your Name]"
+author: "Shiwakshi Rashmi"
+articleNumber: 2
 readingTime: "5 min read"
 category: "Editorial"
-tags: ["Research Philosophy", "Digital Health", "UX Methodology", "Human Experience"]
+tags: ["Research Philosophy", "Human Experience"]
 abstract: "An introduction to this independent research journal, outlining the motivation behind examining chronic health management, questioning UX conventions, and grounding product design in rigorous human inquiry."
 draft: true
-researchStatus: "Editorial Note"
+researchStatus: "Literature exploration"
+isHealthRelated: true
 researchQuestion: "How can independent research bridge the gap between commercial UX practices and the nuanced lived realities of chronic illness?"
 whyItMatters: "Product teams often rely on superficial personas or compliance metrics that fail when applied to complex, non-linear human conditions."
 methodsNote: "This inaugural note outlines the editorial boundaries, citation standards, and ethical considerations that guide all subsequent articles on this platform."
@@ -24,7 +26,7 @@ references:
 
 ## Why This Space Exists
 
-Over the past six years of working across qualitative and quantitative research, user experience, and consumer understanding, I have repeatedly observed a tension: commercial product cycles often demand rapid generalization, while the most critical human problems demand patient, contextual understanding.
+Over five years of consultancy research across technology, automotive, financial services, and FMCG, I have repeatedly observed a tension: commercial product cycles often demand rapid generalisation, while the most critical human problems demand patient, contextual understanding.
 
 When designing technology for human beings—particularly those navigating chronic or fluctuating health challenges—standard assumptions about linear habit formation, daily adherence, and uniform energy levels collapse.
 
@@ -32,20 +34,16 @@ This website serves as my independent research space: a place to question assump
 
 ## Core Commitments of This Publication
 
-### 1. Intellectual Humility and Separation of Claims
+### 1. Separation of Claims
 Every article on this platform clearly delineates between:
 * Peer-reviewed empirical literature.
 * Qualitative exploratory findings.
 * Conceptual design hypotheses and personal reflections.
 
-I do not write as a clinician, academic professor, or medical researcher. My lens is that of an Insights Manager and UX researcher examining human systems, behavioral patterns, and service interactions.
+I write as an Insights Manager and UX researcher examining human systems, behavioural patterns, and service interactions.
 
-### 2. Focusing on Everyday Realities Over Idealized Personas
-Standard user personas often assume predictable days: 8 hours of focused work, reliable sleep, and surplus cognitive capacity for complex onboarding. For individuals managing fluctuating health, capacity is a variable, not a constant. This publication prioritizes understanding those variable realities.
+### 2. Focusing on Everyday Realities Over Idealised Personas
+Standard user personas often assume predictable days: 8 hours of focused work, reliable sleep, and surplus cognitive capacity for complex onboarding. For individuals managing fluctuating health, capacity is a variable, not a constant. This publication prioritises understanding those variable realities.
 
 ### 3. Critical Assessment of Technology
-Technology is not an unalloyed good. In many instances, digital tracking tools inadvertently impose additional cognitive labor on already exhausted individuals. We must rigorously question when digital interventions support autonomy versus when they become another unmanageable chore.
-
-## Upcoming Research Agenda
-
-In the coming months, I will be publishing articles within our first multi-part series: *Living with Fluctuating Health*. I invite fellow practitioners, researchers, and individuals with lived experience to follow along, critique the frameworks, and share their perspectives.
+Technology is not an unalloyed good. In many instances, digital tracking tools inadvertently impose additional cognitive labour on already exhausted individuals. We must rigorously question when digital interventions support autonomy versus when they become another unmanageable chore.

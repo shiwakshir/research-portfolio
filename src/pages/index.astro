@@ -1,164 +1,255 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { SITE } from '@/config/site';
-import ArticleCard from '@/components/ArticleCard.astro';
-import SeriesCard from '@/components/SeriesCard.astro';
+import EvidenceStatusBadge from '@/components/EvidenceStatusBadge.astro';
 import ProjectCard from '@/components/ProjectCard.astro';
-import Badge from '@/components/Badge.astro';
 import { getCollection } from 'astro:content';
 
 // Only get published articles (draft: false)
 const allPublishedArticles = await getCollection('journal', ({ data }) => !data.draft);
-const recentArticles = allPublishedArticles
-  .sort((a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime())
-  .slice(0, 3);
+const sortedArticles = allPublishedArticles.sort(
+  (a, b) => b.data.publishDate.getTime() - a.data.publishDate.getTime()
+);
+const latestArticle = sortedArticles[0];
 
-// Get series
+// Only show series if it has a published article
 const allSeries = await getCollection('series');
-const featuredSeries = allSeries.find(s => s.data.featured) || allSeries[0];
+const seriesWithPublished = allSeries.filter(s => {
+  return allPublishedArticles.some(a => a.data.series?.id === s.slug);
+});
 
-// Get featured projects
-const featuredProjects = await getCollection('projects', ({ data }) => !data.draft && data.featured);
+// Get approved projects
+const allProjects = await getCollection('projects', ({ data }) => !data.draft);
+const sortedProjects = allProjects.sort((a, b) => a.data.order - b.data.order);
+const selectedProjects = sortedProjects.slice(0, 3); // BRIEF + 2 others
+
+// Research themes with real counts only
+const themesWithCounts = [
+  {
+    title: "UX Research Methods",
+    count: allPublishedArticles.filter(a => a.data.category === "UX Research Methods").length,
+    description: "Mixed-methods architectures, evidence hierarchies, and rigorous discovery protocols.",
+  },
+  {
+    title: "Digital Health & Wellbeing",
+    count: allPublishedArticles.filter(a => a.data.category === "Digital Health").length,
+    description: "Managing treatment burden, cognitive overhead, and interface friction in self-management.",
+  },
+  {
+    title: "Chronic & Fluctuating Conditions",
+    count: allPublishedArticles.filter(a => a.data.category === "Chronic Health").length,
+    description: "Everyday realities of non-linear illness, energy pacing, and routine volatility.",
+  },
+  {
+    title: "Human Behaviour & Lived Experience",
+    count: allPublishedArticles.filter(a => a.data.category === "Human Behaviour").length,
+    description: "Observational fieldwork versus retrospective self-reporting and social desirability.",
+  },
+  {
+    title: "Applied AI in UX & Market Research",
+    count: allPublishedArticles.filter(a => a.data.category === "Applied AI").length,
+    description: "Evaluating agentic brief analysis, bias risks, and synthetic respondent limitations.",
+  },
+];
+
+// Current explorations based on the brief
+const currentExplorations = [
+  "Digital health self-management and fluctuating symptom burden",
+  "Evaluating multi-agent evaluation frameworks for research rigor",
+  "Methodological evidence hierarchies for cross-functional product roadmaps",
+  "Cross-market harmonization in generative AI and technology studies",
+];
 ---
 
 <BaseLayout>
-  <!-- Hero Section -->
-  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-16 sm:pt-24 sm:pb-20 border-b border-parchment-300 dark:border-ink-800">
-    <div class="max-w-3xl">
-      <div class="inline-flex items-center gap-2 mb-6">
-        <span class="w-2 h-2 rounded-full bg-forest-600 animate-pulse"></span>
-        <span class="text-xs uppercase tracking-widest font-semibold text-forest-700 dark:text-forest-400">
-          Independent Research & UX Publication
+  <!-- Compact Masthead (No large empty hero) -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-10 border-b border-parchment-300 dark:border-darkSurface-750">
+    <div class="max-w-4xl space-y-4">
+      <div class="flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-forest-600 inline-block"></span>
+        <span class="text-xs uppercase tracking-widest font-semibold text-forest-800 dark:text-forest-400">
+          Independent Research Portfolio & Publication
         </span>
       </div>
 
-      <h1 class="font-editorial-heading font-serif text-3xl sm:text-5xl lg:text-5xl font-bold tracking-tight text-ink-950 dark:text-ink-50 leading-[1.15] mb-6">
+      <h1 class="font-editorial-heading font-serif text-3xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-ink-950 dark:text-ink-50 leading-[1.12]">
         {SITE.tagline}
       </h1>
 
-      <p class="text-lg sm:text-xl text-ink-700 dark:text-ink-300 leading-relaxed mb-8 font-normal">
-        I am a UX and market research professional exploring the intersection of human experience, chronic health, and technology. This is where I document my independent research, emerging questions, and projects.
+      <p class="text-base sm:text-lg text-ink-700 dark:text-ink-200 leading-relaxed font-normal max-w-3xl">
+        I am an Insights Manager specialising in UX and market research, exploring the intersection of human experience, chronic health conditions and applied technology. This website is where I document independent research, methodological reflections and selected projects.
       </p>
 
-      <div class="flex flex-wrap items-center gap-4 text-sm">
-        <a
-          href="/journal"
-          class="px-5 py-2.5 rounded bg-forest-700 text-parchment-50 hover:bg-forest-800 font-medium transition-colors shadow-sm focus-visible:ring-2 focus-visible:ring-forest-600"
-        >
-          Explore Research Journal →
-        </a>
-        <a
-          href="/about"
-          class="px-5 py-2.5 rounded border border-parchment-300 dark:border-ink-700 text-ink-800 dark:text-ink-200 hover:border-forest-600 dark:hover:border-forest-500 font-medium transition-colors"
-        >
-          About My Background
-        </a>
+      <!-- Slim Proof Line -->
+      <div class="pt-2 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-medium text-ink-600 dark:text-ink-400">
+        <span class="flex items-center gap-1.5">
+          <span class="w-1.5 h-1.5 rounded-full bg-forest-700 dark:bg-forest-400"></span>
+          Over five years of consultancy research
+        </span>
+        <span class="text-ink-300 dark:text-ink-700">·</span>
+        <span>Technology, generative AI, automotive, financial services & FMCG</span>
+        <span class="text-ink-300 dark:text-ink-700">·</span>
+        <span class="text-forest-800 dark:text-forest-300 font-semibold">Hack for Good Award winner (Microsoft Agents League 2026)</span>
       </div>
     </div>
   </section>
 
-  <!-- Featured Research Series Banner -->
-  {featuredSeries && (
-    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-parchment-300 dark:border-ink-800">
-      <div class="mb-8 flex items-end justify-between">
-        <div>
-          <span class="text-xs font-semibold uppercase tracking-wider text-forest-700 dark:text-forest-400 block mb-1">
-            Focus Inquiry
-          </span>
-          <h2 class="font-editorial-heading font-serif text-2xl sm:text-3xl font-semibold text-ink-900 dark:text-ink-50">
-            Featured Research Series
-          </h2>
-        </div>
-        <a href="/series" class="text-xs font-semibold text-forest-700 dark:text-forest-400 hover:underline">
-          All series ({allSeries.length}) →
+  <!-- Featured Article: Full-width, Two-column Layout -->
+  {latestArticle && (
+    <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-14 border-b border-parchment-300 dark:border-darkSurface-750">
+      <div class="flex items-center justify-between mb-8 pb-2 border-b border-parchment-200 dark:border-darkSurface-750">
+        <span class="text-xs font-semibold uppercase tracking-wider text-forest-800 dark:text-forest-400">
+          Latest Published Inquiry
+        </span>
+        <a href="/journal" class="text-xs font-medium text-forest-700 dark:text-forest-400 hover:underline">
+          View all journal entries →
         </a>
       </div>
 
-      <SeriesCard
-        title={featuredSeries.data.title}
-        subtitle={featuredSeries.data.subtitle}
-        slug={featuredSeries.slug}
-        status={featuredSeries.data.status}
-        description={featuredSeries.data.description}
-        proposedArticles={featuredSeries.data.proposedArticles}
-      />
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 p-8 rounded border border-parchment-300 dark:border-darkSurface-750 bg-card dark:bg-darkSurface-850">
+        <!-- Left Column: Number, Status & Title -->
+        <div class="lg:col-span-6 space-y-4">
+          <div class="flex items-center gap-3">
+            <span class="font-editorial-heading font-serif text-xl font-bold text-forest-800 dark:text-forest-300">
+              No. 01
+            </span>
+            <span class="text-ink-300 dark:text-ink-600">·</span>
+            <EvidenceStatusBadge status={latestArticle.data.researchStatus} />
+          </div>
+
+          <h2 class="font-editorial-heading font-serif text-2xl sm:text-4xl font-bold text-ink-950 dark:text-ink-50 leading-snug">
+            <a href={`/journal/${latestArticle.slug}`} class="hover:text-forest-700 dark:hover:text-forest-300 transition-colors">
+              {latestArticle.data.title}
+            </a>
+          </h2>
+
+          {latestArticle.data.subtitle && (
+            <p class="text-sm sm:text-base text-ink-600 dark:text-ink-400 font-serif italic">
+              {latestArticle.data.subtitle}
+            </p>
+          )}
+
+          <div class="text-xs text-ink-500 dark:text-ink-400 pt-2 font-mono">
+            <span>{latestArticle.data.category}</span>
+            <span class="mx-1.5">·</span>
+            <span>1 November 2026</span>
+            <span class="mx-1.5">·</span>
+            <span>{latestArticle.data.readingTime}</span>
+          </div>
+        </div>
+
+        <!-- Right Column: Research Question, Summary & Read Link -->
+        <div class="lg:col-span-6 flex flex-col justify-between space-y-6 lg:border-l lg:border-parchment-200 lg:dark:border-darkSurface-750 lg:pl-8">
+          <div class="space-y-4">
+            {latestArticle.data.researchQuestion && (
+              <div class="p-4 rounded bg-parchment-150/70 dark:bg-darkSurface-800 border-l-2 border-forest-600">
+                <span class="text-[10px] font-semibold uppercase tracking-wider text-forest-800 dark:text-forest-400 block mb-1">
+                  Research Question
+                </span>
+                <p class="font-editorial-heading font-serif text-base sm:text-lg italic text-ink-900 dark:text-ink-100 m-0 leading-relaxed">
+                  "{latestArticle.data.researchQuestion}"
+                </p>
+              </div>
+            )}
+
+            <p class="text-sm text-ink-700 dark:text-ink-300 leading-relaxed">
+              {latestArticle.data.abstract}
+            </p>
+          </div>
+
+          <div class="pt-4 flex items-center justify-between border-t border-parchment-200 dark:border-darkSurface-750">
+            <div class="flex gap-2">
+              {latestArticle.data.tags.slice(0, 2).map((tag: string) => (
+                <span class="text-[11px] font-mono px-2 py-0.5 rounded bg-parchment-150 dark:bg-darkSurface-800 text-ink-600 dark:text-ink-400">
+                  #{tag}
+                </span>
+              ))}
+            </div>
+            <a
+              href={`/journal/${latestArticle.slug}`}
+              class="text-sm font-semibold text-forest-700 dark:text-forest-300 hover:text-forest-800 dark:hover:text-forest-200 inline-flex items-center gap-1"
+            >
+              Read full paper →
+            </a>
+          </div>
+        </div>
+      </div>
     </section>
   )}
 
-  <!-- Recent Articles Section -->
-  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-parchment-300 dark:border-ink-800">
+  <!-- Selected Work (BRIEF as lead project) -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-parchment-300 dark:border-darkSurface-750">
     <div class="mb-8 flex items-end justify-between">
       <div>
-        <span class="text-xs font-semibold uppercase tracking-wider text-forest-700 dark:text-forest-400 block mb-1">
-          Recent Writing
+        <span class="text-xs font-semibold uppercase tracking-wider text-forest-800 dark:text-forest-400 block mb-1">
+          Applied Practice
         </span>
-        <h2 class="font-editorial-heading font-serif text-2xl sm:text-3xl font-semibold text-ink-900 dark:text-ink-50">
-          From the Research Journal
+        <h2 class="font-editorial-heading font-serif text-2xl sm:text-3xl font-semibold text-ink-950 dark:text-ink-50">
+          Selected Work
         </h2>
       </div>
-      <a href="/journal" class="text-xs font-semibold text-forest-700 dark:text-forest-400 hover:underline">
-        Browse all articles →
+      <a href="/projects" class="text-xs font-semibold text-forest-700 dark:text-forest-400 hover:underline">
+        All projects ({allProjects.length}) →
       </a>
     </div>
 
-    {recentArticles.length > 0 ? (
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {recentArticles.map((article) => (
-          <ArticleCard
-            title={article.data.title}
-            subtitle={article.data.subtitle}
-            slug={article.slug}
-            publishDate={article.data.publishDate}
-            readingTime={article.data.readingTime}
-            category={article.data.category}
-            abstract={article.data.abstract}
-            researchStatus={article.data.researchStatus}
-            tags={article.data.tags}
-          />
-        ))}
-      </div>
-    ) : (
-      <div class="p-8 rounded border border-dashed border-parchment-300 dark:border-ink-800 text-center">
-        <p class="text-sm text-ink-600 dark:text-ink-400">
-          Articles in the first research series are currently under active synthesis and editorial review.
-        </p>
-      </div>
-    )}
+    <div class="space-y-8">
+      {selectedProjects.map((project) => (
+        <ProjectCard
+          title={project.data.title}
+          summary={project.data.summary}
+          role={project.data.role}
+          sector={project.data.sector}
+          methods={project.data.methods}
+          order={project.data.order}
+          isLead={project.data.isLead}
+          award={project.data.award}
+          techStack={project.data.techStack}
+          slug={project.slug}
+        />
+      ))}
+    </div>
   </section>
 
-  <!-- Research Themes Grid -->
-  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-parchment-300 dark:border-ink-800">
-    <div class="max-w-2xl mb-12">
-      <span class="text-xs font-semibold uppercase tracking-wider text-forest-700 dark:text-forest-400 block mb-1">
-        Inquiry Directions
+  <!-- Typographic Research Themes Index (Real article counts only) -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-parchment-300 dark:border-darkSurface-750">
+    <div class="max-w-2xl mb-8">
+      <span class="text-xs font-semibold uppercase tracking-wider text-forest-800 dark:text-forest-400 block mb-1">
+        Thematic Index
       </span>
-      <h2 class="font-editorial-heading font-serif text-2xl sm:text-3xl font-semibold text-ink-900 dark:text-ink-50 mb-3">
-        Selected Research Themes
+      <h2 class="font-editorial-heading font-serif text-2xl sm:text-3xl font-semibold text-ink-950 dark:text-ink-50 mb-2">
+        Research Themes
       </h2>
-      <p class="text-sm text-ink-600 dark:text-ink-400 leading-relaxed">
-        My emerging independent investigations focus on understanding human systems under conditions of unpredictability, fatigue, and methodological change.
+      <p class="text-xs sm:text-sm text-ink-600 dark:text-ink-400">
+        Article counts reflect currently published research. Draft manuscripts under active synthesis are excluded until published.
       </p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {SITE.researchThemes.map((theme) => (
-        <div class="p-6 rounded bg-card/60 dark:bg-ink-900/40 border border-parchment-300 dark:border-ink-800 hover:border-forest-600 transition-colors flex flex-col justify-between">
+      {themesWithCounts.map((theme) => (
+        <div class="p-6 rounded border border-parchment-300 dark:border-darkSurface-750 bg-card/60 dark:bg-darkSurface-850/60 flex flex-col justify-between">
           <div>
-            <h3 class="font-editorial-heading font-serif text-lg font-semibold text-ink-900 dark:text-ink-100 mb-2">
-              {theme.title}
-            </h3>
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="font-editorial-heading font-serif text-lg font-semibold text-ink-900 dark:text-ink-100">
+                {theme.title}
+              </h3>
+              <span class="font-mono text-xs px-2 py-0.5 rounded bg-parchment-200 dark:bg-darkSurface-800 text-ink-600 dark:text-ink-400 font-semibold">
+                {theme.count} {theme.count === 1 ? 'article' : 'articles'}
+              </span>
+            </div>
             <p class="text-xs text-ink-600 dark:text-ink-400 leading-relaxed mb-4">
               {theme.description}
             </p>
           </div>
-          <ul class="space-y-1 pt-3 border-t border-parchment-200 dark:border-ink-800 text-[11px] text-ink-500 dark:text-ink-400">
-            {theme.focusAreas.map((area) => (
-              <li class="flex items-center gap-1.5">
-                <span class="w-1 h-1 rounded-full bg-forest-600"></span>
-                <span>{area}</span>
-              </li>
-            ))}
-          </ul>
+          <div class="pt-3 border-t border-parchment-200 dark:border-darkSurface-750 text-right">
+            {theme.count > 0 ? (
+              <a href="/journal" class="text-xs font-semibold text-forest-700 dark:text-forest-400 hover:underline">
+                View published ({theme.count}) →
+              </a>
+            ) : (
+              <span class="text-[11px] text-ink-400 dark:text-ink-600 italic">Inquiries in preparation</span>
+            )}
+          </div>
         </div>
       ))}
     </div>
@@ -170,63 +261,28 @@ const featuredProjects = await getCollection('projects', ({ data }) => !data.dra
     </div>
   </section>
 
-  <!-- Projects Section -->
-  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 border-b border-parchment-300 dark:border-ink-800">
-    <div class="mb-8 flex items-end justify-between">
-      <div>
-        <span class="text-xs font-semibold uppercase tracking-wider text-forest-700 dark:text-forest-400 block mb-1">
-          Applied Work
-        </span>
-        <h2 class="font-editorial-heading font-serif text-2xl sm:text-3xl font-semibold text-ink-900 dark:text-ink-50">
-          Selected Projects & Case Studies
-        </h2>
-      </div>
-      <a href="/projects" class="text-xs font-semibold text-forest-700 dark:text-forest-400 hover:underline">
-        All projects →
-      </a>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      {featuredProjects.map((project) => (
-        <ProjectCard
-          title={project.data.title}
-          summary={project.data.summary}
-          role={project.data.role}
-          problem={project.data.problem}
-          approach={project.data.approach}
-          methods={project.data.methods}
-          timeline={project.data.timeline}
-          status={project.data.status}
-          slug={project.slug}
-        />
-      ))}
-    </div>
-  </section>
-
-  <!-- Connect & Dialogue Invitation -->
-  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-    <div class="p-8 sm:p-12 rounded bg-parchment-150 dark:bg-ink-900/60 border border-parchment-300 dark:border-ink-800 max-w-3xl mx-auto text-center space-y-6">
-      <h2 class="font-editorial-heading font-serif text-2xl sm:text-3xl font-semibold text-ink-900 dark:text-ink-50">
-        Interested in Dialogue or Collaboration?
+  <!-- Currently Exploring Section -->
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <div class="max-w-3xl space-y-4">
+      <span class="text-xs font-semibold uppercase tracking-wider text-forest-800 dark:text-forest-400 block mb-1">
+        Current Inquiries
+      </span>
+      <h2 class="font-editorial-heading font-serif text-2xl sm:text-3xl font-semibold text-ink-950 dark:text-ink-50">
+        Currently Exploring
       </h2>
-      <p class="text-sm text-ink-700 dark:text-ink-300 leading-relaxed max-w-xl mx-auto">
-        I welcome thoughtful conversations with researchers, designers, health practitioners, and people with lived experience of chronic or fluctuating health conditions.
+      <p class="text-sm text-ink-600 dark:text-ink-300 leading-relaxed">
+        Active areas of qualitative reading, design reflection, and experimental testing:
       </p>
-      <div class="flex flex-wrap items-center justify-center gap-4 pt-2">
-        <a
-          href="/contact"
-          class="px-5 py-2.5 rounded bg-forest-700 text-parchment-50 hover:bg-forest-800 text-sm font-medium transition-colors"
-        >
-          Connect With Me
-        </a>
-        <a
-          href={SITE.author.linkedIn}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="px-5 py-2.5 rounded border border-parchment-300 dark:border-ink-700 text-ink-800 dark:text-ink-200 hover:border-forest-600 text-sm font-medium transition-colors"
-        >
-          LinkedIn Profile ↗
-        </a>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+        {currentExplorations.map((item) => (
+          <div class="p-4 rounded bg-parchment-150/70 dark:bg-darkSurface-850 border border-parchment-200 dark:border-darkSurface-750 flex items-start gap-3">
+            <span class="w-1.5 h-1.5 rounded-full bg-forest-600 mt-2 shrink-0"></span>
+            <span class="text-xs sm:text-sm text-ink-800 dark:text-ink-200 leading-relaxed font-medium">
+              {item}
+            </span>
+          </div>
+        ))}
       </div>
     </div>
   </section>
