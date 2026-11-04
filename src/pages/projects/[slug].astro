@@ -75,8 +75,8 @@ const { Content } = await project.render();
       <a href="/projects" class="text-link underline underline-offset-2">
         ← Back to all projects
       </a>
-      {project.data.isLead && (
-        <a href="https://github.com/shiwakshir/brief-agent" target="_blank" rel="noopener noreferrer" class="text-link underline underline-offset-2">
+      {project.data.githubUrl && (
+        <a href={project.data.githubUrl} target="_blank" rel="noopener noreferrer" class="text-link underline underline-offset-2">
           View repository on GitHub ↗
         </a>
       )}

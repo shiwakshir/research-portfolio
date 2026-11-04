@@ -3,7 +3,7 @@ title: "Code-switching as an engagement signal"
 summary: "An exploratory concept for multilingual qualitative research in India. It maps language-switch density against discussion guide topics."
 role: "I wrote the concept and a Python pilot script."
 sector: "Research methods"
-order: 4
+order: 6
 isLead: false
 methods:
   - "Python"

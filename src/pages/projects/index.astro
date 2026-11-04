@@ -24,7 +24,7 @@ const sortedProjects = allProjects.sort((a, b) => a.data.order - b.data.order);
       </h1>
 
       <p class="lede">
-        Research tools and experiments that I build independently. Each entry states what exists today.
+        Research and AI tools that I build independently. Each entry states what exists today. I own the intellectual property in these projects, except for third-party components under their own licences.
       </p>
     </header>
 
@@ -44,6 +44,7 @@ const sortedProjects = allProjects.sort((a, b) => a.data.order - b.data.order);
           award={project.data.award}
           techStack={project.data.techStack}
           slug={project.slug}
+          githubUrl={project.data.githubUrl}
         />
       ))}
     </div>
