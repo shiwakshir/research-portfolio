@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://shiwakshirashmi.com/sitemap.xml
+Sitemap: https://shiwakshi.com/sitemap.xml

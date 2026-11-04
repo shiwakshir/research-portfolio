@@ -1,0 +1,11 @@
+[
+  {"capability": "code (pages, layouts, components)", "source": "Astro 4 site", "outcome": "migrate", "status": "verified", "next_action": "none"},
+  {"capability": "content (journal, projects, series markdown/MDX)", "source": "src/content", "outcome": "migrate", "status": "verified", "next_action": "none"},
+  {"capability": "draft / isPublic visibility rules", "source": "content frontmatter", "outcome": "migrate", "status": "verified", "next_action": "none"},
+  {"capability": "fonts, favicon, og image", "source": "public/", "outcome": "migrate", "status": "verified", "next_action": "none"},
+  {"capability": "rss.xml, sitemap.xml, search.json", "source": "Astro endpoints", "outcome": "migrate", "status": "verified", "next_action": "none"},
+  {"capability": "theme toggle + search modal", "source": "inline scripts", "outcome": "migrate", "status": "verified", "next_action": "none"},
+  {"capability": "database / records / auth / storage / secrets", "source": "none", "outcome": "not applicable", "status": "verified", "next_action": "none"},
+  {"capability": "font cache headers (_headers)", "source": "public/_headers", "outcome": "dropped", "status": "accepted", "next_action": "hosting handles caching"},
+  {"capability": "cutover (domain)", "source": "shiwakshirashmi.com [TO CONFIRM]", "outcome": "pending", "status": "pending", "next_action": "publish and connect domain when ready"}
+]

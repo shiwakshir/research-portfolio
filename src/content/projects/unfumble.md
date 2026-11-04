@@ -6,8 +6,11 @@ sector: "Applied AI"
 order: 4
 isLead: false
 methods:
-  - "JavaScript"
+  - "Natural-language workflow building"
+  - "Portal rule checks"
   - "Local file processing"
+techStack:
+  - "JavaScript"
 githubUrl: "https://github.com/shiwakshir/unfumble"
 featured: true
 draft: false

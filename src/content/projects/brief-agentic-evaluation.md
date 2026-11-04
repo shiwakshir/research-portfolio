@@ -28,7 +28,7 @@ A researcher pastes in a plain-language research brief. An orchestrator routes t
 
 ## How to read the result
 
-BRIEF is advisory. A researcher reviews the output before making any fieldwork decision. The score does not replace research judgement.
+BRIEF is advisory. A researcher reviews the output before making any fieldwork decision. The last agent combines the findings of the other agents into the score. I have not tested the score against the outcomes of real research projects, so it does not replace research judgement.
 
 ## Current status
 
