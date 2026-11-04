@@ -10,25 +10,27 @@ interface Props {
 const { title, subtitle, description } = Astro.props;
 ---
 <BaseLayout title={title} description={description}>
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-    <header class="mb-12 border-b border-parchment-300 dark:border-darkSurface-750 pb-8">
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12 md:py-16">
+    <header class="space-y-4 mb-8">
       {subtitle && (
-        <span class="text-xs font-semibold uppercase tracking-wider text-forest-700 dark:text-forest-400 block mb-2">
+        <p class="font-sans text-xs text-fg-muted uppercase tracking-wider">
           {subtitle}
-        </span>
+        </p>
       )}
-      <h1 class="font-editorial-heading font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-ink-950 dark:text-ink-50 mb-4">
+      <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-fg leading-[1.15] tracking-tight">
         {title}
       </h1>
       {description && (
-        <p class="text-base sm:text-lg text-ink-700 dark:text-ink-200 max-w-2xl leading-relaxed font-normal">
+        <p class="text-base sm:text-lg text-fg-body max-w-3xl leading-relaxed font-normal">
           {description}
         </p>
       )}
     </header>
 
-    <div class="prose prose-lg dark:prose-invert max-w-none">
+    <hr class="border-t border-rule-strong my-8" />
+
+    <div class="prose dark:prose-invert max-w-[38rem]">
       <slot />
     </div>
-  </div>
+  </main>
 </BaseLayout>

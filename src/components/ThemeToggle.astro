@@ -4,7 +4,7 @@
   id="theme-toggle"
   type="button"
   aria-label="Toggle dark mode"
-  class="p-2 rounded-md text-ink-600 hover:text-ink-950 dark:text-ink-300 dark:hover:text-ink-50 transition-colors focus-visible:ring-1 focus-visible:ring-forest-600"
+  class="p-1.5 text-fg-muted hover:text-fg transition-colors focus-visible:outline-none"
 >
   <!-- Sun Icon (shown in dark mode) -->
   <svg
@@ -42,14 +42,17 @@
   const themeToggle = document.getElementById('theme-toggle');
   const lightIcon = document.getElementById('theme-toggle-light-icon');
   const darkIcon = document.getElementById('theme-toggle-dark-icon');
+  const metaThemeColor = document.getElementById('theme-color-meta');
 
   function updateIcons(isDark) {
     if (isDark) {
       lightIcon?.classList.remove('hidden');
       darkIcon?.classList.add('hidden');
+      if (metaThemeColor) metaThemeColor.setAttribute('content', '#151412');
     } else {
       lightIcon?.classList.add('hidden');
       darkIcon?.classList.remove('hidden');
+      if (metaThemeColor) metaThemeColor.setAttribute('content', '#FAF7F0');
     }
   }
 

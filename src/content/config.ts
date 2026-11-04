@@ -29,7 +29,9 @@ const journalCollection = defineCollection({
     researchQuestion: z.string().optional(),
     whyItMatters: z.string().optional(),
     methodsNote: z.string().optional(),
+    methodsSummary: z.string().optional(),
     limitationsNote: z.string().optional(),
+    limitations: z.string().optional(),
     doi: z.string().optional(),
     originalSourceUrl: z.string().url().optional(),
     references: z.array(z.object({

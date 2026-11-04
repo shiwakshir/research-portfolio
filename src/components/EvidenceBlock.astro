@@ -4,46 +4,19 @@ interface Props {
   title?: string;
 }
 
-const { type, title } = Astro.props;
-
-const styles = {
-  'what-the-evidence-says': {
-    border: 'border-l-4 border-forest-600 bg-forest-50/70 dark:bg-darkSurface-850 dark:border-forest-500',
-    titleColor: 'text-forest-800 dark:text-forest-200',
-    defaultTitle: 'What the Evidence Says',
-    icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
-  },
-  'my-interpretation': {
-    border: 'border-l-4 border-slateAccent-600 bg-slateAccent-50/70 dark:bg-darkSurface-850 dark:border-slateAccent-400',
-    titleColor: 'text-slateAccent-800 dark:text-slateAccent-200',
-    defaultTitle: 'My Interpretation',
-    icon: 'M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z',
-  },
-  'where-the-evidence-disagrees': {
-    border: 'border-l-4 border-amber-600 bg-amber-50/70 dark:bg-darkSurface-850 dark:border-amber-500',
-    titleColor: 'text-amber-800 dark:text-amber-200',
-    defaultTitle: 'Where the Evidence Disagrees',
-    icon: 'M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4',
-  },
-  'open-question': {
-    border: 'border-l-4 border-ink-500 bg-parchment-150/70 dark:bg-darkSurface-850 dark:border-ink-400',
-    titleColor: 'text-ink-900 dark:text-ink-100',
-    defaultTitle: 'Open Question',
-    icon: 'M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z',
-  },
+const LABELS = {
+  'what-the-evidence-says': 'What the evidence says',
+  'my-interpretation': 'My interpretation',
+  'where-the-evidence-disagrees': 'Where the evidence disagrees',
+  'open-question': 'Open question',
 };
 
-const current = styles[type] || styles['what-the-evidence-says'];
-const displayTitle = title || current.defaultTitle;
+const { type, title } = Astro.props;
+const label = title ?? LABELS[type];
+const voice = type === 'my-interpretation' || type === 'open-question' ? 'italic' : '';
 ---
-<aside class={`my-6 p-4 sm:p-5 rounded-r text-sm leading-relaxed border ${current.border} border-y-transparent border-r-transparent`}>
-  <div class={`flex items-center gap-2 font-semibold mb-2.5 ${current.titleColor}`}>
-    <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d={current.icon} />
-    </svg>
-    <span class="text-xs uppercase tracking-wider">{displayTitle}</span>
-  </div>
-  <div class="text-ink-800 dark:text-ink-200 space-y-2">
-    <slot />
-  </div>
+<aside class="relative my-10 py-4 border-t border-rule-strong border-b border-rule" aria-label={label}>
+  <p class="m-0 mb-2 font-sans text-xs font-semibold uppercase tracking-[.08em] text-fg-muted xl:absolute xl:top-4 xl:-right-[17rem] xl:w-56">{label}</p>
+  <div class={`[&>p]:m-0 [&>p+p]:mt-3 ${voice}`}><slot /></div>
+  {type === 'my-interpretation' && <p class="m-0 mt-2 font-sans text-sm text-fg-muted">— SR</p>}
 </aside>

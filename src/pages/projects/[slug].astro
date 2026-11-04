@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import BrowserFrame from '@/components/BrowserFrame.astro';
+import Figure from '@/components/Figure.astro';
 
 export async function getStaticPaths() {
   const projectEntries = await getCollection('projects', ({ data }) => !data.draft);
@@ -13,84 +13,90 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await project.render();
+const formattedOrder = String(project.data.order).padStart(2, '0');
 ---
 
 <BaseLayout
   title={project.data.title}
   description={project.data.summary}
 >
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12 md:py-16">
     
     <!-- Breadcrumb -->
-    <nav aria-label="Breadcrumb" class="mb-6 flex items-center gap-2 text-xs text-ink-500 dark:text-ink-400">
-      <a href="/projects" class="hover:text-forest-700 dark:hover:text-forest-300">Projects</a>
+    <nav aria-label="Breadcrumb" class="mb-8 font-sans text-xs text-fg-muted flex items-center gap-2">
+      <a href="/projects" class="hover:text-link underline underline-offset-2">Projects</a>
       <span>/</span>
-      <span class="font-mono text-ink-700 dark:text-ink-300">Project No. 0{project.data.order}</span>
+      <span>Project {formattedOrder}</span>
     </nav>
 
-    <!-- Header -->
-    <header class="mb-10 border-b border-parchment-300 dark:border-darkSurface-750 pb-8">
-      {project.data.award && (
-        <div class="mb-3">
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-forest-50 dark:bg-darkSurface-800 text-forest-800 dark:text-forest-200 border border-forest-200 dark:border-forest-800 text-xs font-semibold">
-            <svg class="w-3.5 h-3.5 text-amber-600" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-            </svg>
-            {project.data.award}
-          </span>
-        </div>
-      )}
+    <!-- Project Header -->
+    <header class="space-y-4 mb-10 pb-8 border-b border-rule">
+      <div class="font-sans text-xs text-fg-muted flex flex-wrap items-center gap-2">
+        <span>Project {formattedOrder}</span>
+        <span>·</span>
+        <span>{project.data.sector}</span>
+        {project.data.isLead && (
+          <>
+            <span>·</span>
+            <span>Lead Project</span>
+          </>
+        )}
+      </div>
 
-      <h1 class="font-editorial-heading font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-ink-950 dark:text-ink-50 mb-4 leading-tight">
+      <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-fg leading-[1.15] tracking-tight">
         {project.data.title}
       </h1>
-      
-      <p class="text-base sm:text-lg text-ink-700 dark:text-ink-200 leading-relaxed mb-6 font-normal">
+
+      <p class="text-base sm:text-lg text-fg-body leading-relaxed max-w-3xl">
         {project.data.summary}
       </p>
 
-      <!-- Meta Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-5 rounded bg-parchment-150 dark:bg-darkSurface-850 text-xs border border-parchment-200 dark:border-darkSurface-750">
+      {project.data.award && (
+        <p class="font-sans text-xs text-fg-muted">
+          {project.data.award}
+        </p>
+      )}
+
+      <!-- Metadata Line -->
+      <div class="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-4 font-sans text-xs border-t border-rule">
         <div>
-          <span class="text-ink-500 uppercase tracking-wider block font-semibold text-[10px] mb-1">Sector</span>
-          <span class="font-semibold text-ink-900 dark:text-ink-100">{project.data.sector}</span>
+          <span class="text-fg-muted block uppercase tracking-wider text-[10px] mb-1">Role & Responsibility</span>
+          <span class="text-fg">{project.data.role}</span>
         </div>
         <div>
-          <span class="text-ink-500 uppercase tracking-wider block font-semibold text-[10px] mb-1">My Exact Role</span>
-          <span class="font-medium text-ink-900 dark:text-ink-100">{project.data.role}</span>
-        </div>
-        <div class="sm:col-span-2 pt-2 border-t border-parchment-200 dark:border-darkSurface-750">
-          <span class="text-ink-500 uppercase tracking-wider block font-semibold text-[10px] mb-2">Research & Technical Methods</span>
-          <div class="flex flex-wrap gap-1.5">
-            {project.data.methods.map((method: string) => (
-              <span class="px-2.5 py-1 rounded bg-parchment-200 dark:bg-darkSurface-800 text-ink-800 dark:text-ink-200 font-mono text-[11px]">
-                {method}
-              </span>
-            ))}
-          </div>
+          <span class="text-fg-muted block uppercase tracking-wider text-[10px] mb-1">Research Methods</span>
+          <span class="text-fg">{project.data.methods.join(', ')}</span>
         </div>
       </div>
     </header>
 
-    <!-- If BRIEF, render interactive BrowserFrame -->
+    <!-- If BRIEF, render Figure with honest architecture preview -->
     {project.data.isLead && (
-      <div class="mb-10">
-        <BrowserFrame url="brief-evaluator.internal.ai" />
+      <div class="mb-12">
+        <Figure
+          src="/brief-architecture.svg"
+          alt="BRIEF 11-agent architecture"
+          caption="BRIEF's agent review of a sample brief."
+          n={1}
+          href="https://github.com/shiwakshir/brief"
+        />
       </div>
     )}
 
     <!-- Case Study Body -->
-    <div class="prose prose-lg dark:prose-invert max-w-none pt-4">
+    <div class="prose dark:prose-invert max-w-[38rem]">
       <Content />
     </div>
 
-    <div class="mt-14 pt-8 border-t border-parchment-300 dark:border-darkSurface-750 flex items-center justify-between text-xs">
-      <a href="/projects" class="font-semibold text-forest-700 dark:text-forest-400 hover:underline">
+    <div class="mt-14 pt-8 border-t border-rule flex items-center justify-between font-sans text-xs">
+      <a href="/projects" class="text-link underline underline-offset-2">
         ← Back to all projects
       </a>
-      <a href="/journal" class="font-semibold text-forest-700 dark:text-forest-400 hover:underline">
-        Explore research journal →
-      </a>
+      {project.data.isLead && (
+        <a href="https://github.com/shiwakshir/brief" target="_blank" rel="noopener noreferrer" class="text-link underline underline-offset-2">
+          View BRIEF Repository on GitHub ↗
+        </a>
+      )}
     </div>
-  </div>
+  </main>
 </BaseLayout>

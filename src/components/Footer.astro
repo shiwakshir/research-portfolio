@@ -3,57 +3,48 @@ import { SITE } from '@/config/site';
 
 const currentYear = new Date().getFullYear();
 ---
-<footer class="border-t border-parchment-300 dark:border-darkSurface-750 bg-parchment-100 dark:bg-darkSurface-950 mt-20 transition-colors">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<footer class="border-t border-rule bg-paper mt-20 transition-colors">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 py-12">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
       
       <!-- Column 1: Identity & Professional Focus -->
-      <div class="md:col-span-2 space-y-3">
-        <div class="flex items-center gap-2.5">
-          <span class="w-6 h-6 rounded-sm bg-forest-700 text-parchment-100 flex items-center justify-center font-editorial-heading font-serif text-[11px] font-bold">
-            {SITE.author.monogram}
-          </span>
-          <span class="font-editorial-heading font-serif font-semibold text-ink-900 dark:text-ink-50">
-            {SITE.author.name}
-          </span>
-        </div>
-        <p class="text-xs text-ink-500 dark:text-ink-400 font-medium">
+      <div class="md:col-span-2 space-y-2">
+        <span class="font-serif text-base font-normal text-fg block">
+          {SITE.author.name}
+        </span>
+        <p class="font-sans text-xs text-fg-muted">
           {SITE.author.fullTitle} · {SITE.author.location}
         </p>
-        <p class="text-sm text-ink-600 dark:text-ink-300 max-w-md leading-relaxed">
+        <p class="font-sans text-xs text-fg-muted max-w-md leading-relaxed pt-1">
           {SITE.author.experienceSummary}
         </p>
       </div>
 
       <!-- Column 2: Sections -->
-      <div class="space-y-2">
-        <h3 class="text-xs font-semibold uppercase tracking-wider text-ink-900 dark:text-ink-100">
+      <div class="space-y-2 font-sans text-xs">
+        <h3 class="font-semibold uppercase tracking-wider text-fg mb-2">
           Publication
         </h3>
-        <ul class="space-y-1.5 text-sm">
-          <li><a href="/journal" class="text-ink-600 dark:text-ink-400 hover:text-forest-700 dark:hover:text-forest-300 transition-colors">Journal</a></li>
-          <li><a href="/series" class="text-ink-600 dark:text-ink-400 hover:text-forest-700 dark:hover:text-forest-300 transition-colors">Series</a></li>
-          <li><a href="/projects" class="text-ink-600 dark:text-ink-400 hover:text-forest-700 dark:hover:text-forest-300 transition-colors">Projects</a></li>
-          <li><a href="/interests" class="text-ink-600 dark:text-ink-400 hover:text-forest-700 dark:hover:text-forest-300 transition-colors">Research Interests</a></li>
+        <ul class="space-y-1.5 text-fg-muted">
+          <li><a href="/journal" class="hover:text-fg transition-colors">Journal</a></li>
+          <li><a href="/series" class="hover:text-fg transition-colors">Series</a></li>
+          <li><a href="/projects" class="hover:text-fg transition-colors">Projects</a></li>
+          <li><a href="/interests" class="hover:text-fg transition-colors">Research Themes</a></li>
         </ul>
       </div>
 
       <!-- Column 3: Standards & Links -->
-      <div class="space-y-2">
-        <h3 class="text-xs font-semibold uppercase tracking-wider text-ink-900 dark:text-ink-100">
+      <div class="space-y-2 font-sans text-xs">
+        <h3 class="font-semibold uppercase tracking-wider text-fg mb-2">
           Methodology & Contact
         </h3>
-        <ul class="space-y-1.5 text-sm">
-          <li><a href="/evidence-checks" class="text-ink-600 dark:text-ink-400 hover:text-forest-700 dark:hover:text-forest-300 transition-colors font-medium text-forest-800 dark:text-forest-300">How I check evidence →</a></li>
-          <li><a href="/about" class="text-ink-600 dark:text-ink-400 hover:text-forest-700 dark:hover:text-forest-300 transition-colors">About</a></li>
-          <li><a href="/contact" class="text-ink-600 dark:text-ink-400 hover:text-forest-700 dark:hover:text-forest-300 transition-colors">Contact</a></li>
-          <li><a href="/privacy" class="text-ink-600 dark:text-ink-400 hover:text-forest-700 dark:hover:text-forest-300 transition-colors">Privacy Notice</a></li>
+        <ul class="space-y-1.5 text-fg-muted">
+          <li><a href="/evidence-checks" class="text-link underline underline-offset-2">How I check evidence →</a></li>
+          <li><a href="/about" class="hover:text-fg transition-colors">About</a></li>
+          <li><a href="/contact" class="hover:text-fg transition-colors">Contact</a></li>
+          <li><a href="/privacy" class="hover:text-fg transition-colors">Privacy Notice</a></li>
           <li>
-            <a href="/rss.xml" class="text-ink-600 dark:text-ink-400 hover:text-forest-700 dark:hover:text-forest-300 transition-colors inline-flex items-center gap-1.5 text-xs">
-              <svg class="w-3.5 h-3.5 text-amber-600 shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M5 3a1 1 0 000 2c5.523 0 10 4.477 10 10a1 1 0 102 0C17 8.373 11.627 3 5 3z" />
-                <path d="M4 9a1 1 0 011-1 7 7 0 017 7 1 1 0 11-2 0 5 5 0 00-5-5 1 1 0 01-1-1zM3 15a2 2 0 114 0 2 2 0 01-4 0z" />
-              </svg>
+            <a href="/rss.xml" class="hover:text-fg transition-colors inline-flex items-center gap-1">
               RSS Feed
             </a>
           </li>
@@ -62,11 +53,9 @@ const currentYear = new Date().getFullYear();
     </div>
 
     <!-- Bottom Bar -->
-    <div class="pt-8 border-t border-parchment-300 dark:border-darkSurface-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-ink-500 dark:text-ink-400">
+    <div class="pt-6 border-t border-rule flex flex-col sm:flex-row items-center justify-between gap-4 font-sans text-xs text-fg-muted">
       <p>© {currentYear} {SITE.author.name}. All work documented independently.</p>
-      <div class="flex items-center gap-4">
-        <a href="#main-content" class="hover:underline">Back to top ↑</a>
-      </div>
+      <a href="#" class="hover:text-fg">Back to top ↑</a>
     </div>
   </div>
 </footer>

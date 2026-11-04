@@ -3,49 +3,46 @@
 @tailwind utilities;
 
 @layer base {
+  /* Warm editorial tokens per design review §6.1 */
   :root {
     --bg-main: #FAF7F0;
-    --bg-card: #FFFFFF;
+    --bg-card: #FDFBF7;
     --bg-muted: #F5F0E6;
-    --border-subtle: #E1D7C6;
-    --border-strong: #CFC3AE;
+    --rule: #E1D7C6;
+    --rule-strong: #171A1D;
     --text-primary: #171A1D;
+    --text-body: #252A30;
     --text-secondary: #383F47;
-    --text-muted: #6A7684;
-    --accent-forest: #2A4C3A;
-    --accent-slate: #355168;
+    --text-muted: #4E5762; /* passes AA 4.5:1+ against ivory */
+    --link: #1E372A;
+    color-scheme: light;
   }
 
   .dark {
-    --bg-main: #15171A;
-    --bg-card: #1B1E22;
-    --bg-muted: #22262B;
-    --border-subtle: #2A2F36;
-    --border-strong: #343B44;
-    --text-primary: #FAF7F0;
-    --text-secondary: #D9DFE5;
-    --text-muted: #8E9AA7;
-    --accent-forest: #528E6E;
-    --accent-slate: #5B84A6;
+    --bg-main: #151412;
+    --bg-card: #1C1B18;
+    --bg-muted: #23221E;
+    --rule: #34322D;
+    --rule-strong: #6B675E;
+    --text-primary: #EEE9DF;
+    --text-body: #D6D1C7;
+    --text-secondary: #CFC9BE;
+    --text-muted: #A39E93;
+    --link: #8DBF9F;
+    color-scheme: dark;
   }
 
   html {
     scroll-behavior: smooth;
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background-color: var(--bg-main);
-    color: var(--text-primary);
+    color: var(--text-body);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   ::selection {
-    background-color: #2A4C3A;
-    color: #FAF7F0;
-  }
-
-  .dark ::selection {
-    background-color: #528E6E;
-    color: #15171A;
+    background-color: var(--link);
+    color: var(--bg-main);
   }
 
   /* Accessible focus states */
@@ -53,7 +50,7 @@
   button:focus-visible,
   input:focus-visible,
   textarea:focus-visible {
-    outline: 2px solid var(--accent-forest);
+    outline: 2px solid var(--link);
     outline-offset: 3px;
     border-radius: 2px;
   }
@@ -74,22 +71,57 @@
   }
 }
 
+/* Margin column system per design review §6.3 */
+.prose {
+  counter-reset: note;
+}
+
+.margin-note {
+  counter-increment: note;
+  display: block;
+  margin: 0.75rem 0 1rem 1rem;
+  font: 0.8125rem/1.5 var(--font-sans, system-ui, -apple-system, sans-serif);
+  color: var(--text-muted);
+}
+
+.margin-note::before {
+  content: counter(note) "\2002";
+  font-weight: 600;
+  color: var(--link);
+}
+
+.has-note::after {
+  content: counter(note);
+  vertical-align: super;
+  font: 600 0.65em system-ui, -apple-system, sans-serif;
+  color: var(--link);
+}
+
+@media (min-width: 1200px) {
+  .margin-note {
+    float: right;
+    clear: right;
+    width: 14rem;
+    margin: 0.3rem -17rem 1rem 0;
+  }
+}
+
 /* Editorial typography utilities */
 .font-editorial-heading {
-  font-family: 'Charter', 'Newsreader', Georgia, Cambria, serif;
+  font-family: 'Source Serif 4', 'Charter', 'Georgia', serif;
   font-feature-settings: 'cv01', 'cv02', 'kern', 'liga';
 }
 
 /* Drop cap for substantial reading */
 .drop-cap > p:first-of-type::first-letter {
-  font-family: 'Charter', 'Newsreader', Georgia, serif;
+  font-family: 'Source Serif 4', 'Charter', 'Georgia', serif;
   float: left;
-  font-size: 3.6rem;
+  font-size: 3.4rem;
   line-height: 0.85;
   padding-top: 4px;
-  padding-right: 10px;
+  padding-right: 8px;
   padding-bottom: 2px;
-  font-weight: 700;
+  font-weight: 400;
   color: var(--text-primary);
 }
 
@@ -97,29 +129,11 @@
 .editorial-hr {
   border: 0;
   height: 1px;
-  background-color: var(--border-subtle);
+  background-color: var(--rule);
   margin: 2.5rem 0;
 }
 
-/* Margin references for desktop reading */
-@media (min-width: 1280px) {
-  .has-margin-notes {
-    position: relative;
-  }
-  .margin-note {
-    position: absolute;
-    right: -240px;
-    width: 200px;
-    font-size: 0.75rem;
-    line-height: 1.45;
-    color: var(--text-muted);
-    border-left: 2px solid var(--border-subtle);
-    padding-left: 0.75rem;
-    margin-top: -0.25rem;
-  }
-}
-
-/* Print styling for substantial research articles */
+/* Print styling for research articles */
 @media print {
   header, footer, .no-print, #reading-progress-container, #theme-toggle, #search-btn {
     display: none !important;

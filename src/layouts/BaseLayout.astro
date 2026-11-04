@@ -58,6 +58,7 @@ const schema = articleDate ? {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#FAF7F0" id="theme-color-meta" />
     <link rel="canonical" href={canonicalUrl} />
 
     <!-- Open Graph / Facebook -->
@@ -78,13 +79,16 @@ const schema = articleDate ? {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate" type="application/rss+xml" title={`${SITE.name} RSS Feed`} href="/rss.xml" />
 
-    <!-- Privacy conscious typography: No third-party font CDN requests -->
+    <!-- Self-hosted font declarations (Zero third-party font tracking) -->
 
     <!-- Theme initialization script (prevents flash of incorrect theme) -->
     <script is:inline>
       const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+      const isDark = savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      if (isDark) {
         document.documentElement.classList.add('dark');
+        const meta = document.getElementById('theme-color-meta');
+        if (meta) meta.setAttribute('content', '#151412');
       } else {
         document.documentElement.classList.remove('dark');
       }
@@ -93,20 +97,20 @@ const schema = articleDate ? {
     <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   </head>
-  <body class="min-h-screen flex flex-col bg-parchment-100 dark:bg-darkSurface-900 text-ink-900 dark:text-ink-50 antialiased selection:bg-forest-700 selection:text-parchment-50 transition-colors duration-150">
+  <body class="min-h-screen flex flex-col bg-paper text-fg-body antialiased selection:bg-link selection:text-paper transition-colors duration-150">
     <!-- Accessible Skip to Content Link -->
     <a
       href="#main-content"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:bg-forest-700 focus:text-parchment-50 focus:rounded-sm focus:font-medium"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:bg-link focus:text-paper focus:font-medium"
     >
       Skip to main content
     </a>
 
     <Header />
 
-    <main id="main-content" class="flex-1">
+    <div id="main-content" class="flex-1">
       <slot />
-    </main>
+    </div>
 
     <Footer />
     <SearchModal />

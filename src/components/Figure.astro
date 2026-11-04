@@ -1,0 +1,31 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  caption: string;
+  n?: number;
+  href?: string;
+}
+
+const { src, alt, caption, n, href } = Astro.props;
+---
+<figure class="m-0">
+  <div class="border border-rule bg-paper-muted overflow-hidden">
+    <img
+      src={src}
+      alt={alt}
+      width="1600"
+      height="1000"
+      loading="lazy"
+      class="block w-full h-auto dark:brightness-[.92]"
+    />
+  </div>
+  <figcaption class="mt-2 font-sans text-sm text-fg-muted">
+    {n && <span>Fig. {n} · </span>}{caption}
+    {href && (
+      <a href={href} class="ml-2 text-link underline underline-offset-2">
+        Open BRIEF ↗
+      </a>
+    )}
+  </figcaption>
+</figure>

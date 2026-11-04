@@ -23,41 +23,43 @@ const showFiltersAndSearch = articles.length >= 5;
 
 <BaseLayout
   title="Research Journal"
-  description="Independent research articles, literature reviews, and methodological frameworks by Shiwakshi Rashmi."
+  description="Independent research articles, literature reviews, and methodological inquiries by Shiwakshi Rashmi."
 >
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12 md:py-16">
     
     <!-- Header -->
-    <header class="max-w-3xl mb-12 border-b border-parchment-300 dark:border-darkSurface-750 pb-8">
-      <div class="flex items-center gap-2 mb-2">
-        <span class="text-xs font-semibold uppercase tracking-wider text-forest-700 dark:text-forest-400">
-          Independent Inquiries
-        </span>
-        <span class="text-ink-400">·</span>
-        <a href="/evidence-checks" class="text-xs text-forest-700 dark:text-forest-400 hover:underline">
-          How I check evidence →
+    <header class="space-y-4 mb-8">
+      <div class="font-sans text-xs text-fg-muted flex items-center gap-2">
+        <span>Independent inquiries</span>
+        <span>·</span>
+        <a href="/evidence-checks" class="text-link underline underline-offset-2">
+          How I check evidence
         </a>
       </div>
-      <h1 class="font-editorial-heading font-serif text-3xl sm:text-5xl font-bold tracking-tight text-ink-950 dark:text-ink-50 mb-4">
+
+      <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-fg leading-[1.15] tracking-tight">
         Research Journal
       </h1>
-      <p class="text-base sm:text-lg text-ink-700 dark:text-ink-200 leading-relaxed font-normal">
-        Articles, critical literature reviews, and methodological inquiries. Each publication distinguishes verified evidence from professional interpretation.
+
+      <p class="text-base sm:text-lg text-fg-body leading-relaxed max-w-3xl font-normal">
+        Articles, critical literature reviews, and methodological inquiries. Each publication separates verified evidence from professional interpretation.
       </p>
     </header>
 
+    <hr class="border-t border-rule-strong my-8" />
+
     <!-- Filters (Visible only when >= 5 articles published) -->
     {showFiltersAndSearch && (
-      <div class="mb-10 flex flex-wrap items-center justify-between gap-4">
+      <div class="mb-10 flex flex-wrap items-center justify-between gap-4 font-sans text-xs">
         <div class="flex flex-wrap items-center gap-2" id="filter-buttons">
           {categories.map((cat, idx) => (
             <button
               type="button"
               data-category={cat}
-              class={`category-filter-btn px-3 py-1.5 text-xs font-medium rounded border transition-colors ${
+              class={`category-filter-btn px-2.5 py-1 border transition-colors ${
                 idx === 0
-                  ? 'bg-forest-700 text-parchment-50 border-forest-700 font-semibold active-filter'
-                  : 'bg-parchment-100 dark:bg-darkSurface-850 border-parchment-300 dark:border-darkSurface-700 text-ink-700 dark:text-ink-300 hover:border-forest-600'
+                  ? 'border-rule-strong font-medium text-fg underline underline-offset-4'
+                  : 'border-rule text-fg-muted hover:text-fg'
               }`}
             >
               {cat}
@@ -65,89 +67,68 @@ const showFiltersAndSearch = articles.length >= 5;
           ))}
         </div>
 
-        <div class="text-xs text-ink-500 font-mono">
-          Showing <span id="article-count">{sortedArticles.length}</span> published {sortedArticles.length === 1 ? 'article' : 'articles'}
+        <div class="text-fg-muted">
+          Showing <span id="article-count">{sortedArticles.length}</span> published {sortedArticles.length === 1 ? 'entry' : 'entries'}
         </div>
       </div>
     )}
 
     <!-- Full-Width Feature for Latest Article -->
     {latestArticle && (
-      <div class="mb-12">
-        <div class="p-8 sm:p-10 rounded border border-parchment-300 dark:border-darkSurface-750 bg-card dark:bg-darkSurface-850">
-          <div class="flex flex-wrap items-center justify-between gap-3 mb-4 pb-3 border-b border-parchment-200 dark:border-darkSurface-750">
-            <div class="flex items-center gap-3">
-              <span class="font-editorial-heading font-serif text-lg font-bold text-forest-800 dark:text-forest-300">
-                No. 01 · Feature
-              </span>
-              <span class="text-ink-300 dark:text-ink-600">·</span>
-              <span class="text-xs uppercase font-medium tracking-wider text-ink-600 dark:text-ink-300 font-mono">
-                {latestArticle.data.category}
-              </span>
-            </div>
-            <EvidenceStatusBadge status={latestArticle.data.researchStatus} size="md" />
+      <section aria-labelledby="featured-inquiry-heading" class="space-y-4 pb-8">
+        <h2 id="featured-inquiry-heading" class="font-sans text-xs uppercase tracking-wider text-fg-muted font-semibold m-0">
+          Featured inquiry
+        </h2>
+
+        <article class="space-y-4">
+          <div class="font-sans text-xs text-fg-muted flex flex-wrap items-center gap-2">
+            <span>No. {String(latestArticle.data.articleNumber ?? 1).padStart(2, '0')}</span>
+            <span>·</span>
+            <span>{latestArticle.data.category}</span>
+            <span>·</span>
+            <EvidenceStatusBadge status={latestArticle.data.researchStatus} />
           </div>
 
-          <div class="text-xs text-ink-500 dark:text-ink-400 mb-3 font-mono">
-            <span>1 November 2026</span>
-            <span class="mx-2">·</span>
-            <span>{latestArticle.data.readingTime}</span>
-          </div>
-
-          <h2 class="font-editorial-heading font-serif text-2xl sm:text-4xl font-bold text-ink-950 dark:text-ink-50 leading-snug mb-3">
-            <a href={`/journal/${latestArticle.slug}`} class="hover:text-forest-700 dark:hover:text-forest-300 transition-colors">
+          <h3 class="font-serif text-2xl sm:text-3xl font-normal text-fg leading-tight">
+            <a href={`/journal/${latestArticle.slug}`} class="hover:text-link transition-colors">
               {latestArticle.data.title}
             </a>
-          </h2>
+          </h3>
 
           {latestArticle.data.subtitle && (
-            <p class="text-base sm:text-lg text-ink-600 dark:text-ink-400 font-serif italic mb-4">
+            <p class="font-serif italic text-base sm:text-lg text-fg-body">
               {latestArticle.data.subtitle}
             </p>
           )}
 
-          {latestArticle.data.researchQuestion && (
-            <div class="my-4 p-4 rounded bg-parchment-150/70 dark:bg-darkSurface-800 border-l-2 border-forest-600">
-              <span class="text-[10px] font-semibold uppercase tracking-wider text-forest-800 dark:text-forest-400 block mb-1">
-                Central Research Question
-              </span>
-              <p class="font-editorial-heading font-serif text-base sm:text-lg italic text-ink-900 dark:text-ink-100 m-0">
-                "{latestArticle.data.researchQuestion}"
-              </p>
-            </div>
-          )}
-
-          <p class="text-sm sm:text-base text-ink-700 dark:text-ink-300 leading-relaxed mb-6 max-w-3xl">
+          <p class="text-sm text-fg-body leading-relaxed max-w-3xl">
             {latestArticle.data.abstract}
           </p>
 
-          <div class="pt-4 border-t border-parchment-200 dark:border-darkSurface-750 flex items-center justify-between text-xs">
-            <div class="flex gap-2">
-              {latestArticle.data.tags.slice(0, 2).map((tag: string) => (
-                <span class="font-mono text-[11px] px-2 py-0.5 rounded bg-parchment-150 dark:bg-darkSurface-800 text-ink-600 dark:text-ink-400">
-                  #{tag}
-                </span>
-              ))}
-            </div>
+          <p class="font-sans text-xs text-fg-muted pt-1">
+            <time datetime={latestArticle.data.publishDate.toISOString()}>
+              {latestArticle.data.publishDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+            </time>
+            <span> · </span>
+            <span>{latestArticle.data.readingTime}</span>
+          </p>
 
-            <a
-              href={`/journal/${latestArticle.slug}`}
-              class="font-semibold text-forest-700 dark:text-forest-300 hover:text-forest-800 dark:hover:text-forest-200 text-sm inline-flex items-center gap-1"
-            >
-              Read full paper →
+          <div class="pt-2">
+            <a href={`/journal/${latestArticle.slug}`} class="font-sans text-sm text-link underline underline-offset-2">
+              Read →
             </a>
           </div>
-        </div>
-      </div>
+        </article>
+      </section>
     )}
 
     <!-- Editorial List for Subsequent Articles -->
     {remainingArticles.length > 0 && (
-      <div class="space-y-6">
-        <h3 class="font-editorial-heading font-serif text-xl font-semibold text-ink-900 dark:text-ink-100 pb-2 border-b border-parchment-200 dark:border-darkSurface-750">
-          Additional Inquiries
-        </h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <section class="mt-8 pt-8 border-t border-rule space-y-6">
+        <h2 class="font-sans text-xs uppercase tracking-wider text-fg-muted font-semibold m-0">
+          All inquiries
+        </h2>
+        <div>
           {remainingArticles.map((article, idx) => (
             <ArticleCard
               title={article.data.title}
@@ -164,21 +145,15 @@ const showFiltersAndSearch = articles.length >= 5;
             />
           ))}
         </div>
-      </div>
+      </section>
     )}
 
-    <!-- Link to Evidence Checking Standards -->
-    <div class="mt-16 p-5 rounded bg-parchment-150 dark:bg-darkSurface-850 border border-parchment-300 dark:border-darkSurface-750 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 text-xs">
-      <div>
-        <strong class="text-ink-900 dark:text-ink-100 block mb-0.5">Methodological Quality & Source Verification</strong>
-        <span class="text-ink-600 dark:text-ink-400">All citations are checked against original primary sources. Read the checks I apply before publishing.</span>
-      </div>
-      <a
-        href="/evidence-checks"
-        class="shrink-0 px-3 py-1.5 rounded bg-card dark:bg-darkSurface-800 border border-parchment-300 dark:border-darkSurface-700 font-semibold text-forest-800 dark:text-forest-300 hover:border-forest-600 transition-colors"
-      >
+    <!-- Calm Link to Evidence Standards -->
+    <div class="mt-16 pt-8 border-t border-rule font-sans text-xs text-fg-muted flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+      <span>All citations are verified against original primary sources before publication.</span>
+      <a href="/evidence-checks" class="text-link underline underline-offset-2 shrink-0">
         How I check evidence →
       </a>
     </div>
-  </div>
+  </main>
 </BaseLayout>

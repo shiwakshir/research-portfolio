@@ -4,36 +4,26 @@ import ThemeToggle from './ThemeToggle.astro';
 
 const currentPath = Astro.url.pathname;
 ---
-<header class="border-b border-parchment-300 dark:border-darkSurface-750 bg-parchment-100/95 dark:bg-darkSurface-900/95 backdrop-blur-sm sticky top-0 z-40 transition-colors">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex items-center justify-between h-20 gap-4">
+<header class="border-b border-rule bg-paper sticky top-0 z-40 transition-colors">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6">
+    <div class="flex items-center justify-between h-14 gap-4">
       
-      <!-- Identity & Monogram -->
-      <a href="/" class="group flex items-center gap-3.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-forest-600 rounded p-1 shrink-0">
-        <span class="w-10 h-10 rounded-sm bg-forest-700 text-parchment-100 flex items-center justify-center font-editorial-heading font-serif text-sm font-bold tracking-tight shadow-sm group-hover:bg-forest-600 transition-colors">
-          {SITE.author.monogram}
-        </span>
-        <div class="flex flex-col">
-          <span class="font-editorial-heading font-serif text-lg sm:text-xl font-semibold tracking-tight text-ink-900 dark:text-ink-50 group-hover:text-forest-700 dark:group-hover:text-forest-200 transition-colors">
-            {SITE.author.name}
-          </span>
-          <span class="text-xs text-ink-500 dark:text-ink-400 tracking-normal">
-            {SITE.author.fullTitle}
-          </span>
-        </div>
+      <!-- Identity -->
+      <a href="/" class="font-serif text-lg text-fg hover:text-link transition-colors font-normal tracking-tight focus-visible:outline-none">
+        {SITE.author.name}
       </a>
 
-      <!-- Desktop Navigation with generous left spacing -->
-      <nav class="hidden md:flex items-center gap-1.5 lg:gap-3 ml-auto mr-4" aria-label="Main Navigation">
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-6" aria-label="Main Navigation">
         {SITE.navLinks.map((link) => {
           const isActive = currentPath === link.href || (link.href !== '/' && currentPath.startsWith(link.href));
           return (
             <a
               href={link.href}
-              class={`px-3 py-1.5 text-sm font-medium rounded-sm transition-colors ${
+              class={`text-sm font-sans transition-colors pb-0.5 ${
                 isActive
-                  ? 'text-forest-800 dark:text-forest-200 bg-parchment-200 dark:bg-darkSurface-800 font-semibold border-b-2 border-forest-700 dark:border-forest-500'
-                  : 'text-ink-700 dark:text-ink-300 hover:text-ink-950 dark:hover:text-ink-50 hover:bg-parchment-200/50 dark:hover:bg-darkSurface-800/60'
+                  ? 'text-fg font-medium border-b border-rule-strong'
+                  : 'text-fg-muted hover:text-fg'
               }`}
             >
               {link.label}
@@ -43,19 +33,18 @@ const currentPath = Astro.url.pathname;
       </nav>
 
       <!-- Action Items: Search, Theme Toggle, Mobile Menu -->
-      <div class="flex items-center gap-2 shrink-0">
-        <!-- Search Dialog Button -->
+      <div class="flex items-center gap-3">
+        <!-- Quiet Search trigger -->
         <button
           id="search-btn"
           type="button"
           aria-label="Search articles"
-          class="flex items-center gap-2 px-2.5 py-1.5 text-xs text-ink-600 dark:text-ink-400 border border-parchment-300 dark:border-darkSurface-700 rounded-sm bg-parchment-50 dark:bg-darkSurface-850 hover:border-forest-600 transition-colors focus-visible:ring-1 focus-visible:ring-forest-600"
+          class="text-xs font-sans text-fg-muted hover:text-fg transition-colors flex items-center gap-1.5 focus-visible:outline-none"
         >
           <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
           <span class="hidden sm:inline">Search</span>
-          <kbd class="hidden sm:inline-block px-1 py-0.5 text-[10px] bg-parchment-200 dark:bg-darkSurface-800 rounded text-ink-500 dark:text-ink-400 font-mono">⌘K</kbd>
         </button>
 
         <ThemeToggle />
@@ -67,13 +56,13 @@ const currentPath = Astro.url.pathname;
           aria-label="Open navigation menu"
           aria-expanded="false"
           aria-controls="mobile-nav"
-          class="md:hidden p-2 rounded text-ink-700 dark:text-ink-300 hover:text-ink-900 hover:bg-parchment-200 dark:hover:bg-darkSurface-800 transition-colors"
+          class="md:hidden p-1.5 text-fg-muted hover:text-fg transition-colors"
         >
-          <svg id="menu-icon-open" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          <svg id="menu-icon-open" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
-          <svg id="menu-icon-close" class="hidden w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          <svg id="menu-icon-close" class="hidden w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
@@ -82,7 +71,7 @@ const currentPath = Astro.url.pathname;
     <!-- Mobile Navigation Panel -->
     <nav
       id="mobile-nav"
-      class="hidden md:hidden border-t border-parchment-300 dark:border-darkSurface-750 py-4 space-y-1"
+      class="hidden md:hidden border-t border-rule py-3 space-y-2"
       aria-label="Mobile Navigation"
     >
       {SITE.navLinks.map((link) => {
@@ -90,37 +79,36 @@ const currentPath = Astro.url.pathname;
         return (
           <a
             href={link.href}
-            class={`block px-3 py-2 text-base font-medium rounded transition-colors ${
+            class={`block py-1 text-sm font-sans transition-colors ${
               isActive
-                ? 'text-forest-800 dark:text-forest-200 bg-parchment-200 dark:bg-darkSurface-800 font-semibold'
-                : 'text-ink-700 dark:text-ink-300 hover:bg-parchment-200 dark:hover:bg-darkSurface-800'
+                ? 'text-fg font-medium underline underline-offset-4'
+                : 'text-fg-muted hover:text-fg'
             }`}
           >
             {link.label}
           </a>
         );
       })}
-      <a
-        href="/interests"
-        class="block px-3 py-2 text-sm text-ink-600 dark:text-ink-400 hover:bg-parchment-200 dark:hover:bg-darkSurface-800 pt-2 border-t border-parchment-200 dark:border-darkSurface-800"
-      >
-        Research Interests →
-      </a>
     </nav>
   </div>
 </header>
 
-<script is:inline>
-  const mobileBtn = document.getElementById('mobile-menu-btn');
-  const mobileNav = document.getElementById('mobile-nav');
-  const openIcon = document.getElementById('menu-icon-open');
-  const closeIcon = document.getElementById('menu-icon-close');
+<script>
+  function setupHeader() {
+    const btn = document.getElementById('mobile-menu-btn');
+    const nav = document.getElementById('mobile-nav');
+    const openIcon = document.getElementById('menu-icon-open');
+    const closeIcon = document.getElementById('menu-icon-close');
 
-  mobileBtn?.addEventListener('click', () => {
-    const isExpanded = mobileBtn.getAttribute('aria-expanded') === 'true';
-    mobileBtn.setAttribute('aria-expanded', String(!isExpanded));
-    mobileNav?.classList.toggle('hidden');
-    openIcon?.classList.toggle('hidden');
-    closeIcon?.classList.toggle('hidden');
-  });
+    btn?.addEventListener('click', () => {
+      const isExpanded = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', String(!isExpanded));
+      nav?.classList.toggle('hidden');
+      openIcon?.classList.toggle('hidden');
+      closeIcon?.classList.toggle('hidden');
+    });
+  }
+
+  setupHeader();
+  document.addEventListener('astro:after-swap', setupHeader);
 </script>

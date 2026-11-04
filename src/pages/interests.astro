@@ -61,78 +61,71 @@ const detailedInterests = [
 ---
 
 <BaseLayout
-  title="Research Interests"
+  title="Research Themes"
   description="Current areas of independent investigation: digital health, chronic conditions, human behaviour, research methods, and applied AI by Shiwakshi Rashmi."
 >
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12 md:py-16">
     
     <!-- Header -->
-    <header class="mb-12 border-b border-parchment-300 dark:border-darkSurface-750 pb-8">
-      <span class="text-xs font-semibold uppercase tracking-wider text-forest-700 dark:text-forest-400 block mb-2">
-        Agenda & Exploration
-      </span>
-      <h1 class="font-editorial-heading font-serif text-3xl sm:text-5xl font-bold tracking-tight text-ink-950 dark:text-ink-50 mb-4">
-        Research Interests
+    <header class="space-y-4 mb-8">
+      <p class="font-sans text-xs text-fg-muted uppercase tracking-wider">
+        Agenda & exploration
+      </p>
+
+      <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-fg leading-[1.15] tracking-tight">
+        Research Themes
       </h1>
-      <p class="text-base sm:text-lg text-ink-700 dark:text-ink-200 leading-relaxed max-w-2xl font-normal">
+
+      <p class="text-base sm:text-lg text-fg-body leading-relaxed max-w-3xl font-normal">
         These are ongoing directions of inquiry, reading, and conceptual design. They represent active curiosity and structured investigation rather than claims of definitive academic authority.
       </p>
     </header>
 
+    <hr class="border-t border-rule-strong my-8" />
+
     <!-- Interest Pillars -->
     <div class="space-y-12">
       {detailedInterests.map((interest) => (
-        <section class="p-8 rounded border border-parchment-300 dark:border-darkSurface-750 bg-card dark:bg-darkSurface-850 space-y-4">
-          <div class="flex items-center gap-3">
-            <span class="text-xs font-mono font-bold text-forest-700 dark:text-forest-400">
-              {interest.number}
-            </span>
-            <div class="h-px flex-1 bg-parchment-200 dark:border-darkSurface-750"></div>
+        <section class="space-y-4 py-8 border-b border-rule first:pt-0">
+          <div class="font-sans text-xs text-fg-muted">
+            Theme {interest.number}
           </div>
 
-          <h2 class="font-editorial-heading font-serif text-2xl sm:text-3xl font-bold text-ink-950 dark:text-ink-50">
+          <h2 class="font-serif text-2xl sm:text-3xl font-normal text-fg">
             {interest.title}
           </h2>
 
-          <p class="text-sm sm:text-base text-ink-700 dark:text-ink-300 leading-relaxed font-normal">
+          <p class="text-sm text-fg-body leading-relaxed max-w-3xl">
             {interest.summary}
           </p>
 
-          <div class="pt-4 border-t border-parchment-200 dark:border-darkSurface-750">
-            <span class="text-xs font-semibold uppercase tracking-wider text-ink-900 dark:text-ink-100 block mb-2">
+          <div class="pt-2">
+            <span class="font-sans text-xs font-semibold uppercase tracking-wider text-fg-muted block mb-2">
               Active Questions Under Study:
             </span>
-            <ul class="space-y-2 text-xs sm:text-sm text-ink-600 dark:text-ink-400">
+            <ul class="space-y-2 font-serif italic text-sm text-fg-body max-w-2xl">
               {interest.questions.map((q) => (
-                <li class="flex items-start gap-2">
-                  <span class="text-forest-600 font-bold shrink-0">?</span>
-                  <span class="leading-relaxed">{q}</span>
+                <li class="pl-4 border-l border-rule-strong">
+                  {q}
                 </li>
               ))}
             </ul>
           </div>
 
-          <div class="pt-3 text-[11px] text-ink-500 dark:text-ink-400 italic">
-            <strong>Theoretical Anchor:</strong> {interest.theoreticalAnchor}
+          <div class="pt-2 font-sans text-xs text-fg-muted">
+            <span>Theoretical anchor: </span>
+            <span class="text-fg-body">{interest.theoreticalAnchor}</span>
           </div>
         </section>
       ))}
     </div>
 
-    <!-- Invitation -->
-    <div class="mt-16 p-8 rounded bg-parchment-150 dark:bg-darkSurface-850 border border-parchment-300 dark:border-darkSurface-750 text-center space-y-4">
-      <h3 class="font-serif text-xl font-bold text-ink-950 dark:text-ink-50">
-        Shared Curiosity?
-      </h3>
-      <p class="text-xs sm:text-sm text-ink-700 dark:text-ink-300 max-w-lg mx-auto leading-relaxed">
-        If you are investigating similar questions or have literature recommendations, I would welcome an exchange of thoughts.
-      </p>
-      <a
-        href="/contact"
-        class="inline-flex items-center gap-1.5 px-4 py-2 rounded bg-forest-700 text-parchment-50 text-xs font-medium hover:bg-forest-800 transition-colors"
-      >
+    <!-- Contact Link -->
+    <div class="pt-8 font-sans text-xs text-fg-muted flex items-center justify-between">
+      <span>Investigating similar questions or have literature recommendations?</span>
+      <a href="/contact" class="text-link underline underline-offset-2">
         Reach Out for Dialogue →
       </a>
     </div>
-  </div>
+  </main>
 </BaseLayout>

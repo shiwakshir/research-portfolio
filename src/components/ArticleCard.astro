@@ -28,10 +28,8 @@ const {
   researchQuestion,
   articleNumber = 1,
   tags = [],
-  seriesTitle,
 } = Astro.props;
 
-// Date format: "1 November 2026"
 const formattedDate = publishDate.toLocaleDateString('en-GB', {
   day: 'numeric',
   month: 'long',
@@ -40,65 +38,51 @@ const formattedDate = publishDate.toLocaleDateString('en-GB', {
 
 const formattedNumber = String(articleNumber).padStart(2, '0');
 ---
-<article class="group relative flex flex-col justify-between p-6 sm:p-7 rounded border border-parchment-300 dark:border-darkSurface-750 bg-card dark:bg-darkSurface-850 hover:border-forest-600 dark:hover:border-forest-500 transition-all duration-150">
-  <div>
-    <!-- Top Row: Editorial Number + Evidence Status + Category -->
-    <div class="flex items-center justify-between gap-3 mb-4 pb-3 border-b border-parchment-200 dark:border-darkSurface-750">
-      <span class="font-editorial-heading font-serif text-base font-bold text-forest-800 dark:text-forest-300">
-        No. {formattedNumber}
-      </span>
-      <div class="flex items-center gap-2">
-        <EvidenceStatusBadge status={researchStatus} />
-      </div>
-    </div>
-
-    <!-- Metadata Line: Category · Date · Reading Time -->
-    <div class="flex items-center gap-2 text-xs text-ink-500 dark:text-ink-400 mb-3 font-normal">
-      <span class="font-medium text-ink-800 dark:text-ink-200">{category}</span>
-      <span class="text-ink-300 dark:text-ink-600">·</span>
-      <time datetime={publishDate.toISOString()}>{formattedDate}</time>
-      <span class="text-ink-300 dark:text-ink-600">·</span>
-      <span>{readingTime}</span>
-    </div>
-
-    <!-- Title -->
-    <h3 class="font-editorial-heading font-serif text-xl sm:text-2xl font-semibold text-ink-900 dark:text-ink-50 group-hover:text-forest-700 dark:group-hover:text-forest-200 transition-colors leading-snug mb-2">
-      <a href={`/journal/${slug}`} class="focus:outline-none">
-        <span class="absolute inset-0" aria-hidden="true"></span>
-        {title}
-      </a>
-    </h3>
-
-    {subtitle && (
-      <p class="text-sm font-medium text-ink-600 dark:text-ink-400 mb-3">
-        {subtitle}
-      </p>
-    )}
-
-    <!-- Research Question Feature if defined -->
-    {researchQuestion && (
-      <div class="my-3.5 pl-3 border-l-2 border-forest-600 dark:border-forest-400 text-sm font-editorial-heading font-serif italic text-ink-800 dark:text-ink-100 leading-relaxed">
-        "{researchQuestion}"
-      </div>
-    )}
-
-    <!-- Abstract -->
-    <p class="text-sm text-ink-700 dark:text-ink-300 line-clamp-3 leading-relaxed mb-4">
-      {abstract}
-    </p>
+<article class="space-y-3 py-6 border-b border-rule">
+  <!-- Metadata Line: No. 01 · Category · Date · Read time · Status -->
+  <div class="font-sans text-xs text-fg-muted flex flex-wrap items-center gap-2">
+    <span>No. {formattedNumber}</span>
+    <span>·</span>
+    <span>{category}</span>
+    <span>·</span>
+    <time datetime={publishDate.toISOString()}>{formattedDate}</time>
+    <span>·</span>
+    <span>{readingTime}</span>
+    <span>·</span>
+    <EvidenceStatusBadge status={researchStatus} />
   </div>
 
-  <!-- Bottom: Tags (max 2) & Read Link -->
-  <div class="pt-4 border-t border-parchment-200 dark:border-darkSurface-750 flex items-center justify-between text-xs text-ink-500 dark:text-ink-400">
-    <div class="flex flex-wrap gap-1.5">
+  <!-- Title -->
+  <h3 class="font-serif text-xl sm:text-2xl font-normal text-fg leading-snug">
+    <a href={`/journal/${slug}`} class="hover:text-link transition-colors">
+      {title}
+    </a>
+  </h3>
+
+  {subtitle && (
+    <p class="font-serif italic text-sm sm:text-base text-fg-body">
+      {subtitle}
+    </p>
+  )}
+
+  {researchQuestion && (
+    <p class="font-serif italic text-sm text-fg-body border-l border-rule-strong pl-3 my-2">
+      "{researchQuestion}"
+    </p>
+  )}
+
+  <p class="text-sm text-fg-body leading-relaxed max-w-2xl">
+    {abstract}
+  </p>
+
+  <div class="pt-2 flex items-center justify-between font-sans text-xs">
+    <div class="flex gap-2 text-fg-muted">
       {tags.slice(0, 2).map((tag) => (
-        <span class="px-2 py-0.5 rounded bg-parchment-150 dark:bg-darkSurface-800 text-[11px] text-ink-700 dark:text-ink-300 font-mono">
-          #{tag}
-        </span>
+        <span>{tag}</span>
       ))}
     </div>
-    <span class="font-medium text-forest-700 dark:text-forest-400 flex items-center gap-1 group-hover:underline">
-      Read Article →
-    </span>
+    <a href={`/journal/${slug}`} class="text-link underline underline-offset-2">
+      Read →
+    </a>
   </div>
 </article>
