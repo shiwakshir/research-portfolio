@@ -7,7 +7,7 @@
 title: "Project Title"
 summary: "Approved exact summary of the initiative."
 role: "Exact wording of your role on the project"
-sector: "Technology" # Options: Technology | Automotive | Financial Services | FMCG | Generative AI
+sector: "Technology" # Options: Applied AI | Research methods | Research quality
 order: 5 # Integer ordering
 isLead: false # Set true for flagship tools like BRIEF
 methods:
@@ -30,4 +30,4 @@ Explain the research or product question.
 Detail your specific methods and fieldwork execution.
 
 ### Outcomes & Impact
-Outline key insights and strategic outcomes while keeping client names and proprietary datasets strictly anonymous.
+State what exists today and what you can show. Do not include employer or client work.

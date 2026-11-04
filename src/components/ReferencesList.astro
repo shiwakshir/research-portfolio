@@ -16,16 +16,16 @@ const { references } = Astro.props;
 {references && references.length > 0 && (
   <section id="references" class="space-y-4">
     <div class="flex items-baseline justify-between mb-2">
-      <h3 class="font-serif text-lg font-normal text-fg">
+      <h2 class="font-serif text-lg font-normal text-fg">
         References
-      </h3>
+      </h2>
       <a href="/evidence-checks" class="font-sans text-xs text-link underline underline-offset-2">
         How I check evidence
       </a>
     </div>
 
-    <ol class="space-y-3 font-sans text-xs text-fg-body list-none pl-0">
-      {references.map((ref) => (
+    <ol class="space-y-3 font-sans text-sm text-fg-body list-none pl-0">
+      {[...references].sort((a, b) => a.number - b.number).map((ref) => (
         <li id={`ref-${ref.number}`} class="flex items-baseline gap-2.5">
           <span class="text-fg-muted shrink-0 font-medium">
             {ref.number}.
@@ -55,8 +55,8 @@ const { references } = Astro.props;
               )}
               <a
                 href={`#ref-back-${ref.number}`}
-                title="Return to citation in text"
-                class="text-fg-muted hover:text-fg font-sans"
+                aria-label={`Back to citation ${ref.number} in the text`}
+                class="inline-block min-w-6 min-h-6 text-center text-fg-muted hover:text-fg font-sans"
               >
                 ↩
               </a>

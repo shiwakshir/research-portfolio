@@ -111,7 +111,6 @@
 }
 
 .margin-note {
-  counter-increment: note;
   display: block;
   margin: 0.75rem 0 1rem 1rem;
   font: 0.8125rem/1.5 var(--font-sans, system-ui, sans-serif);
@@ -122,6 +121,10 @@
   content: counter(note) "\2002";
   font-weight: 600;
   color: var(--link);
+}
+
+.has-note {
+  counter-increment: note;
 }
 
 .has-note::after {
@@ -177,4 +180,17 @@
     text-decoration: underline !important;
     color: black !important;
   }
+}
+
+/* Pass 3: micro-typography */
+html { font-kerning: normal; font-variant-ligatures: common-ligatures; }
+h1, h2, h3 { text-wrap: balance; }
+.prose p, .prose li, .lede, .summary { text-wrap: pretty; overflow-wrap: break-word; }
+time, .tnum, .prose td { font-variant-numeric: lining-nums tabular-nums; }
+.prose table { display: block; overflow-x: auto; }
+.prose pre { overflow-x: auto; }
+@media (max-width: 30rem) {
+  .prose { font-size: 1.0625rem; line-height: 1.55; hyphens: auto; }
+  .lede { font-size: 1.0625rem; }
+  .summary { font-size: 1rem; }
 }

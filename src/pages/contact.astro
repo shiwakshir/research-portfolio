@@ -29,7 +29,7 @@ import { SITE } from '@/config/site';
     <!-- Direct Communication Links at the Top per §4 -->
     <section class="space-y-6 my-8">
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 font-sans text-sm">
-        <div class="space-y-1">
+        {!SITE.author.email.includes("TO CONFIRM") && <div class="space-y-1">
           <span class="text-xs uppercase tracking-wider text-fg-muted font-semibold block">Email</span>
           <a
             href={`mailto:${SITE.author.email}`}
@@ -37,9 +37,9 @@ import { SITE } from '@/config/site';
           >
             {SITE.author.email}
           </a>
-        </div>
+        </div>}
 
-        <div class="space-y-1">
+        {!SITE.author.linkedIn.includes("TO CONFIRM") && <div class="space-y-1">
           <span class="text-xs uppercase tracking-wider text-fg-muted font-semibold block">LinkedIn</span>
           <a
             href={SITE.author.linkedIn}
@@ -49,7 +49,7 @@ import { SITE } from '@/config/site';
           >
             LinkedIn Profile ↗
           </a>
-        </div>
+        </div>}
       </div>
     </section>
 
@@ -64,7 +64,7 @@ import { SITE } from '@/config/site';
     <!-- One sentence on who you want to hear from (Cut 6-item grid per §4) -->
     <section class="pt-4 font-sans text-sm text-fg-muted">
       <p class="m-0 leading-relaxed">
-        I am particularly keen to hear from researchers, clinicians, patient advocates, and individuals navigating long-term or fluctuating conditions who want to share perspectives on everyday tool burden and research methodology.
+        I would like to hear from researchers, patient advocates, healthcare professionals and people with lived experience of long-term or fluctuating conditions. I am not recruiting study participants at present.
       </p>
     </section>
   </main>

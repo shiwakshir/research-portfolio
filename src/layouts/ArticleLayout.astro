@@ -29,6 +29,7 @@ const formattedNumber = String(data.articleNumber || 1).padStart(2, '0');
   articleAuthor={data.author}
 >
   <!-- Article Wrapper: 56rem container so margin notes sit comfortably in the gutter at >= 1200px -->
+  <main>
   <article class="max-w-[56rem] mx-auto px-4 sm:px-6 py-12 md:py-16">
     
     <!-- Editorial Header per §7.3 & Mock 5b -->
@@ -154,4 +155,5 @@ const formattedNumber = String(data.articleNumber || 1).padStart(2, '0');
       </nav>
     )}
   </article>
+  </main>
 </BaseLayout>

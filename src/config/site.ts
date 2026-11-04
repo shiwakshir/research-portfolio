@@ -12,7 +12,6 @@ export interface SiteConfig {
     name: string;
     monogram: string;
     role: string;
-    company: string;
     fullTitle: string;
     location: string;
     experienceSummary: string;
@@ -34,19 +33,18 @@ export interface SiteConfig {
 
 export const SITE: SiteConfig = {
   name: "Shiwakshi Rashmi",
-  title: "Shiwakshi Rashmi · UX Research & Publications",
-  tagline: "Understanding people, questioning assumptions, exploring better ways forward.",
-  description: "Personal research portfolio, UX case studies and publication platform of Shiwakshi Rashmi, Insights Manager, UX, at C Space.",
+  title: "Shiwakshi Rashmi · Independent research",
+  tagline: "Independent research on digital health, human behaviour, UX research and applied AI.",
+  description: "The research journal and portfolio of Shiwakshi Rashmi, an Insights Manager in UX and market research, based in London.",
   url: "https://shiwakshirashmi.com", // [TO CONFIRM-domain]
 
   author: {
     name: "Shiwakshi Rashmi",
     monogram: "SR",
     role: "Insights Manager, UX",
-    company: "C Space",
-    fullTitle: "Insights Manager, UX, at C Space",
-    location: "London, United Kingdom",
-    experienceSummary: "Over five years of consultancy research across technology, generative AI, automotive, financial services and FMCG.",
+    fullTitle: "Insights Manager, UX",
+    location: "London",
+    experienceSummary: "Over five years of professional UX and market research.",
     award: "Hack for Good Award at Microsoft Agents League @ AI Skills Fest 2026 for BRIEF",
     
     // [TO CONFIRM] Links
@@ -55,7 +53,7 @@ export const SITE: SiteConfig = {
     github: "https://github.com/shiwakshir",
     briefGithub: "https://github.com/shiwakshir/brief-agent",
 
-    bioShort: "Insights Manager, UX, at C Space based in London. Over five years of consultancy research experience specialising in qualitative and quantitative UX research, research design, and applied artificial intelligence.",
+    bioShort: "Insights Manager, UX, based in London. I publish independent research on digital health, human behaviour, UX research and applied AI.",
   },
 
   // Main navigation (Journal, Projects, About, Contact - Series added once first series is public)

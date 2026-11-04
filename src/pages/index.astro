@@ -2,7 +2,6 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { SITE } from '@/config/site';
 import EvidenceStatusBadge from '@/components/EvidenceStatusBadge.astro';
-import Figure from '@/components/Figure.astro';
 import { getCollection } from 'astro:content';
 
 // Only get published articles (draft: false)
@@ -16,7 +15,7 @@ const latestArticle = sortedArticles[0];
 const allProjects = await getCollection('projects', ({ data }) => !data.draft);
 const sortedProjects = allProjects.sort((a, b) => a.data.order - b.data.order);
 const leadProject = sortedProjects.find(p => p.data.isLead) || sortedProjects[0];
-const consultancyProjects = sortedProjects.filter(p => !p.data.isLead);
+const otherProjects = sortedProjects.filter(p => !p.data.isLead);
 
 // Dynamic theme counts (only show counts above zero)
 const themes = [
@@ -62,12 +61,12 @@ const themes = [
       </h1>
 
       <p class="lede">
-        I am an Insights Manager specialising in UX and market research, exploring the intersection of human experience, chronic health conditions and applied technology. This website is where I document independent research, methodological reflections and selected projects.
+        I am an Insights Manager in UX and market research. This site is the permanent home for my independent work: literature reviews, critical analyses, open research questions and, over time, original studies.
       </p>
 
       <!-- Slim Proof Line (no dot bullets, plain text and middots) -->
       <p class="font-sans text-xs text-fg-muted pt-2">
-        Insights Manager, UX, C Space · Five years of consultancy research across technology, generative AI, automotive, financial services and FMCG
+        Insights Manager, UX · Over five years of professional UX and market research
       </p>
     </header>
 
@@ -201,34 +200,23 @@ const themes = [
               Source ↗
             </a>
           </div>
-
-          <!-- Captioned Figure (§6.5 & §1.2) -->
-          <div class="pt-4 max-w-3xl">
-            <Figure
-              src="/brief-architecture.svg"
-              alt="BRIEF 11-step methodological audit pipeline"
-              caption="BRIEF's 11-step advisory review pipeline."
-              n={1}
-              href={SITE.author.briefGithub}
-            />
-          </div>
         </article>
       )}
 
-      <!-- Consultancy Projects (Rendered dynamically from verified content collection, §1.4) -->
+      <!-- Other independent projects -->
       <div class="pt-6 space-y-4 border-t border-rule">
-        {consultancyProjects.map((project) => (
+        {otherProjects.map((project) => (
           <div class="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 items-baseline py-3 border-b border-rule last:border-b-0">
             <div class="md:col-span-7">
-              <h4 class="font-serif text-base text-fg font-normal">
+              <h3 class="font-serif text-base text-fg font-normal">
                 <a href={`/projects/${project.slug}`} class="hover:text-link transition-colors">
                   {project.data.title}
                 </a>
-              </h4>
+              </h3>
             </div>
             <div class="md:col-span-5 md:text-right">
               <p class="font-sans text-xs text-fg-muted">
-                {project.data.sector} · {project.data.methods.slice(0, 2).join(', ')} · {project.data.role}
+                {project.data.sector} · {project.data.methods.slice(0, 2).join(', ')}
               </p>
             </div>
           </div>

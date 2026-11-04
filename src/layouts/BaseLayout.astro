@@ -28,7 +28,7 @@ const pageTitle = title === SITE.title ? `${SITE.author.name} · ${SITE.author.r
 // Structured Data (JSON-LD)
 const schema = articleDate ? {
   "@context": "https://schema.org",
-  "@type": "TechArticle",
+  "@type": "Article",
   "headline": title,
   "description": description,
   "author": {
@@ -52,7 +52,7 @@ const schema = articleDate ? {
 };
 ---
 <!doctype html>
-<html lang="en-GB" class="scroll-smooth">
+<html lang="en-GB">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -76,13 +76,16 @@ const schema = articleDate ? {
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(image, SITE.url).href} />
+    <meta property="og:site_name" content={SITE.name} />
+    {articleDate && <meta property="article:published_time" content={articleDate.toISOString()} />}
+    {articleDate && <meta property="article:author" content={articleAuthor} />}
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content={canonicalUrl} />
-    <meta property="twitter:title" content={title} />
-    <meta property="twitter:description" content={description} />
-    <meta property="twitter:image" content={new URL(image, SITE.url).href} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={new URL(image, SITE.url).href} />
 
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

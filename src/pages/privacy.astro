@@ -68,7 +68,7 @@ const lastUpdated = "4 November 2026";
         If you have questions regarding this privacy statement, you may contact:
       </p>
       <p class="font-sans text-sm">
-        {SITE.author.name} · <a href={`mailto:${SITE.author.email}`} class="text-link underline underline-offset-2">{SITE.author.email}</a>
+        {SITE.author.name}{!SITE.author.email.includes("TO CONFIRM") && <> · <a href={`mailto:${SITE.author.email}`} class="text-link underline underline-offset-2">{SITE.author.email}</a></>}
       </p>
     </section>
   </div>

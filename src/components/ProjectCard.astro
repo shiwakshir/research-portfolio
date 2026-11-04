@@ -1,5 +1,4 @@
 ---
-import Figure from './Figure.astro';
 
 interface Props {
   title: string;
@@ -34,12 +33,10 @@ const {
   {isLead ? (
     <div class="space-y-4">
       <div class="font-sans text-xs text-fg-muted flex items-center gap-2">
-        <span>Lead Research Tool</span>
-        <span>·</span>
         <span>{sector}</span>
       </div>
 
-      <h3 class="font-serif text-2xl sm:text-3xl font-normal text-fg">
+      <h2 class="font-serif text-2xl sm:text-3xl font-normal text-fg">
         {slug ? (
           <a href={`/projects/${slug}`} class="hover:text-link transition-colors">
             {title}
@@ -47,7 +44,7 @@ const {
         ) : (
           title
         )}
-      </h3>
+      </h2>
 
       <p class="summary">
         {summary}
@@ -69,21 +66,11 @@ const {
           Source ↗
         </a>
       </div>
-
-      <div class="pt-4 max-w-3xl">
-        <Figure
-          src="/brief-architecture.svg"
-          alt="BRIEF 11-step methodological audit pipeline"
-          caption="BRIEF's 11-step advisory review pipeline."
-          n={1}
-          href="https://github.com/shiwakshir/brief-agent"
-        />
-      </div>
     </div>
   ) : (
     <div class="space-y-3">
       <!-- Title in serif -->
-      <h3 class="font-serif text-xl sm:text-2xl font-normal text-fg">
+      <h2 class="font-serif text-xl sm:text-2xl font-normal text-fg">
         {slug ? (
           <a href={`/projects/${slug}`} class="hover:text-link transition-colors">
             {title}
@@ -91,7 +78,7 @@ const {
         ) : (
           title
         )}
-      </h3>
+      </h2>
 
       <!-- One clean metadata line: Sector · (Year if present) · 2 Methods · Role -->
       <p class="font-sans text-xs text-fg-muted">
@@ -104,8 +91,6 @@ const {
         )}
         <span> · </span>
         <span>{methods.slice(0, 2).join(', ')}</span>
-        <span> · </span>
-        <span class="text-fg">{role}</span>
       </p>
 
       {outcome && (

@@ -4,31 +4,11 @@ import { SITE } from '@/config/site';
 
 const hasAuthorPhoto = false; // [TO CONFIRM - set to true and add image to public/avatar.jpg when ready]
 
-const careerTimeline = [
-  {
-    role: "Insights Manager, UX",
-    company: "C Space",
-    period: "2023–Present",
-    description: "Leading qualitative and quantitative UX research across technology, generative AI, and multi-market initiatives. Designing research frameworks that connect consumer understanding to strategic product decisions.",
-  },
-  {
-    role: "Consultant",
-    company: "C Space",
-    period: "2021–2023",
-    description: "Executed end-to-end qualitative investigations, longitudinal multi-day diary studies, customer journey mapping, and survey analyses across automotive, FMCG and financial services sectors.",
-  },
-  {
-    role: "Associate Consultant",
-    company: "C Space",
-    period: "2019–2021",
-    description: "Conducted in-depth participant interviews, usability sessions, ethnographic fieldwork, and thematic qualitative coding.",
-  },
-];
 ---
 
 <BaseLayout
   title="About Shiwakshi Rashmi"
-  description="Insights Manager, UX, at C Space with over five years of consultancy research experience across technology, generative AI, automotive, financial services and FMCG."
+  description="Shiwakshi Rashmi is an Insights Manager in UX and market research, and publishes independent research on digital health, human behaviour and applied AI."
 >
   <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12 md:py-16">
     
@@ -50,10 +30,6 @@ const careerTimeline = [
         {SITE.author.experienceSummary}
       </p>
 
-      <p class="font-sans text-xs text-fg-muted pt-1">
-        {SITE.author.award}
-      </p>
-
       <!-- Author photo space (hidden until photo supplied) -->
       {hasAuthorPhoto && (
         <div class="mt-8 pt-6 border-t border-rule">
@@ -67,66 +43,19 @@ const careerTimeline = [
     <hr class="border-t border-rule-strong my-8" />
 
     <!-- Narrative Prose -->
-    <div class="prose max-w-[38rem] space-y-8">
-      <section>
-        <h2 class="font-serif text-2xl font-normal text-fg">
-          Consultancy research practice
-        </h2>
-        <p>
-          Over five years of consultancy research, my practice has focused on unearthing human realities to inform product strategy. I lead and contribute to mixed-methods programs spanning five international markets, working with teams across the UK, EMEA and the US.
-        </p>
-        <p>
-          My work spans the research spectrum:
-        </p>
-        <ul>
-          <li><strong>Qualitative Discovery:</strong> In-depth interview guides, longitudinal multi-day diary studies, contextual inquiry, and usability evaluations across technology and automotive sectors.</li>
-          <li><strong>Quantitative Validation:</strong> International survey research, cross-market weighting, questionnaire harmonisation, and statistical analysis.</li>
-          <li><strong>Applied Artificial Intelligence:</strong> Building agentic research evaluation tools—such as BRIEF, which evaluates research designs across 11 autonomous agents using Microsoft Foundry and Azure AI Search.</li>
-        </ul>
-      </section>
+    <div class="prose max-w-[38rem]">
+      <p>I am an Insights Manager with over five years of professional experience in UX and market research. I work with qualitative and quantitative methods, survey design and multi-market research. My academic background is in philosophy and sociology.</p>
+      <p>This site is my independent work. It does not represent my employer, and it contains no employer or client work.</p>
 
-      <!-- Career Timeline with 14–16px descriptions and years (§4) -->
-      <section class="not-prose my-10 pt-6 border-t border-rule space-y-6">
-        <h2 class="font-serif text-2xl font-normal text-fg mb-4">
-          Career timeline
-        </h2>
-        <div class="space-y-6">
-          {careerTimeline.map((item) => (
-            <div class="py-4 border-b border-rule space-y-1.5">
-              <div class="flex items-baseline justify-between gap-4">
-                <h3 class="font-serif text-lg text-fg font-normal">
-                  {item.role}
-                </h3>
-                <span class="font-sans text-xs text-fg-muted">
-                  {item.period} · {item.company}
-                </span>
-              </div>
-              <p class="font-sans text-sm sm:text-base text-fg-body leading-relaxed">
-                {item.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
+      <h2>What I research</h2>
+      <p>I study what happens when people live with conditions that change from day to day, and how digital tools help or add to the work. I also study how research teams use AI, and where AI weakens the evidence.</p>
+      <p>I publish literature reviews, critical analyses and open questions here, one piece at a time. Each piece states its method and its limits. I am not a clinician, and nothing here is medical advice. I have no institutional affiliation at present.</p>
 
-      <section>
-        <h2 class="font-serif text-2xl font-normal text-fg">
-          Independent inquiries
-        </h2>
-        <p>
-          In parallel with consultancy work, I investigate areas where standard product design assumptions break down—particularly in digital health self-management, chronic and fluctuating health conditions, and cognitive tracking burden.
-        </p>
-        <p>
-          I explore these questions through literature reviews and conceptual frameworks, grounding every piece in verified empirical evidence.
-        </p>
-      </section>
+      <h2>What I build</h2>
+      <p>I also build research tools. <a href="/projects/brief-agentic-evaluation">BRIEF</a> audits what AI already assumes about a research topic before fieldwork begins. It won the Hack for Good Award at Microsoft Agents League @ AI Skills Fest 2026. See <a href="/projects">all projects</a>.</p>
 
-      <div class="not-prose pt-6 border-t border-rule font-sans text-xs text-fg-muted flex items-center justify-between">
-        <span>Explore active questions across digital health and applied AI.</span>
-        <a href="/interests" class="text-link underline underline-offset-2">
-          View research themes →
-        </a>
-      </div>
+      <h2>Work with me</h2>
+      <p>I would like to hear from researchers, patient advocates, healthcare professionals and people with lived experience. <a href="/contact">Contact me</a>, or read <a href="/evidence-checks">how I check evidence</a>.</p>
     </div>
   </main>
 </BaseLayout>

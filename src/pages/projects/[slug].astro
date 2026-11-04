@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import Figure from '@/components/Figure.astro';
+import BriefPipeline from '@/components/BriefPipeline.astro';
 
 export async function getStaticPaths() {
   const projectEntries = await getCollection('projects', ({ data }) => !data.draft);
@@ -31,7 +31,7 @@ const { Content } = await project.render();
     <!-- Project Header -->
     <header class="space-y-4 mb-8 pb-8 border-b border-rule">
       <p class="font-sans text-xs text-fg-muted uppercase tracking-wider">
-        {project.data.sector} {project.data.isLead ? '· Lead Research Tool' : ''}
+        {project.data.sector}
       </p>
 
       <h1 class="font-serif text-3xl sm:text-4xl md:text-[2.6rem] font-normal text-fg leading-[1.15] tracking-tight">
@@ -51,11 +51,11 @@ const { Content } = await project.render();
       <!-- Metadata <dl> with 12px labels per §4 -->
       <dl class="pt-6 grid grid-cols-1 sm:grid-cols-2 gap-6 font-sans text-xs border-t border-rule">
         <div>
-          <dt class="text-fg-muted font-semibold uppercase tracking-wider text-xs mb-1">Role & Responsibility</dt>
+          <dt class="text-fg-muted font-semibold uppercase tracking-wider text-xs mb-1">Role</dt>
           <dd class="text-fg leading-relaxed m-0">{project.data.role}</dd>
         </div>
         <div>
-          <dt class="text-fg-muted font-semibold uppercase tracking-wider text-xs mb-1">Research Methods</dt>
+          <dt class="text-fg-muted font-semibold uppercase tracking-wider text-xs mb-1">Methods</dt>
           <dd class="text-fg leading-relaxed m-0">{project.data.methods.join(', ')}</dd>
         </div>
       </dl>
@@ -63,15 +63,7 @@ const { Content } = await project.render();
 
     <!-- If BRIEF, render Figure with honest 11-step advisory architecture -->
     {project.data.isLead && (
-      <div class="mb-12 max-w-3xl">
-        <Figure
-          src="/brief-architecture.svg"
-          alt="BRIEF 11-step advisory review pipeline"
-          caption="BRIEF's 11-step advisory review pipeline."
-          n={1}
-          href="https://github.com/shiwakshir/brief-agent"
-        />
-      </div>
+      <BriefPipeline />
     )}
 
     <!-- Case Study Body -->

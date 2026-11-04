@@ -26,7 +26,7 @@ references:
 
 ## Why This Space Exists
 
-Over five years of consultancy research across technology, automotive, financial services, and FMCG, I have repeatedly observed a tension: commercial product cycles often demand rapid generalisation, while the most critical human problems demand patient, contextual understanding.
+In over five years of professional UX and market research, I have repeatedly observed a tension: commercial product cycles often demand rapid generalisation, while the most critical human problems demand patient, contextual understanding.
 
 When designing technology for human beings—particularly those navigating chronic or fluctuating health challenges—standard assumptions about linear habit formation, daily adherence, and uniform energy levels collapse.
 
