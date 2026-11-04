@@ -12,6 +12,12 @@ const sortedArticles = allPublishedArticles.sort(
 );
 const latestArticle = sortedArticles[0];
 
+// Get approved projects
+const allProjects = await getCollection('projects', ({ data }) => !data.draft);
+const sortedProjects = allProjects.sort((a, b) => a.data.order - b.data.order);
+const leadProject = sortedProjects.find(p => p.data.isLead) || sortedProjects[0];
+const consultancyProjects = sortedProjects.filter(p => !p.data.isLead);
+
 // Dynamic theme counts (only show counts above zero)
 const themes = [
   {
@@ -32,7 +38,7 @@ const themes = [
   {
     title: "UX Research Methods",
     count: allPublishedArticles.filter(a => a.data.category === "UX Research Methods").length,
-    description: "Mixed-methods architectures, evidence hierarchies, and rigorous discovery protocols.",
+    description: "Mixed-methods architectures, evidence hierarchies, and structured discovery protocols.",
   },
   {
     title: "Human Behaviour & Lived Experience",
@@ -45,17 +51,17 @@ const themes = [
 <BaseLayout>
   <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12 md:py-16">
     
-    <!-- Masthead Section per design review §5a -->
+    <!-- Masthead Section per §7.2 & Mock 5a -->
     <header class="space-y-6">
       <p class="font-sans text-xs text-fg-muted uppercase tracking-wider">
         Independent research journal and portfolio · London
       </p>
 
-      <h1 class="font-serif text-3xl sm:text-4xl md:text-[2.75rem] font-normal text-fg leading-[1.18] tracking-tight">
+      <h1 class="font-serif text-3xl sm:text-4xl md:text-[2.6rem] font-normal text-fg leading-[1.18] tracking-tight">
         {SITE.tagline}
       </h1>
 
-      <p class="text-base sm:text-lg text-fg-body leading-relaxed max-w-3xl font-normal">
+      <p class="lede">
         I am an Insights Manager specialising in UX and market research, exploring the intersection of human experience, chronic health conditions and applied technology. This website is where I document independent research, methodological reflections and selected projects.
       </p>
 
@@ -67,7 +73,7 @@ const themes = [
 
     <hr class="border-t border-rule-strong my-12" />
 
-    <!-- Latest in the Journal per design review §5a -->
+    <!-- Latest in the Journal per Mock 5a -->
     {latestArticle && (
       <section aria-labelledby="latest-journal-heading">
         <div class="flex items-center justify-between mb-8">
@@ -104,8 +110,8 @@ const themes = [
           )}
 
           <!-- Summary -->
-          <p class="text-sm text-fg-body leading-relaxed max-w-3xl">
-            {latestArticle.data.abstract || latestArticle.data.description}
+          <p class="summary">
+            {latestArticle.data.abstract}
           </p>
 
           <!-- Date and Reading Time -->
@@ -117,27 +123,35 @@ const themes = [
             <span>{latestArticle.data.readingTime}</span>
           </p>
 
-          <!-- Ruled Study Note (<dl>) per design review §5a -->
-          <dl class="mt-6 border-t border-rule pt-4 grid grid-cols-1 md:grid-cols-3 gap-6 font-sans text-xs">
-            <div>
-              <dt class="text-fg-muted font-semibold uppercase tracking-wider mb-1">Question</dt>
-              <dd class="font-serif italic text-fg text-sm leading-relaxed m-0">
-                {latestArticle.data.researchQuestion || "Why do standard habit trackers fail when user capacity is non-linear?"}
-              </dd>
-            </div>
-            <div>
-              <dt class="text-fg-muted font-semibold uppercase tracking-wider mb-1">Method</dt>
-              <dd class="text-fg-body text-xs leading-relaxed m-0">
-                {latestArticle.data.methodsSummary || "Secondary review of health HCI literature and burden-of-treatment theory."}
-              </dd>
-            </div>
-            <div>
-              <dt class="text-fg-muted font-semibold uppercase tracking-wider mb-1">Limits</dt>
-              <dd class="text-fg-body text-xs leading-relaxed m-0">
-                {latestArticle.data.limitations || "Preliminary exploratory inquiry; empirical user studies pending."}
-              </dd>
-            </div>
-          </dl>
+          <!-- Ruled Study Note (<dl>) with zero unverified fallbacks (§1.5) -->
+          {(latestArticle.data.researchQuestion || latestArticle.data.methodsSummary || latestArticle.data.limitations) && (
+            <dl class="mt-6 border-t border-rule pt-4 grid grid-cols-1 md:grid-cols-3 gap-6 font-sans text-sm">
+              {latestArticle.data.researchQuestion && (
+                <div>
+                  <dt class="text-fg-muted font-semibold uppercase tracking-wider text-xs mb-1">Question</dt>
+                  <dd class="font-serif italic text-fg text-sm leading-relaxed m-0">
+                    {latestArticle.data.researchQuestion}
+                  </dd>
+                </div>
+              )}
+              {latestArticle.data.methodsSummary && (
+                <div>
+                  <dt class="text-fg-muted font-semibold uppercase tracking-wider text-xs mb-1">Method</dt>
+                  <dd class="text-fg-body text-xs leading-relaxed m-0">
+                    {latestArticle.data.methodsSummary}
+                  </dd>
+                </div>
+              )}
+              {latestArticle.data.limitations && (
+                <div>
+                  <dt class="text-fg-muted font-semibold uppercase tracking-wider text-xs mb-1">Limits</dt>
+                  <dd class="text-fg-body text-xs leading-relaxed m-0">
+                    {latestArticle.data.limitations}
+                  </dd>
+                </div>
+              )}
+            </dl>
+          )}
 
           <div class="pt-4">
             <a href={`/journal/${latestArticle.slug}`} class="font-sans text-sm text-link underline underline-offset-2">
@@ -150,7 +164,7 @@ const themes = [
 
     <hr class="border-t border-rule-strong my-12" />
 
-    <!-- Selected Work per design review §5a -->
+    <!-- Selected Work per §1.4 & Mock 5a -->
     <section aria-labelledby="selected-work-heading" class="space-y-8">
       <div class="flex items-center justify-between">
         <h2 id="selected-work-heading" class="font-sans text-xs uppercase tracking-wider text-fg-muted font-semibold m-0">
@@ -162,97 +176,78 @@ const themes = [
       </div>
 
       <!-- Lead Project: BRIEF -->
-      <article class="space-y-4">
-        <h3 class="font-serif text-2xl font-normal text-fg">
-          BRIEF
-        </h3>
+      {leadProject && (
+        <article class="space-y-4">
+          <h3 class="font-serif text-2xl font-normal text-fg">
+            {leadProject.data.title}
+          </h3>
 
-        <p class="text-sm text-fg-body leading-relaxed max-w-3xl">
-          An 11-agent system that reviews research briefs for methodological fit before fieldwork begins. Built independently with Flask, Microsoft Foundry and Azure AI Search.
-        </p>
+          <p class="summary">
+            {leadProject.data.summary}
+          </p>
 
-        <!-- Stated once: Calm credit line -->
-        <p class="font-sans text-xs text-fg-muted">
-          Hack for Good Award, Microsoft Agents League @ AI Skills Fest 2026
-        </p>
-
-        <div class="flex items-center gap-4 pt-1 font-sans text-sm">
-          <a href="/projects/brief-agentic-evaluation" class="text-link underline underline-offset-2">
-            Case study
-          </a>
-          <a href={SITE.author.briefGithub} target="_blank" rel="noopener noreferrer" class="text-link underline underline-offset-2">
-            Source ↗
-          </a>
-        </div>
-
-        <!-- Captioned Figure per design review §6.5 -->
-        <div class="pt-4">
-          <Figure
-            src="/brief-architecture.svg"
-            alt="BRIEF 11-agent methodological evaluation architecture"
-            caption="BRIEF's agent review of a sample brief."
-            n={1}
-            href={SITE.author.briefGithub}
-          />
-        </div>
-      </article>
-
-      <!-- Consultancy Projects (Fixed anonymisation pattern per design review §5a) -->
-      <div class="pt-6 space-y-6 border-t border-rule">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 items-baseline py-3 border-b border-rule">
-          <div class="md:col-span-7">
-            <h4 class="font-serif text-base text-fg font-normal">
-              <a href="/projects/usability-diary-study-automotive" class="hover:text-link transition-colors">
-                How do first-time EV buyers judge charging trade-offs before purchase?
-              </a>
-            </h4>
-          </div>
-          <div class="md:col-span-5 md:text-right">
+          <!-- Stated once: Calm credit line -->
+          {leadProject.data.award && (
             <p class="font-sans text-xs text-fg-muted">
-              A European automotive manufacturer · 2025 · Diary study, interviews · Research contributor
+              {leadProject.data.award}
             </p>
-          </div>
-        </div>
+          )}
 
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 items-baseline py-3 border-b border-rule">
-          <div class="md:col-span-7">
-            <h4 class="font-serif text-base text-fg font-normal">
-              <a href="/projects/multi-market-survey-research" class="hover:text-link transition-colors">
-                How do international market perceptions vary across five global regions?
-              </a>
-            </h4>
+          <div class="flex items-center gap-4 pt-1 font-sans text-sm">
+            <a href={`/projects/${leadProject.slug}`} class="text-link underline underline-offset-2">
+              Case study
+            </a>
+            <a href={SITE.author.briefGithub} target="_blank" rel="noopener noreferrer" class="text-link underline underline-offset-2">
+              Source ↗
+            </a>
           </div>
-          <div class="md:col-span-5 md:text-right">
-            <p class="font-sans text-xs text-fg-muted">
-              A global technology client · 2024 · Quantitative survey · Research lead
-            </p>
-          </div>
-        </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 items-baseline py-3">
-          <div class="md:col-span-7">
-            <h4 class="font-serif text-base text-fg font-normal">
-              <a href="/projects/customer-experience-automotive" class="hover:text-link transition-colors">
-                Where does user friction peak across complex purchasing journeys?
-              </a>
-            </h4>
+          <!-- Captioned Figure (§6.5 & §1.2) -->
+          <div class="pt-4 max-w-3xl">
+            <Figure
+              src="/brief-architecture.svg"
+              alt="BRIEF 11-step methodological audit pipeline"
+              caption="BRIEF's 11-step advisory review pipeline."
+              n={1}
+              href={SITE.author.briefGithub}
+            />
           </div>
-          <div class="md:col-span-5 md:text-right">
-            <p class="font-sans text-xs text-fg-muted">
-              A European automotive manufacturer · 2024 · In-depth interviews · Research lead
-            </p>
+        </article>
+      )}
+
+      <!-- Consultancy Projects (Rendered dynamically from verified content collection, §1.4) -->
+      <div class="pt-6 space-y-4 border-t border-rule">
+        {consultancyProjects.map((project) => (
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 items-baseline py-3 border-b border-rule last:border-b-0">
+            <div class="md:col-span-7">
+              <h4 class="font-serif text-base text-fg font-normal">
+                <a href={`/projects/${project.slug}`} class="hover:text-link transition-colors">
+                  {project.data.title}
+                </a>
+              </h4>
+            </div>
+            <div class="md:col-span-5 md:text-right">
+              <p class="font-sans text-xs text-fg-muted">
+                {project.data.sector} · {project.data.methods.slice(0, 2).join(', ')} · {project.data.role}
+              </p>
+            </div>
           </div>
-        </div>
+        ))}
       </div>
     </section>
 
     <hr class="border-t border-rule-strong my-12" />
 
-    <!-- Research Themes per design review §5a -->
+    <!-- Research Themes per Mock 5a & §4 -->
     <section aria-labelledby="themes-heading" class="space-y-8">
-      <h2 id="themes-heading" class="font-sans text-xs uppercase tracking-wider text-fg-muted font-semibold m-0">
-        Research themes
-      </h2>
+      <div class="flex items-center justify-between">
+        <h2 id="themes-heading" class="font-sans text-xs uppercase tracking-wider text-fg-muted font-semibold m-0">
+          Research themes
+        </h2>
+        <a href="/interests" class="font-sans text-xs text-link underline underline-offset-2 hover:opacity-80">
+          Themes overview →
+        </a>
+      </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
         {themes.map((theme) => (

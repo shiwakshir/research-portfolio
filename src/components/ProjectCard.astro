@@ -26,19 +26,17 @@ const {
   isLead = false,
   award,
   slug,
-  year = '2024–2025',
+  year,
   outcome,
 } = Astro.props;
-
-const formattedOrder = String(order).padStart(2, '0');
 ---
 <article class="space-y-4 py-8 border-b border-rule first:pt-0">
   {isLead ? (
     <div class="space-y-4">
       <div class="font-sans text-xs text-fg-muted flex items-center gap-2">
-        <span>Project {formattedOrder}</span>
-        <span>·</span>
         <span>Lead Research Tool</span>
+        <span>·</span>
+        <span>{sector}</span>
       </div>
 
       <h3 class="font-serif text-2xl sm:text-3xl font-normal text-fg">
@@ -51,7 +49,7 @@ const formattedOrder = String(order).padStart(2, '0');
         )}
       </h3>
 
-      <p class="text-sm text-fg-body leading-relaxed max-w-3xl">
+      <p class="summary">
         {summary}
       </p>
 
@@ -67,30 +65,24 @@ const formattedOrder = String(order).padStart(2, '0');
             Case study
           </a>
         )}
-        <a href="https://github.com/shiwakshir/brief" target="_blank" rel="noopener noreferrer" class="text-link underline underline-offset-2">
+        <a href="https://github.com/shiwakshir/brief-agent" target="_blank" rel="noopener noreferrer" class="text-link underline underline-offset-2">
           Source ↗
         </a>
       </div>
 
-      <div class="pt-4">
+      <div class="pt-4 max-w-3xl">
         <Figure
           src="/brief-architecture.svg"
-          alt="BRIEF 11-agent methodological review pipeline"
-          caption="BRIEF's agent review of a sample brief."
+          alt="BRIEF 11-step methodological audit pipeline"
+          caption="BRIEF's 11-step advisory review pipeline."
           n={1}
-          href="https://github.com/shiwakshir/brief"
+          href="https://github.com/shiwakshir/brief-agent"
         />
       </div>
     </div>
   ) : (
     <div class="space-y-3">
-      <div class="font-sans text-xs text-fg-muted flex items-center gap-2">
-        <span>Project {formattedOrder}</span>
-        <span>·</span>
-        <span>{sector}</span>
-      </div>
-
-      <!-- Lead with research question/title in serif -->
+      <!-- Title in serif -->
       <h3 class="font-serif text-xl sm:text-2xl font-normal text-fg">
         {slug ? (
           <a href={`/projects/${slug}`} class="hover:text-link transition-colors">
@@ -101,24 +93,23 @@ const formattedOrder = String(order).padStart(2, '0');
         )}
       </h3>
 
-      <!-- One clean metadata line: Sector · Year · Methods · Role -->
+      <!-- One clean metadata line: Sector · (Year if present) · 2 Methods · Role -->
       <p class="font-sans text-xs text-fg-muted">
         <span>{sector}</span>
+        {year && (
+          <>
+            <span> · </span>
+            <span>{year}</span>
+          </>
+        )}
         <span> · </span>
-        <span>{year}</span>
-        <span> · </span>
-        <span>{methods.join(', ')}</span>
+        <span>{methods.slice(0, 2).join(', ')}</span>
         <span> · </span>
         <span class="text-fg">{role}</span>
       </p>
 
-      <!-- Outcome sentence -->
-      <p class="text-sm text-fg-body leading-relaxed max-w-3xl">
-        {summary}
-      </p>
-
       {outcome && (
-        <p class="text-xs text-fg-muted italic">
+        <p class="font-sans text-xs text-fg-muted italic">
           Outcome: {outcome}
         </p>
       )}
@@ -126,7 +117,7 @@ const formattedOrder = String(order).padStart(2, '0');
       {slug && (
         <div class="pt-1">
           <a href={`/projects/${slug}`} class="font-sans text-xs text-link underline underline-offset-2">
-            Read project summary →
+            Read project case study →
           </a>
         </div>
       )}

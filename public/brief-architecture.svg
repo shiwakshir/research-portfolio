@@ -1,121 +1,94 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 700" width="100%" height="100%" style="background:#FAF7F0; font-family: 'Charter', 'Georgia', serif;">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 560" width="100%" height="auto" style="background:#FAF7F0; font-family: 'Source Serif 4', 'Georgia', serif;">
   <style>
     @media (prefers-color-scheme: dark) {
       .bg { fill: #1C1B18 !important; }
       .text-title { fill: #EEE9DF !important; }
-      .text-sub { fill: #A39E93 !important; }
+      .text-body { fill: #D6D1C7 !important; }
+      .text-muted { fill: #A39E93 !important; }
       .box { fill: #23221E !important; stroke: #34322D !important; }
-      .agent-box { fill: #151412 !important; stroke: #34322D !important; }
-      .arrow { stroke: #6B675E !important; }
-      .accent { fill: #8DBF9F !important; }
+      .step-box { fill: #151412 !important; stroke: #34322D !important; }
+      .rule { stroke: #34322D !important; }
+      .arrow { stroke: #6B675E !important; fill: #6B675E !important; }
     }
   </style>
-  <rect class="bg" width="1200" height="700" fill="#FAF7F0" />
+  <rect class="bg" width="1100" height="560" fill="#FAF7F0" />
   
-  <!-- Header / Metadata -->
-  <text class="text-title" x="60" y="70" font-size="22" font-weight="normal" fill="#171A1D" letter-spacing="-0.5">BRIEF: 11-Agent Methodological Evaluation Pipeline</text>
-  <text class="text-sub" x="60" y="100" font-size="13" font-family="system-ui, sans-serif" fill="#4E5762">Flask Architecture · Microsoft Foundry · Azure AI Search · Confidence Score Synthesis</text>
+  <!-- Header -->
+  <text class="text-title" x="48" y="52" font-size="20" font-weight="normal" fill="#171A1D" letter-spacing="-0.01em">BRIEF: 11-Step Methodological Audit Pipeline</text>
+  <text class="text-muted" x="48" y="78" font-size="12" font-family="system-ui, sans-serif" fill="#4E5762">Flask Architecture · Microsoft Foundry · Azure AI Search · Advisory Analysis</text>
   
-  <line x1="60" y1="125" x2="1140" y2="125" stroke="#E1D7C6" stroke-width="1" class="arrow" />
+  <line x1="48" y1="98" x2="1052" y2="98" stroke="#E1D7C6" stroke-width="1" class="rule" />
   
-  <!-- Step 1: Input -->
-  <g transform="translate(60, 160)">
-    <rect class="box" width="220" height="420" rx="2" fill="#FDFBF7" stroke="#E1D7C6" stroke-width="1" />
-    <text class="text-title" x="24" y="40" font-size="15" font-weight="600" font-family="system-ui, sans-serif" fill="#171A1D">RESEARCH BRIEF INPUT</text>
-    <text class="text-sub" x="24" y="65" font-size="12" font-family="system-ui, sans-serif" fill="#4E5762">Raw qualitative / quantitative draft</text>
+  <!-- Step 01: Input -->
+  <g transform="translate(48, 120)">
+    <rect class="box" width="180" height="390" rx="2" fill="#FDFBF7" stroke="#E1D7C6" stroke-width="1" />
+    <text class="text-title" x="18" y="32" font-size="12" font-weight="600" font-family="system-ui, sans-serif" fill="#171A1D" letter-spacing="0.06em">01. INGESTION</text>
     
-    <rect class="agent-box" x="20" y="95" width="180" height="70" rx="2" fill="#F5F0E6" stroke="#E1D7C6" />
-    <text class="text-title" x="32" y="125" font-size="12" font-weight="600" font-family="system-ui, sans-serif" fill="#171A1D">Research Objectives</text>
-    <text class="text-sub" x="32" y="145" font-size="11" font-family="system-ui, sans-serif" fill="#4E5762">Hypotheses & decisions</text>
+    <rect class="step-box" x="14" y="50" width="152" height="64" rx="2" fill="#F5F0E6" stroke="#E1D7C6" />
+    <text class="text-title" x="24" y="76" font-size="12" font-weight="600" font-family="system-ui, sans-serif" fill="#171A1D">1. Parse Brief</text>
+    <text class="text-muted" x="24" y="96" font-size="11" font-family="system-ui, sans-serif" fill="#4E5762">Extract core claims</text>
     
-    <rect class="agent-box" x="20" y="180" width="180" height="70" rx="2" fill="#F5F0E6" stroke="#E1D7C6" />
-    <text class="text-title" x="32" y="210" font-size="12" font-weight="600" font-family="system-ui, sans-serif" fill="#171A1D">Target Audience & Quotas</text>
-    <text class="text-sub" x="32" y="230" font-size="11" font-family="system-ui, sans-serif" fill="#4E5762">Participant criteria & screening</text>
+    <rect class="step-box" x="14" y="124" width="152" height="64" rx="2" fill="#F5F0E6" stroke="#E1D7C6" />
+    <text class="text-title" x="24" y="150" font-size="12" font-weight="600" font-family="system-ui, sans-serif" fill="#171A1D">2. Query Variants</text>
+    <text class="text-muted" x="24" y="170" font-size="11" font-family="system-ui, sans-serif" fill="#4E5762">Generate search forms</text>
     
-    <rect class="agent-box" x="20" y="265" width="180" height="70" rx="2" fill="#F5F0E6" stroke="#E1D7C6" />
-    <text class="text-title" x="32" y="295" font-size="12" font-weight="600" font-family="system-ui, sans-serif" fill="#171A1D">Proposed Methodology</text>
-    <text class="text-sub" x="32" y="315" font-size="11" font-family="system-ui, sans-serif" fill="#4E5762">Survey, diary, IDIs, usability</text>
+    <rect class="step-box" x="14" y="198" width="152" height="64" rx="2" fill="#F5F0E6" stroke="#E1D7C6" />
+    <text class="text-title" x="24" y="224" font-size="12" font-weight="600" font-family="system-ui, sans-serif" fill="#171A1D">3. Query Model</text>
+    <text class="text-muted" x="24" y="244" font-size="11" font-family="system-ui, sans-serif" fill="#4E5762">Sample model priors</text>
   </g>
   
-  <!-- Flow Arrow 1 -->
-  <line x1="295" y1="370" x2="340" y2="370" stroke="#171A1D" stroke-width="1.5" class="arrow" />
-  <polygon points="340,366 348,370 340,374" fill="#171A1D" class="arrow" />
+  <!-- Connector 1 -->
+  <line x1="236" y1="315" x2="260" y2="315" stroke="#171A1D" stroke-width="1" class="arrow" />
+  <polygon points="260,312 266,315 260,318" fill="#171A1D" class="arrow" />
   
-  <!-- Step 2: 11-Agent Evaluation Engine -->
-  <g transform="translate(360, 160)">
-    <rect class="box" width="480" height="420" rx="2" fill="#FDFBF7" stroke="#E1D7C6" stroke-width="1" />
-    <text class="text-title" x="24" y="40" font-size="15" font-weight="600" font-family="system-ui, sans-serif" fill="#171A1D">11 SPECIALISED EVALUATION AGENTS</text>
-    <text class="text-sub" x="24" y="65" font-size="12" font-family="system-ui, sans-serif" fill="#4E5762">Microsoft Foundry orchestration · Azure AI Search grounding</text>
+  <!-- Step 02: Assumption & Bias Analysis -->
+  <g transform="translate(274, 120)">
+    <rect class="box" width="512" height="390" rx="2" fill="#FDFBF7" stroke="#E1D7C6" stroke-width="1" />
+    <text class="text-title" x="20" y="32" font-size="12" font-weight="600" font-family="system-ui, sans-serif" fill="#171A1D" letter-spacing="0.06em">02. AUDIT &amp; BIAS DECOMPOSITION</text>
     
-    <!-- Row 1 -->
-    <rect class="agent-box" x="20" y="90" width="135" height="65" rx="2" fill="#FAF7F0" stroke="#E1D7C6" />
-    <text class="text-title" x="28" y="115" font-size="11" font-weight="600" font-family="system-ui, sans-serif" fill="#171A1D">01. Objective Fit</text>
-    <text class="text-sub" x="28" y="135" font-size="10" font-family="system-ui, sans-serif" fill="#4E5762">Method match</text>
+    <!-- Grid 3x2 -->
+    <rect class="step-box" x="16" y="50" width="150" height="64" rx="2" fill="#F5F0E6" stroke="#E1D7C6" />
+    <text class="text-title" x="26" y="76" font-size="11" font-weight="600" font-family="system-ui, sans-serif" fill="#171A1D">4. Cluster Assumptions</text>
+    <text class="text-muted" x="26" y="96" font-size="10" font-family="system-ui, sans-serif" fill="#4E5762">Thematic group priors</text>
     
-    <rect class="agent-box" x="170" y="90" width="135" height="65" rx="2" fill="#FAF7F0" stroke="#E1D7C6" />
-    <text class="text-title" x="178" y="115" font-size="11" font-weight="600" font-family="system-ui, sans-serif" fill="#171A1D">02. Sample Validity</text>
-    <text class="text-sub" x="178" y="135" font-size="10" font-family="system-ui, sans-serif" fill="#4E5762">Incidence rate</text>
+    <rect class="step-box" x="180" y="50" width="150" height="64" rx="2" fill="#F5F0E6" stroke="#E1D7C6" />
+    <text class="text-title" x="190" y="76" font-size="11" font-weight="600" font-family="system-ui, sans-serif" fill="#171A1D">5. Gap Analysis</text>
+    <text class="text-muted" x="190" y="96" font-size="10" font-family="system-ui, sans-serif" fill="#4E5762">Find blind spots</text>
     
-    <rect class="agent-box" x="320" y="90" width="135" height="65" rx="2" fill="#FAF7F0" stroke="#E1D7C6" />
-    <text class="text-title" x="328" y="115" font-size="11" font-weight="600" font-family="system-ui, sans-serif" fill="#171A1D">03. Cognitive Load</text>
-    <text class="text-sub" x="328" y="135" font-size="10" font-family="system-ui, sans-serif" fill="#4E5762">Survey fatigue</text>
+    <rect class="step-box" x="344" y="50" width="150" height="64" rx="2" fill="#F5F0E6" stroke="#E1D7C6" />
+    <text class="text-title" x="354" y="76" font-size="11" font-weight="600" font-family="system-ui, sans-serif" fill="#171A1D">6. Temporal Drift</text>
+    <text class="text-muted" x="354" y="96" font-size="10" font-family="system-ui, sans-serif" fill="#4E5762">Flag outdated framing</text>
     
-    <!-- Row 2 -->
-    <rect class="agent-box" x="20" y="165" width="135" height="65" rx="2" fill="#FAF7F0" stroke="#E1D7C6" />
-    <text class="text-title" x="28" y="190" font-size="11" font-weight="600" font-family="system-ui, sans-serif" fill="#171A1D">04. Bias Risk</text>
-    <text class="text-sub" x="28" y="210" font-size="10" font-family="system-ui, sans-serif" fill="#4E5762">Leading questions</text>
+    <rect class="step-box" x="16" y="130" width="150" height="64" rx="2" fill="#F5F0E6" stroke="#E1D7C6" />
+    <text class="text-title" x="26" y="156" font-size="11" font-weight="600" font-family="system-ui, sans-serif" fill="#171A1D">7. Hyp. Contamination</text>
+    <text class="text-muted" x="26" y="176" font-size="10" font-family="system-ui, sans-serif" fill="#4E5762">Leading questions</text>
     
-    <rect class="agent-box" x="170" y="165" width="135" height="65" rx="2" fill="#FAF7F0" stroke="#E1D7C6" />
-    <text class="text-title" x="178" y="190" font-size="11" font-weight="600" font-family="system-ui, sans-serif" fill="#171A1D">05. Ecological Fit</text>
-    <text class="text-sub" x="178" y="210" font-size="10" font-family="system-ui, sans-serif" fill="#4E5762">Real-world context</text>
+    <rect class="step-box" x="180" y="130" width="150" height="64" rx="2" fill="#F5F0E6" stroke="#E1D7C6" />
+    <text class="text-title" x="190" y="156" font-size="11" font-weight="600" font-family="system-ui, sans-serif" fill="#171A1D">8. Brand Priming</text>
+    <text class="text-muted" x="190" y="176" font-size="10" font-family="system-ui, sans-serif" fill="#4E5762">Competitor distortion</text>
     
-    <rect class="agent-box" x="320" y="165" width="135" height="65" rx="2" fill="#FAF7F0" stroke="#E1D7C6" />
-    <text class="text-title" x="328" y="190" font-size="11" font-weight="600" font-family="system-ui, sans-serif" fill="#171A1D">06. Stimulus Design</text>
-    <text class="text-sub" x="328" y="210" font-size="10" font-family="system-ui, sans-serif" fill="#4E5762">Prototype fidelity</text>
-    
-    <!-- Row 3 -->
-    <rect class="agent-box" x="20" y="240" width="135" height="65" rx="2" fill="#FAF7F0" stroke="#E1D7C6" />
-    <text class="text-title" x="28" y="265" font-size="11" font-weight="600" font-family="system-ui, sans-serif" fill="#171A1D">07. Screening Logic</text>
-    <text class="text-sub" x="28" y="285" font-size="10" font-family="system-ui, sans-serif" fill="#4E5762">False qualification</text>
-    
-    <rect class="agent-box" x="170" y="240" width="135" height="65" rx="2" fill="#FAF7F0" stroke="#E1D7C6" />
-    <text class="text-title" x="178" y="265" font-size="11" font-weight="600" font-family="system-ui, sans-serif" fill="#171A1D">08. Timeline & Ops</text>
-    <text class="text-sub" x="178" y="285" font-size="10" font-family="system-ui, sans-serif" fill="#4E5762">Fieldwork pacing</text>
-    
-    <rect class="agent-box" x="320" y="240" width="135" height="65" rx="2" fill="#FAF7F0" stroke="#E1D7C6" />
-    <text class="text-title" x="328" y="265" font-size="11" font-weight="600" font-family="system-ui, sans-serif" fill="#171A1D">09. Evidence Hierarchy</text>
-    <text class="text-sub" x="328" y="285" font-size="10" font-family="system-ui, sans-serif" fill="#4E5762">Secondary ground</text>
-    
-    <!-- Row 4 -->
-    <rect class="agent-box" x="95" y="315" width="135" height="65" rx="2" fill="#FAF7F0" stroke="#E1D7C6" />
-    <text class="text-title" x="103" y="340" font-size="11" font-weight="600" font-family="system-ui, sans-serif" fill="#171A1D">10. Ethics & Burden</text>
-    <text class="text-sub" x="103" y="360" font-size="10" font-family="system-ui, sans-serif" fill="#4E5762">Vulnerable users</text>
-    
-    <rect class="agent-box" x="245" y="315" width="135" height="65" rx="2" fill="#FAF7F0" stroke="#E1D7C6" />
-    <text class="text-title" x="253" y="340" font-size="11" font-weight="600" font-family="system-ui, sans-serif" fill="#171A1D">11. Synthetic Risk</text>
-    <text class="text-sub" x="253" y="360" font-size="10" font-family="system-ui, sans-serif" fill="#4E5762">AI respondent error</text>
+    <rect class="step-box" x="344" y="130" width="150" height="64" rx="2" fill="#F5F0E6" stroke="#E1D7C6" />
+    <text class="text-title" x="354" y="156" font-size="11" font-weight="600" font-family="system-ui, sans-serif" fill="#171A1D">9. Assumption Origins</text>
+    <text class="text-muted" x="354" y="176" font-size="10" font-family="system-ui, sans-serif" fill="#4E5762">Trace evidence base</text>
   </g>
   
-  <!-- Flow Arrow 2 -->
-  <line x1="855" y1="370" x2="895" y2="370" stroke="#171A1D" stroke-width="1.5" class="arrow" />
-  <polygon points="895,366 903,370 895,374" fill="#171A1D" class="arrow" />
+  <!-- Connector 2 -->
+  <line x1="794" y1="315" x2="818" y2="315" stroke="#171A1D" stroke-width="1" class="arrow" />
+  <polygon points="818,312 824,315 818,318" fill="#171A1D" class="arrow" />
   
-  <!-- Step 3: Synthesis & Output -->
-  <g transform="translate(915, 160)">
-    <rect class="box" width="225" height="420" rx="2" fill="#FDFBF7" stroke="#E1D7C6" stroke-width="1" />
-    <text class="text-title" x="24" y="40" font-size="15" font-weight="600" font-family="system-ui, sans-serif" fill="#171A1D">SYNTHESIS & REPORT</text>
-    <text class="text-sub" x="24" y="65" font-size="12" font-family="system-ui, sans-serif" fill="#4E5762">Methodological assessment</text>
+  <!-- Step 03: Recommendations & Synthesis -->
+  <g transform="translate(832, 120)">
+    <rect class="box" width="220" height="390" rx="2" fill="#FDFBF7" stroke="#E1D7C6" stroke-width="1" />
+    <text class="text-title" x="18" y="32" font-size="12" font-weight="600" font-family="system-ui, sans-serif" fill="#171A1D" letter-spacing="0.06em">03. ADVISORY OUTPUT</text>
     
-    <rect class="agent-box" x="20" y="95" width="185" height="110" rx="2" fill="#F5F0E6" stroke="#E1D7C6" />
-    <text class="text-sub" x="32" y="125" font-size="11" font-weight="600" font-family="system-ui, sans-serif" fill="#4E5762">OVERALL CONFIDENCE</text>
-    <text class="accent" x="32" y="165" font-size="36" font-family="'Charter', serif" fill="#1E372A">0–100</text>
-    <text class="text-sub" x="32" y="190" font-size="11" font-family="system-ui, sans-serif" fill="#4E5762">Calibrated risk score</text>
+    <rect class="step-box" x="14" y="50" width="192" height="74" rx="2" fill="#F5F0E6" stroke="#E1D7C6" />
+    <text class="text-title" x="24" y="76" font-size="12" font-weight="600" font-family="system-ui, sans-serif" fill="#171A1D">10. Method Advice</text>
+    <text class="text-muted" x="24" y="96" font-size="11" font-family="system-ui, sans-serif" fill="#4E5762">Corrective study design</text>
+    <text class="text-muted" x="24" y="112" font-size="10" font-family="system-ui, sans-serif" fill="#4E5762">Sample &amp; screening fixes</text>
     
-    <rect class="agent-box" x="20" y="220" width="185" height="160" rx="2" fill="#F5F0E6" stroke="#E1D7C6" />
-    <text class="text-title" x="32" y="245" font-size="12" font-weight="600" font-family="system-ui, sans-serif" fill="#171A1D">Actionable Recommendations</text>
-    <text class="text-sub" x="32" y="270" font-size="11" font-family="system-ui, sans-serif" fill="#4E5762">· Refined screening questions</text>
-    <text class="text-sub" x="32" y="295" font-size="11" font-family="system-ui, sans-serif" fill="#4E5762">· Sample size adjustments</text>
-    <text class="text-sub" x="32" y="320" font-size="11" font-family="system-ui, sans-serif" fill="#4E5762">· Fatigue reduction guidance</text>
-    <text class="text-sub" x="32" y="345" font-size="11" font-family="system-ui, sans-serif" fill="#4E5762">· Alternative qualitative steps</text>
+    <rect class="step-box" x="14" y="140" width="192" height="110" rx="2" fill="#F5F0E6" stroke="#E1D7C6" />
+    <text class="text-title" x="24" y="168" font-size="12" font-weight="600" font-family="system-ui, sans-serif" fill="#171A1D">11. Confidence Synthesis</text>
+    <text class="text-title" x="24" y="206" font-size="28" font-family="'Source Serif 4', 'Georgia', serif" fill="#1E372A">0–100</text>
+    <text class="text-muted" x="24" y="232" font-size="11" font-family="system-ui, sans-serif" fill="#4E5762">Calibrated reliability score</text>
   </g>
 </svg>

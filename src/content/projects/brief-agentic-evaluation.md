@@ -26,7 +26,7 @@ draft: false
 **BRIEF** is an independent agentic system designed to help researchers, consultants and product teams stress-test research plans before committing budget and fieldwork hours.
 
 ### The Problem
-Flawed research designs often pass through review unnoticed. Common risks—such as ambiguous participant recruitment parameters, double-barrelled survey questions, unvalidated behavioral assumptions, or sample size misalignments—routinely lead to wasted client investment and unreliable insights.
+Flawed research designs often pass through review unnoticed. Common risks—such as ambiguous participant recruitment parameters, double-barrelled survey questions, unvalidated behavioural assumptions, or sample size misalignments—routinely lead to wasted client investment and unreliable insights.
 
 ### What I Designed & Built
 I designed and built this 11-agent Flask application independently:

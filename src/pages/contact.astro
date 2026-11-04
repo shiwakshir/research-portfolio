@@ -1,104 +1,51 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { SITE } from '@/config/site';
-
-const invitedGroups = [
-  {
-    title: "People with Lived Experience",
-    description: "Individuals navigating long-term or fluctuating health conditions who are open to sharing reflections on what digital tools get right or wrong in daily life."
-  },
-  {
-    title: "Patient Advocates & Communities",
-    description: "Representatives and community organizers working to elevate patient autonomy and reduce treatment burden."
-  },
-  {
-    title: "UX & Digital Health Researchers",
-    description: "Practitioners investigating health-related human-computer interaction (HCI), cognitive load, and accessibility."
-  },
-  {
-    title: "Health & Clinical Professionals",
-    description: "Clinicians, nurses, and allied health professionals interested in bridging clinical guidance and everyday patient reality."
-  },
-  {
-    title: "Research Collaborators",
-    description: "Researchers interested in discussing literature syntheses, mixed methods, or exploratory inquiries."
-  },
-  {
-    title: "Applied AI Practitioners",
-    description: "Practitioners exploring the validity, bias, and methodological rigor of deploying autonomous models to research workflows."
-  }
-];
 ---
 
 <BaseLayout
-  title="Contact & Dialogue"
-  description="Connecting with researchers, practitioners, advocates, and individuals with lived experience of chronic or fluctuating health conditions."
+  title="Contact"
+  description="Connect with Shiwakshi Rashmi regarding UX research, digital health inquiries, and research methodology."
 >
   <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12 md:py-16">
     
     <!-- Header -->
     <header class="space-y-4 mb-8">
       <p class="font-sans text-xs text-fg-muted uppercase tracking-wider">
-        Open dialogue
+        Connect
       </p>
 
-      <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-fg leading-[1.15] tracking-tight">
-        Contact & Dialogue
+      <h1 class="font-serif text-3xl sm:text-4xl md:text-[2.6rem] font-normal text-fg leading-[1.15] tracking-tight">
+        Contact
       </h1>
 
-      <p class="text-base sm:text-lg text-fg-body leading-relaxed max-w-3xl font-normal">
+      <p class="lede">
         I welcome conversations with researchers, practitioners, advocates, and individuals exploring human experience, digital health, and research methodology.
       </p>
     </header>
 
     <hr class="border-t border-rule-strong my-8" />
 
-    <!-- Scope & Boundary Note (Calm text, not alarmist amber) -->
-    <section class="border-t border-b border-rule py-4 my-8 font-sans text-xs text-fg-muted space-y-1">
-      <strong class="text-fg block">Privacy & Medical Scope Boundary</strong>
-      <p class="m-0 leading-relaxed">
-        Please do not submit personal medical records, confidential clinical histories, or urgent health queries. I am an Insights Manager specialising in UX research, not a doctor or medical clinician. This website cannot evaluate symptoms or provide medical guidance.
-      </p>
-    </section>
-
-    <!-- Direct Communication -->
-    <section class="space-y-6 my-10">
-      <h2 class="font-serif text-2xl font-normal text-fg">
-        Direct Communication
-      </h2>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 pt-2">
-        <!-- Direct Email -->
-        <div class="space-y-2 border-t border-rule pt-4">
-          <span class="font-sans text-xs font-semibold uppercase tracking-wider text-fg-muted block">Email Inquiry</span>
-          <h3 class="font-serif text-lg font-normal text-fg">
-            Send a Direct Note
-          </h3>
-          <p class="font-sans text-xs text-fg-muted leading-relaxed">
-            For research discussions, literature suggestions, or professional inquiries:
-          </p>
+    <!-- Direct Communication Links at the Top per §4 -->
+    <section class="space-y-6 my-8">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-8 font-sans text-sm">
+        <div class="space-y-1">
+          <span class="text-xs uppercase tracking-wider text-fg-muted font-semibold block">Email</span>
           <a
             href={`mailto:${SITE.author.email}`}
-            class="text-sm text-link underline underline-offset-2 break-all font-sans"
+            class="text-base text-link underline underline-offset-2 break-all"
           >
             {SITE.author.email}
           </a>
         </div>
 
-        <!-- LinkedIn -->
-        <div class="space-y-2 border-t border-rule pt-4">
-          <span class="font-sans text-xs font-semibold uppercase tracking-wider text-fg-muted block">Professional Network</span>
-          <h3 class="font-serif text-lg font-normal text-fg">
-            Connect on LinkedIn
-          </h3>
-          <p class="font-sans text-xs text-fg-muted leading-relaxed">
-            For professional networking and commentary on published research:
-          </p>
+        <div class="space-y-1">
+          <span class="text-xs uppercase tracking-wider text-fg-muted font-semibold block">LinkedIn</span>
           <a
             href={SITE.author.linkedIn}
             target="_blank"
             rel="noopener noreferrer"
-            class="text-sm text-link underline underline-offset-2 break-all font-sans"
+            class="text-base text-link underline underline-offset-2 break-all"
           >
             LinkedIn Profile ↗
           </a>
@@ -106,24 +53,19 @@ const invitedGroups = [
       </div>
     </section>
 
-    <!-- Invited Conversations -->
-    <section class="pt-8 border-t border-rule space-y-6">
-      <h2 class="font-serif text-2xl font-normal text-fg">
-        Who I Invite Conversations With
-      </h2>
+    <!-- Scope & Boundary Note per §4 -->
+    <section class="border-t border-b border-rule py-4 my-8 font-sans text-sm text-fg-body space-y-1">
+      <strong class="text-fg block text-xs uppercase tracking-wider">Privacy & medical scope boundary</strong>
+      <p class="m-0 leading-relaxed text-sm">
+        Please do not submit personal medical records, confidential clinical histories, or urgent health queries. I am an Insights Manager specialising in UX research, not a doctor or medical clinician. This website cannot evaluate symptoms or provide medical guidance.
+      </p>
+    </section>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
-        {invitedGroups.map((group) => (
-          <div class="space-y-1">
-            <h3 class="font-serif text-base text-fg font-normal">
-              {group.title}
-            </h3>
-            <p class="font-sans text-xs text-fg-muted leading-relaxed">
-              {group.description}
-            </p>
-          </div>
-        ))}
-      </div>
+    <!-- One sentence on who you want to hear from (Cut 6-item grid per §4) -->
+    <section class="pt-4 font-sans text-sm text-fg-muted">
+      <p class="m-0 leading-relaxed">
+        I am particularly keen to hear from researchers, clinicians, patient advocates, and individuals navigating long-term or fluctuating conditions who want to share perspectives on everyday tool burden and research methodology.
+      </p>
     </section>
   </main>
 </BaseLayout>

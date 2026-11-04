@@ -3,35 +3,35 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
-  title="Page Not Found (404)"
+  title="Page not found"
   description="The requested research document or page could not be located."
 >
-  <div class="max-w-2xl mx-auto px-4 sm:px-6 py-24 text-center space-y-6">
-    <span class="text-xs font-mono uppercase tracking-widest text-forest-700 dark:text-forest-400 font-bold">
+  <main class="max-w-2xl mx-auto px-4 sm:px-6 py-24 text-center space-y-6">
+    <p class="font-sans text-xs uppercase tracking-widest text-fg-muted">
       Status 404
-    </span>
+    </p>
     
-    <h1 class="font-editorial-heading font-serif text-4xl sm:text-5xl font-bold text-ink-950 dark:text-ink-50">
-      Document Not Found
+    <h1 class="font-serif text-3xl sm:text-4xl md:text-[2.6rem] font-normal text-fg leading-tight">
+      Document not found
     </h1>
     
-    <p class="text-base text-ink-600 dark:text-ink-300 leading-relaxed max-w-md mx-auto">
-      The article, series installment, or page you requested does not exist or may have been relocated during an editorial revision.
+    <p class="summary mx-auto">
+      The inquiry, project, or page you requested does not exist or may have been relocated during an editorial revision.
     </p>
 
-    <div class="pt-4 flex flex-wrap items-center justify-center gap-4 text-sm">
+    <div class="pt-6 flex flex-wrap items-center justify-center gap-6 font-sans text-sm">
       <a
         href="/"
-        class="px-5 py-2.5 rounded bg-forest-700 text-parchment-50 hover:bg-forest-800 font-medium transition-colors"
+        class="text-link underline underline-offset-2"
       >
-        Return to Home →
+        Return home →
       </a>
       <a
         href="/journal"
-        class="px-5 py-2.5 rounded border border-parchment-300 dark:border-darkSurface-700 text-ink-800 dark:text-ink-200 hover:border-forest-600 font-medium transition-colors"
+        class="text-link underline underline-offset-2"
       >
-        Browse Research Journal
+        Browse journal
       </a>
     </div>
-  </div>
+  </main>
 </BaseLayout>

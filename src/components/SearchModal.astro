@@ -2,32 +2,32 @@
 ---
 <div
   id="search-dialog"
-  class="fixed inset-0 z-50 hidden bg-ink-950/70 backdrop-blur-sm flex items-start justify-center pt-20 px-4"
+  class="fixed inset-0 z-50 hidden bg-fg/40 backdrop-blur-sm flex items-start justify-center pt-20 px-4"
   role="dialog"
   aria-modal="true"
   aria-labelledby="search-title"
 >
   <div
-    class="w-full max-w-xl bg-parchment-100 dark:bg-darkSurface-900 border border-parchment-300 dark:border-darkSurface-700 rounded-lg shadow-2xl overflow-hidden"
+    class="w-full max-w-xl bg-paper border border-rule shadow-lg overflow-hidden"
     id="search-container"
   >
     <!-- Search Input Bar -->
-    <div class="relative border-b border-parchment-300 dark:border-darkSurface-750 p-4 flex items-center gap-3">
-      <svg class="w-5 h-5 text-ink-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+    <div class="border-b border-rule p-4 flex items-center gap-3">
+      <svg class="w-4 h-4 text-fg-muted shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
       </svg>
       <input
         id="search-input"
         type="search"
-        placeholder="Search published articles, methods, or tags..."
-        class="w-full bg-transparent text-sm text-ink-900 dark:text-ink-50 placeholder-ink-400 dark:placeholder-ink-500 focus:outline-none"
+        placeholder="Search published inquiries, methods, or tags..."
+        class="w-full bg-transparent font-sans text-sm text-fg placeholder-fg-muted focus:outline-none"
         autocomplete="off"
       />
       <button
         id="search-close-btn"
         type="button"
         aria-label="Close search"
-        class="text-xs px-2 py-1 rounded bg-parchment-200 dark:bg-darkSurface-800 text-ink-500 hover:text-ink-900 dark:hover:text-ink-200"
+        class="font-sans text-xs px-2 py-1 border border-rule text-fg-muted hover:text-fg"
       >
         ESC
       </button>
@@ -35,126 +35,139 @@
 
     <!-- Live Results List -->
     <div id="search-results" class="max-h-96 overflow-y-auto p-4 space-y-2 text-sm">
-      <p id="search-initial-msg" class="text-xs text-ink-500 dark:text-ink-400 text-center py-6">
+      <p id="search-initial-msg" class="font-sans text-xs text-fg-muted text-center py-6">
         Type to search across published research articles and literature reviews.
       </p>
       <div id="search-results-list" class="space-y-2"></div>
     </div>
 
-    <div class="p-2.5 bg-parchment-200/50 dark:bg-darkSurface-950 border-t border-parchment-300 dark:border-darkSurface-750 text-[11px] text-ink-500 dark:text-ink-400 flex justify-between items-center px-4">
+    <div class="p-2.5 bg-paper-muted border-t border-rule font-sans text-xs text-fg-muted flex justify-between items-center px-4">
       <span>Shiwakshi Rashmi · Research Index</span>
-      <span>Press <kbd class="font-mono bg-parchment-200 dark:bg-darkSurface-800 px-1 py-0.5 rounded">ESC</kbd> to exit</span>
+      <span>Press <kbd class="font-sans border border-rule px-1 py-0.5">ESC</kbd> to exit</span>
     </div>
   </div>
 </div>
 
 <script is:inline>
-  let searchData = null;
-  const dialog = document.getElementById('search-dialog');
-  const searchInput = document.getElementById('search-input');
-  const searchCloseBtn = document.getElementById('search-close-btn');
-  const resultsContainer = document.getElementById('search-results-list');
-  const initialMsg = document.getElementById('search-initial-msg');
-  const openButtons = [
-    document.getElementById('search-btn'),
-  ];
+  (() => {
+    let searchData = null;
+    let lastActiveElement = null;
+    const dialog = document.getElementById('search-dialog');
+    const searchInput = document.getElementById('search-input');
+    const searchCloseBtn = document.getElementById('search-close-btn');
+    const resultsContainer = document.getElementById('search-results-list');
+    const initialMsg = document.getElementById('search-initial-msg');
+    const searchBtn = document.getElementById('search-btn');
 
-  async function loadSearchIndex() {
-    if (!searchData) {
-      try {
-        const res = await fetch('/search.json');
-        searchData = await res.json();
-      } catch (e) {
-        console.error('Failed to load search index', e);
-        searchData = [];
+    async function loadSearchIndex() {
+      if (!searchData) {
+        try {
+          const res = await fetch('/search.json');
+          searchData = await res.json();
+        } catch (e) {
+          searchData = [];
+        }
       }
     }
-  }
 
-  function openSearch() {
-    dialog?.classList.remove('hidden');
-    loadSearchIndex();
-    setTimeout(() => searchInput?.focus(), 50);
-  }
+    function openSearch() {
+      lastActiveElement = document.activeElement;
+      dialog?.classList.remove('hidden');
+      loadSearchIndex();
+      setTimeout(() => searchInput?.focus(), 50);
+    }
 
-  function closeSearch() {
-    dialog?.classList.add('hidden');
-    if (searchInput) searchInput.value = '';
-    if (resultsContainer) resultsContainer.innerHTML = '';
-    if (initialMsg) initialMsg.classList.remove('hidden');
-  }
+    function closeSearch() {
+      dialog?.classList.add('hidden');
+      if (searchInput) searchInput.value = '';
+      if (resultsContainer) resultsContainer.innerHTML = '';
+      if (initialMsg) initialMsg.classList.remove('hidden');
+      if (lastActiveElement && typeof lastActiveElement.focus === 'function') {
+        lastActiveElement.focus();
+      }
+    }
 
-  // Open triggers
-  openButtons.forEach(btn => btn?.addEventListener('click', openSearch));
+    searchBtn?.addEventListener('click', openSearch);
+    searchCloseBtn?.addEventListener('click', closeSearch);
 
-  // Global keyboard shortcut: Cmd+K / Ctrl+K
-  window.addEventListener('keydown', (e) => {
-    if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-      e.preventDefault();
-      if (dialog?.classList.contains('hidden')) {
-        openSearch();
-      } else {
+    window.addEventListener('keydown', (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        if (dialog?.classList.contains('hidden')) {
+          openSearch();
+        } else {
+          closeSearch();
+        }
+      }
+      if (e.key === 'Escape' && !dialog?.classList.contains('hidden')) {
         closeSearch();
       }
-    }
-    if (e.key === 'Escape' && !dialog?.classList.contains('hidden')) {
-      closeSearch();
-    }
-  });
-
-  searchCloseBtn?.addEventListener('click', closeSearch);
-
-  dialog?.addEventListener('click', (e) => {
-    if (e.target === dialog) closeSearch();
-  });
-
-  // Filter logic
-  searchInput?.addEventListener('input', () => {
-    const query = searchInput.value.trim().toLowerCase();
-    if (!resultsContainer || !initialMsg) return;
-
-    if (!query) {
-      resultsContainer.innerHTML = '';
-      initialMsg.classList.remove('hidden');
-      return;
-    }
-
-    initialMsg.classList.add('hidden');
-
-    if (!searchData || searchData.length === 0) {
-      resultsContainer.innerHTML = `<p class="text-xs text-ink-500 py-4 text-center">No articles available.</p>`;
-      return;
-    }
-
-    const matches = searchData.filter(item => {
-      return (
-        item.title.toLowerCase().includes(query) ||
-        item.abstract.toLowerCase().includes(query) ||
-        item.category.toLowerCase().includes(query) ||
-        (item.tags && item.tags.some(t => t.toLowerCase().includes(query)))
-      );
     });
 
-    if (matches.length === 0) {
-      resultsContainer.innerHTML = `<p class="text-xs text-ink-500 py-4 text-center">No research articles found matching "${query}".</p>`;
-      return;
-    }
+    dialog?.addEventListener('click', (e) => {
+      if (e.target === dialog) closeSearch();
+    });
 
-    resultsContainer.innerHTML = matches.map(item => `
-      <a
-        href="/journal/${item.slug}"
-        class="block p-3 rounded bg-parchment-50 dark:bg-darkSurface-800/80 hover:bg-parchment-200 dark:hover:bg-darkSurface-750 transition-colors border border-parchment-200 dark:border-darkSurface-700"
-      >
-        <div class="flex items-center gap-2 mb-1">
-          <span class="text-[10px] font-mono font-bold text-forest-700 dark:text-forest-400">No. 0${item.articleNumber || 1}</span>
-          <span class="text-xs text-ink-400">·</span>
-          <span class="text-[10px] uppercase font-bold tracking-wider text-ink-600 dark:text-ink-300">${item.category}</span>
-          <span class="text-xs text-ink-400">·</span>
-          <span class="text-xs text-ink-500">${item.readingTime}</span>
-        </div>
-        <h4 class="font-serif font-semibold text-ink-950 dark:text-ink-50 text-base leading-snug">${item.title}</h4>
-        <p class="text-xs text-ink-600 dark:text-ink-300 line-clamp-1 mt-1">${item.abstract}</p>
-      </a>
-    `).join('');
-  });
+    searchInput?.addEventListener('input', () => {
+      const query = searchInput.value.trim().toLowerCase();
+      if (!resultsContainer || !initialMsg) return;
+
+      if (!query) {
+        resultsContainer.innerHTML = '';
+        initialMsg.classList.remove('hidden');
+        return;
+      }
+
+      initialMsg.classList.add('hidden');
+      resultsContainer.innerHTML = '';
+
+      if (!searchData || searchData.length === 0) {
+        const p = document.createElement('p');
+        p.className = 'font-sans text-xs text-fg-muted py-4 text-center';
+        p.textContent = 'No articles available.';
+        resultsContainer.appendChild(p);
+        return;
+      }
+
+      const matches = searchData.filter(item => {
+        return (
+          item.title.toLowerCase().includes(query) ||
+          item.abstract.toLowerCase().includes(query) ||
+          item.category.toLowerCase().includes(query) ||
+          (item.tags && item.tags.some(t => t.toLowerCase().includes(query)))
+        );
+      });
+
+      if (matches.length === 0) {
+        const p = document.createElement('p');
+        p.className = 'font-sans text-xs text-fg-muted py-4 text-center';
+        p.textContent = `No research inquiries found matching "${query}".`;
+        resultsContainer.appendChild(p);
+        return;
+      }
+
+      matches.forEach(item => {
+        const a = document.createElement('a');
+        a.href = `/journal/${item.slug}`;
+        a.className = 'block p-3 border border-rule hover:border-rule-strong transition-colors';
+
+        const meta = document.createElement('div');
+        meta.className = 'font-sans text-xs text-fg-muted flex items-center gap-2 mb-1';
+        meta.textContent = `No. 0${item.articleNumber || 1} · ${item.category} · ${item.readingTime}`;
+
+        const h = document.createElement('h4');
+        h.className = 'font-serif text-base text-fg font-normal leading-snug';
+        h.textContent = item.title;
+
+        const desc = document.createElement('p');
+        desc.className = 'font-sans text-xs text-fg-body line-clamp-1 mt-1';
+        desc.textContent = item.abstract;
+
+        a.appendChild(meta);
+        a.appendChild(h);
+        a.appendChild(desc);
+        resultsContainer.appendChild(a);
+      });
+    });
+  })();
 </script>

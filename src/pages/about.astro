@@ -8,19 +8,19 @@ const careerTimeline = [
   {
     role: "Insights Manager, UX",
     company: "C Space",
-    period: "Current",
+    period: "2023–Present",
     description: "Leading qualitative and quantitative UX research across technology, generative AI, and multi-market initiatives. Designing research frameworks that connect consumer understanding to strategic product decisions.",
   },
   {
     role: "Consultant",
     company: "C Space",
-    period: "Previous",
+    period: "2021–2023",
     description: "Executed end-to-end qualitative investigations, longitudinal multi-day diary studies, customer journey mapping, and survey analyses across automotive, FMCG and financial services sectors.",
   },
   {
     role: "Associate Consultant",
     company: "C Space",
-    period: "Earlier",
+    period: "2019–2021",
     description: "Conducted in-depth participant interviews, usability sessions, ethnographic fieldwork, and thematic qualitative coding.",
   },
 ];
@@ -38,7 +38,7 @@ const careerTimeline = [
         Professional background
       </p>
 
-      <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-fg leading-[1.15] tracking-tight">
+      <h1 class="font-serif text-3xl sm:text-4xl md:text-[2.6rem] font-normal text-fg leading-[1.15] tracking-tight">
         {SITE.author.name}
       </h1>
 
@@ -46,7 +46,7 @@ const careerTimeline = [
         {SITE.author.fullTitle} · {SITE.author.location}
       </p>
 
-      <p class="text-base sm:text-lg text-fg-body leading-relaxed max-w-3xl font-normal">
+      <p class="lede">
         {SITE.author.experienceSummary}
       </p>
 
@@ -67,10 +67,10 @@ const careerTimeline = [
     <hr class="border-t border-rule-strong my-8" />
 
     <!-- Narrative Prose -->
-    <div class="prose dark:prose-invert max-w-[38rem] space-y-8">
+    <div class="prose max-w-[38rem] space-y-8">
       <section>
         <h2 class="font-serif text-2xl font-normal text-fg">
-          Consultancy Research Practice
+          Consultancy research practice
         </h2>
         <p>
           Over five years of consultancy research, my practice has focused on unearthing human realities to inform product strategy. I lead and contribute to mixed-methods programs spanning five international markets, working with teams across the UK, EMEA and the US.
@@ -80,28 +80,28 @@ const careerTimeline = [
         </p>
         <ul>
           <li><strong>Qualitative Discovery:</strong> In-depth interview guides, longitudinal multi-day diary studies, contextual inquiry, and usability evaluations across technology and automotive sectors.</li>
-          <li><strong>Quantitative Validation:</strong> International survey research, cross-market weighting, questionnaire harmonization, and statistical analysis.</li>
+          <li><strong>Quantitative Validation:</strong> International survey research, cross-market weighting, questionnaire harmonisation, and statistical analysis.</li>
           <li><strong>Applied Artificial Intelligence:</strong> Building agentic research evaluation tools—such as BRIEF, which evaluates research designs across 11 autonomous agents using Microsoft Foundry and Azure AI Search.</li>
         </ul>
       </section>
 
-      <!-- Career Timeline -->
+      <!-- Career Timeline with 14–16px descriptions and years (§4) -->
       <section class="not-prose my-10 pt-6 border-t border-rule space-y-6">
         <h2 class="font-serif text-2xl font-normal text-fg mb-4">
-          Career Timeline
+          Career timeline
         </h2>
         <div class="space-y-6">
           {careerTimeline.map((item) => (
-            <div class="py-3 border-b border-rule space-y-1">
+            <div class="py-4 border-b border-rule space-y-1.5">
               <div class="flex items-baseline justify-between gap-4">
-                <h3 class="font-serif text-base text-fg font-normal">
+                <h3 class="font-serif text-lg text-fg font-normal">
                   {item.role}
                 </h3>
                 <span class="font-sans text-xs text-fg-muted">
                   {item.period} · {item.company}
                 </span>
               </div>
-              <p class="font-sans text-xs text-fg-muted leading-relaxed">
+              <p class="font-sans text-sm sm:text-base text-fg-body leading-relaxed">
                 {item.description}
               </p>
             </div>
@@ -111,7 +111,7 @@ const careerTimeline = [
 
       <section>
         <h2 class="font-serif text-2xl font-normal text-fg">
-          Independent Inquiries
+          Independent inquiries
         </h2>
         <p>
           In parallel with consultancy work, I investigate areas where standard product design assumptions break down—particularly in digital health self-management, chronic and fluctuating health conditions, and cognitive tracking burden.
@@ -124,7 +124,7 @@ const careerTimeline = [
       <div class="not-prose pt-6 border-t border-rule font-sans text-xs text-fg-muted flex items-center justify-between">
         <span>Explore active questions across digital health and applied AI.</span>
         <a href="/interests" class="text-link underline underline-offset-2">
-          View Research Themes →
+          View research themes →
         </a>
       </div>
     </div>

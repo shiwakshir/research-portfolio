@@ -13,84 +13,95 @@ import BaseLayout from '@/layouts/BaseLayout.astro';
         Evidence & checking policy
       </p>
 
-      <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-fg leading-[1.15] tracking-tight">
+      <h1 class="font-serif text-3xl sm:text-4xl md:text-[2.6rem] font-normal text-fg leading-[1.15] tracking-tight">
         How I Check Evidence
       </h1>
 
-      <p class="text-base sm:text-lg text-fg-body leading-relaxed max-w-3xl font-normal">
+      <p class="lede">
         This publication documents independent UX and market research inquiries. To ensure clarity and intellectual integrity, I apply specific checks before publishing any article.
       </p>
     </header>
 
     <hr class="border-t border-rule-strong my-8" />
 
-    <!-- Evidence Status Guide -->
+    <!-- Evidence Status Guide as a One-Column <dl> at 16px per §4 -->
     <section class="space-y-6 mb-12">
       <h2 class="font-serif text-2xl font-normal text-fg">
-        Article Status Classifications
+        Article status classifications
       </h2>
-      <p class="text-sm text-fg-body leading-relaxed max-w-3xl">
+      <p class="summary">
         Every article on this website carries a research status indicating its evidentiary scope:
       </p>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+      <dl class="space-y-6 pt-2 font-sans text-base max-w-[38rem]">
         <!-- Literature Exploration -->
-        <div class="space-y-2 border-t border-rule pt-4">
-          <h3 class="font-sans text-xs font-semibold uppercase tracking-wider text-fg">
-            Literature Exploration
-          </h3>
-          <p class="font-sans text-xs text-fg-muted leading-relaxed">
+        <div class="space-y-1 py-3 border-b border-rule">
+          <dt class="font-serif text-lg font-normal text-fg">
+            Literature exploration
+          </dt>
+          <dd class="text-fg-body text-base leading-relaxed m-0 pt-1">
             Surveys published secondary research, peer-reviewed papers, and sociological frameworks to map what is already established about a human question.
-          </p>
+          </dd>
         </div>
 
         <!-- Research in Progress -->
-        <div class="space-y-2 border-t border-rule pt-4">
-          <h3 class="font-sans text-xs font-semibold uppercase tracking-wider text-fg">
-            Research in Progress
-          </h3>
-          <p class="font-sans text-xs text-fg-muted leading-relaxed">
+        <div class="space-y-1 py-3 border-b border-rule">
+          <dt class="font-serif text-lg font-normal text-fg">
+            Research in progress
+          </dt>
+          <dd class="text-fg-body text-base leading-relaxed m-0 pt-1">
             Documents active investigations, qualitative fieldwork frameworks, or conceptual interaction models that are undergoing iterative reflection.
-          </p>
+          </dd>
         </div>
 
         <!-- Critical Review -->
-        <div class="space-y-2 border-t border-rule pt-4">
-          <h3 class="font-sans text-xs font-semibold uppercase tracking-wider text-fg">
-            Critical Review
-          </h3>
-          <p class="font-sans text-xs text-fg-muted leading-relaxed">
+        <div class="space-y-1 py-3 border-b border-rule">
+          <dt class="font-serif text-lg font-normal text-fg">
+            Critical review
+          </dt>
+          <dd class="text-fg-body text-base leading-relaxed m-0 pt-1">
             Evaluates existing tools, software paradigms, or research methodologies against empirical evidence, identifying where current conventions fall short.
-          </p>
+          </dd>
         </div>
-      </div>
+      </dl>
     </section>
 
     <!-- The 4 Checks -->
-    <section class="prose dark:prose-invert max-w-[38rem] pt-6 border-t border-rule">
+    <section class="prose max-w-[38rem] pt-6 border-t border-rule space-y-6">
       <h2 class="font-serif text-2xl font-normal text-fg">
-        The Checks I Conduct Before Publishing
+        The checks I conduct before publishing
       </h2>
       <p>
         As an Insights Manager with over five years of consultancy research experience, I apply four checks to my writing:
       </p>
       <ol>
         <li>
-          <strong>Primary Source Verification:</strong> Every citation is traced back to its original published source, verified DOI link, or archival publication. I do not cite secondary summaries without examining the source material.
+          <strong>Primary Source Verification:</strong> Citations are traced to their original published source, verified DOI link, or archival publication. I do not cite secondary summaries without examining the source material.
         </li>
         <li>
           <strong>Explicit Separation of Claims:</strong> I strictly separate what empirical literature demonstrates from my own interpretive reflections as a UX practitioner. Where evidence is inconclusive, I explicitly label it.
         </li>
         <li>
-          <strong>Methodological Boundary Declaration:</strong> I state the limitations of every qualitative observation, sample size, or framework. I do not generalize small qualitative cohorts to population-wide conclusions.
+          <strong>Methodological Boundary Declaration:</strong> I state the limitations of every qualitative observation, sample size, or framework. Small qualitative cohorts are not generalised to population-wide conclusions.
         </li>
         <li>
           <strong>Non-Clinical Scope Discipline:</strong> In writing on chronic and fluctuating conditions, I evaluate user experience, interface burden, and human behaviour outside clinic walls. I never make medical, diagnostic, or clinical claims.
         </li>
       </ol>
 
-      <div class="mt-8 pt-6 border-t border-rule font-sans text-xs text-fg-muted">
-        <strong class="text-fg block mb-1">Independent Publication Note</strong>
+      <!-- Dated Correction Policy (§4) -->
+      <div class="mt-8 pt-6 border-t border-rule font-sans text-xs text-fg-muted space-y-2">
+        <strong class="text-fg block uppercase tracking-wider">Correction policy</strong>
+        <p class="m-0 leading-relaxed">
+          When a citation, claim, or data point is found to be in error, I correct it directly in the text and append a dated correction note at the foot of the inquiry.
+        </p>
+        <p class="m-0 text-fg-muted">
+          Last updated: 4 November 2026.
+        </p>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-rule font-sans text-xs text-fg-muted">
+        <strong class="text-fg block mb-1">Independent publication note</strong>
         <span>Articles on this website are written and edited independently. They reflect my professional practice, literature synthesis, and design reflections. They are not academic peer-reviewed journal papers or clinical trial reports.</span>
       </div>
     </section>

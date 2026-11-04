@@ -1,10 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
-import Badge from '@/components/Badge.astro';
 
 export async function getStaticPaths() {
-  const seriesEntries = await getCollection('series');
+  const seriesEntries = await getCollection('series', ({ data }) => data.isPublic);
   return seriesEntries.map((series) => ({
     params: { slug: series.slug },
     props: { series },
@@ -16,118 +15,70 @@ const { Content } = await series.render();
 
 // Check which articles in the journal match this series and are published
 const publishedJournalArticles = await getCollection('journal', ({ data }) => !data.draft && data.series?.id === series.slug);
-
-const publishedMap = new Map();
-publishedJournalArticles.forEach(a => {
-  if (a.data.series?.order) {
-    publishedMap.set(a.data.series.order, a.slug);
-  }
-});
 ---
 
 <BaseLayout
   title={series.data.title}
   description={series.data.description}
 >
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-    
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12 md:py-16">
     <!-- Breadcrumb -->
-    <nav aria-label="Breadcrumb" class="mb-6 flex items-center gap-2 text-xs text-ink-500 dark:text-ink-400">
-      <a href="/series" class="hover:text-forest-700 dark:hover:text-forest-300">Series Index</a>
+    <nav aria-label="Breadcrumb" class="mb-8 font-sans text-xs text-fg-muted flex items-center gap-2">
+      <a href="/series" class="hover:text-link underline underline-offset-2">Series Index</a>
       <span>/</span>
-      <Badge variant="slate">{series.data.status}</Badge>
+      <span>{series.data.status}</span>
     </nav>
 
     <!-- Series Header -->
-    <header class="mb-12 border-b border-parchment-300 dark:border-ink-800 pb-8">
-      <h1 class="font-editorial-heading font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-ink-900 dark:text-ink-50 mb-3">
+    <header class="space-y-4 mb-8">
+      <p class="font-sans text-xs text-fg-muted uppercase tracking-wider">
+        Series {series.data.order} · {series.data.status}
+      </p>
+
+      <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-fg leading-[1.15] tracking-tight">
         {series.data.title}
       </h1>
+
       {series.data.subtitle && (
-        <p class="text-base sm:text-lg text-forest-800 dark:text-forest-300 font-medium mb-4">
+        <p class="font-serif italic text-lg sm:text-xl text-fg-body">
           {series.data.subtitle}
         </p>
       )}
-      <p class="text-base text-ink-700 dark:text-ink-300 leading-relaxed max-w-3xl">
+
+      <p class="text-base sm:text-lg text-fg-body leading-relaxed max-w-3xl font-normal">
         {series.data.description}
       </p>
     </header>
 
-    <!-- Ordered Article Index -->
-    <section class="mb-14">
-      <div class="flex items-center justify-between mb-6 pb-2 border-b border-parchment-200 dark:border-ink-800">
-        <h2 class="font-editorial-heading font-serif text-xl sm:text-2xl font-semibold text-ink-900 dark:text-ink-100">
-          Planned & Published Trajectory
-        </h2>
-        <span class="text-xs text-ink-500 font-mono">
-          {publishedJournalArticles.length} of {series.data.proposedArticles.length} published
-        </span>
-      </div>
+    <hr class="border-t border-rule-strong my-8" />
 
-      <div class="space-y-4">
-        {series.data.proposedArticles.map((item) => {
-          const publishedSlug = publishedMap.get(item.order);
-          const isPublished = Boolean(publishedSlug);
-
-          return (
-            <div class={`p-5 rounded border transition-colors ${
-              isPublished
-                ? 'bg-card dark:bg-ink-900/60 border-forest-600/50 hover:border-forest-600'
-                : 'bg-parchment-150/50 dark:bg-ink-900/20 border-parchment-300/80 dark:border-ink-800'
-            }`}>
-              <div class="flex items-start justify-between gap-4">
-                <div class="flex items-start gap-3">
-                  <span class="w-6 h-6 rounded bg-parchment-200 dark:bg-ink-800 text-ink-700 dark:text-ink-300 font-mono text-xs flex items-center justify-center shrink-0 mt-0.5">
-                    {item.order}
-                  </span>
-                  <div>
-                    <h3 class="font-serif font-semibold text-base sm:text-lg text-ink-900 dark:text-ink-50 mb-1">
-                      {isPublished ? (
-                        <a href={`/journal/${publishedSlug}`} class="hover:text-forest-700 dark:hover:text-forest-300 underline decoration-forest-500">
-                          {item.title}
-                        </a>
-                      ) : (
-                        item.title
-                      )}
-                    </h3>
-                    {item.summary && (
-                      <p class="text-xs sm:text-sm text-ink-600 dark:text-ink-400 leading-relaxed">
-                        {item.summary}
-                      </p>
-                    )}
-                  </div>
-                </div>
-
-                <div class="shrink-0 text-right">
-                  {isPublished ? (
-                    <a
-                      href={`/journal/${publishedSlug}`}
-                      class="inline-flex items-center gap-1 text-xs font-semibold text-forest-700 dark:text-forest-300 hover:underline"
-                    >
-                      Read Now →
-                    </a>
-                  ) : (
-                    <Badge variant="subtle" size="sm">
-                      Under Research
-                    </Badge>
-                  )}
-                </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-    </section>
-
-    <!-- Markdown Overview Content of the Series -->
-    <div class="prose prose-lg dark:prose-invert max-w-none pt-8 border-t border-parchment-300 dark:border-ink-800">
+    <!-- Series Content & Articles -->
+    <div class="prose max-w-[38rem] space-y-6">
       <Content />
-    </div>
 
-    <!-- Editorial Disclaimer -->
-    <div class="mt-12 p-5 rounded bg-parchment-200/50 dark:bg-ink-900/40 border-l-4 border-slateAccent-600 text-xs text-ink-600 dark:text-ink-400">
-      <strong class="text-ink-900 dark:text-ink-200 block mb-1">Research Status Note:</strong>
-      Articles listed above as "Under Research" are undergoing formal literature synthesis and qualitative inquiry. To uphold research integrity, draft findings are not published as validated claims until comprehensive references and methodological reviews are satisfied.
+      {publishedJournalArticles.length > 0 ? (
+        <section class="mt-8 pt-8 border-t border-rule">
+          <h2 class="font-serif text-2xl font-normal text-fg mb-4">
+            Published Inquiries in This Series
+          </h2>
+          <div class="space-y-4 not-prose">
+            {publishedJournalArticles.map((article) => (
+              <div class="py-3 border-b border-rule space-y-1">
+                <a href={`/journal/${article.slug}`} class="font-serif text-base text-fg hover:text-link transition-colors block">
+                  {article.data.title}
+                </a>
+                <p class="font-sans text-xs text-fg-muted">
+                  Part {article.data.series?.order} · {article.data.readingTime}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+      ) : (
+        <div class="mt-8 pt-6 border-t border-rule font-sans text-xs text-fg-muted">
+          <em>Articles in this series are currently in preparation.</em>
+        </div>
+      )}
     </div>
-  </div>
+  </main>
 </BaseLayout>

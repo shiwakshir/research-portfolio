@@ -6,69 +6,69 @@ const lastUpdated = "4 November 2026";
 ---
 
 <PageLayout
-  title="Privacy Notice"
-  subtitle="Commitment to Privacy & Research Ethics"
+  title="Privacy notice"
+  subtitle="Privacy & ethics"
   description="This website is built with an explicit privacy-first architecture: static hosting, no tracking scripts, no medical data collection, and no advertising cookies."
 >
-  <div class="space-y-8 text-sm sm:text-base leading-relaxed text-ink-800 dark:text-ink-200">
-    <div class="p-4 rounded bg-parchment-150 dark:bg-darkSurface-850 border border-parchment-300 dark:border-darkSurface-750 text-xs text-ink-600 dark:text-ink-400">
-      <strong>Last Updated:</strong> {lastUpdated}
+  <div class="space-y-8 font-sans text-sm sm:text-base leading-relaxed text-fg-body max-w-[38rem]">
+    <div class="py-2 border-b border-rule text-xs text-fg-muted">
+      <strong>Last updated:</strong> {lastUpdated}
     </div>
 
-    <section>
-      <h2 class="font-editorial-heading font-serif text-2xl font-semibold text-ink-950 dark:text-ink-50 mb-3">
-        1. Core Privacy Philosophy
+    <section class="space-y-3">
+      <h2 class="font-serif text-xl font-normal text-fg">
+        1. Core privacy philosophy
       </h2>
       <p>
-        This personal research website exists to publish independent inquiries, literature reviews, and UX reflections. It is intentionally engineered as a static site to minimize data exposure and eliminate surveillance.
+        This personal research website exists to publish independent inquiries, literature reviews, and UX reflections. It is intentionally engineered as a static site to minimise data exposure and eliminate surveillance.
       </p>
-      <ul>
+      <ul class="list-disc pl-5 space-y-1 text-sm">
         <li><strong>No health or medical data collection:</strong> I do not ask for, collect, or process personal medical histories, symptom diaries, or health records.</li>
-        <li><strong>No third-party advertising trackers:</strong> There are no advertising pixels, behavioral marketing scripts, or tracking cookies installed.</li>
+        <li><strong>No third-party advertising trackers:</strong> There are no advertising pixels, behavioural marketing scripts, or tracking cookies installed.</li>
         <li><strong>No user accounts:</strong> Visitors do not need to register, create accounts, or log in to read published research.</li>
         <li><strong>No external font CDN connections:</strong> Fonts are hosted locally to prevent third-party logging of visitor IP addresses.</li>
       </ul>
     </section>
 
-    <section>
-      <h2 class="font-editorial-heading font-serif text-2xl font-semibold text-ink-950 dark:text-ink-50 mb-3">
-        2. Technical Logs
+    <section class="space-y-3">
+      <h2 class="font-serif text-xl font-normal text-fg">
+        2. Technical logs
       </h2>
       <p>
         When you visit this website, the hosting infrastructure automatically logs standard network requests (such as your IP address, browser user-agent, and requested file URL) solely for operational reliability, security, and network routing.
       </p>
     </section>
 
-    <section>
-      <h2 class="font-editorial-heading font-serif text-2xl font-semibold text-ink-950 dark:text-ink-50 mb-3">
-        3. Local Storage for Theme Preference
+    <section class="space-y-3">
+      <h2 class="font-serif text-xl font-normal text-fg">
+        3. Local storage for theme preference
       </h2>
       <p>
-        This site uses browser <code class="text-xs font-mono bg-parchment-200 dark:bg-darkSurface-800 px-1.5 py-0.5 rounded">localStorage</code> solely to remember your chosen theme mode (light or dark). This is stored locally on your device and is never transmitted to any external server.
+        This site uses browser <code>localStorage</code> solely to remember your chosen theme mode (light or dark). This is stored locally on your device and is never transmitted to any external server.
       </p>
     </section>
 
-    <section>
-      <h2 class="font-editorial-heading font-serif text-2xl font-semibold text-ink-950 dark:text-ink-50 mb-3">
-        4. Direct Communication via Email and LinkedIn
+    <section class="space-y-3">
+      <h2 class="font-serif text-xl font-normal text-fg">
+        4. Direct communication via email and LinkedIn
       </h2>
       <p>
         To avoid collecting sensitive information through unencrypted web forms, this website does not include online submission forms. When you contact me using direct email or via LinkedIn, you choose what information to share.
       </p>
-      <p>
-        <strong>Reminder:</strong> Please do not include confidential clinical records or personal medical histories in email correspondence.
+      <p class="text-xs text-fg-muted italic">
+        Reminder: Please do not include confidential clinical records or personal medical histories in email correspondence.
       </p>
     </section>
 
-    <section>
-      <h2 class="font-editorial-heading font-serif text-2xl font-semibold text-ink-950 dark:text-ink-50 mb-3">
-        5. Contact Information for Privacy Inquiries
+    <section class="space-y-3">
+      <h2 class="font-serif text-xl font-normal text-fg">
+        5. Contact information for privacy inquiries
       </h2>
       <p>
         If you have questions regarding this privacy statement, you may contact:
       </p>
-      <p class="font-mono text-sm">
-        {SITE.author.name} · <a href={`mailto:${SITE.author.email}`} class="text-forest-700 dark:text-forest-400 underline">{SITE.author.email}</a>
+      <p class="font-sans text-sm">
+        {SITE.author.name} · <a href={`mailto:${SITE.author.email}`} class="text-link underline underline-offset-2">{SITE.author.email}</a>
       </p>
     </section>
   </div>

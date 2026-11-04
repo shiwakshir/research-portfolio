@@ -6,10 +6,10 @@ sector: "Automotive"
 order: 4
 isLead: false
 methods:
+  - "Qualitative Behavioural Coding"
   - "Longitudinal Diary Study"
   - "In-Situ Usability Tracking"
   - "Follow-Up Contextual Interviews"
-  - "Qualitative Behavioral Coding"
 featured: true
 draft: false
 ---
@@ -23,5 +23,5 @@ I contribute to a study that combines a three-day real-world diary with follow-u
 
 ### Research Scope & Methodology
 * **Three-Day Real-World Diary:** Tracking drivers in their natural context over three consecutive days to capture unprompted interactions, spontaneous adaptations, and moments of interface frustration.
-* **Longitudinal Behavioral Capture:** Gathering ecological momentary impressions that eliminate retrospective recall bias.
+* **Longitudinal Behavioural Capture:** Gathering ecological momentary impressions that eliminate retrospective recall bias.
 * **Contextual Follow-Up Interviews:** Conducting deep-dive interviews immediately following the diary period to unpack specific recorded pain points and understand the root cause of interaction difficulties.

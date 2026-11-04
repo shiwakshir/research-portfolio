@@ -61,6 +61,15 @@ const schema = articleDate ? {
     <meta name="theme-color" content="#FAF7F0" id="theme-color-meta" />
     <link rel="canonical" href={canonicalUrl} />
 
+    <!-- Preload Self-Hosted Roman Font (§5) -->
+    <link
+      rel="preload"
+      href="/fonts/source-serif-4-normal-v1.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content={articleDate ? "article" : "website"} />
     <meta property="og:url" content={canonicalUrl} />
@@ -79,36 +88,34 @@ const schema = articleDate ? {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate" type="application/rss+xml" title={`${SITE.name} RSS Feed`} href="/rss.xml" />
 
-    <!-- Self-hosted font declarations (Zero third-party font tracking) -->
-
-    <!-- Theme initialization script (prevents flash of incorrect theme) -->
+    <!-- Scoped Theme initialization script (§7.1) -->
     <script is:inline>
-      const savedTheme = localStorage.getItem('theme');
-      const isDark = savedTheme === 'dark' || (!savedTheme && window.matchMedia('(prefers-color-scheme: dark)').matches);
-      if (isDark) {
-        document.documentElement.classList.add('dark');
-        const meta = document.getElementById('theme-color-meta');
-        if (meta) meta.setAttribute('content', '#151412');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
+      (() => {
+        let saved = null;
+        try { saved = localStorage.getItem('theme'); } catch {}
+        const isDark = saved === 'dark' || (!saved && matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.classList.toggle('dark', isDark);
+        if (isDark) {
+          document.getElementById('theme-color-meta')?.setAttribute('content', '#151412');
+        }
+      })();
     </script>
 
     <!-- Structured Data -->
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
   </head>
-  <body class="min-h-screen flex flex-col bg-paper text-fg-body antialiased selection:bg-link selection:text-paper transition-colors duration-150">
-    <!-- Accessible Skip to Content Link -->
+  <body class="min-h-screen flex flex-col bg-paper text-fg-body font-serif antialiased selection:bg-link selection:text-paper transition-colors duration-150">
+    <!-- Accessible Skip to Content Link (§7.4) -->
     <a
       href="#main-content"
-      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:bg-link focus:text-paper focus:font-medium"
+      class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:px-4 focus:py-2 focus:bg-link focus:text-paper focus:font-sans focus:font-medium"
     >
       Skip to main content
     </a>
 
     <Header />
 
-    <div id="main-content" class="flex-1">
+    <div id="main-content" tabindex="-1" class="flex-1 focus:outline-none">
       <slot />
     </div>
 

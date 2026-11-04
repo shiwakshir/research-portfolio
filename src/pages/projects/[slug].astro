@@ -13,7 +13,6 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { Content } = await project.render();
-const formattedOrder = String(project.data.order).padStart(2, '0');
 ---
 
 <BaseLayout
@@ -26,65 +25,57 @@ const formattedOrder = String(project.data.order).padStart(2, '0');
     <nav aria-label="Breadcrumb" class="mb-8 font-sans text-xs text-fg-muted flex items-center gap-2">
       <a href="/projects" class="hover:text-link underline underline-offset-2">Projects</a>
       <span>/</span>
-      <span>Project {formattedOrder}</span>
+      <span>{project.data.sector}</span>
     </nav>
 
     <!-- Project Header -->
-    <header class="space-y-4 mb-10 pb-8 border-b border-rule">
-      <div class="font-sans text-xs text-fg-muted flex flex-wrap items-center gap-2">
-        <span>Project {formattedOrder}</span>
-        <span>·</span>
-        <span>{project.data.sector}</span>
-        {project.data.isLead && (
-          <>
-            <span>·</span>
-            <span>Lead Project</span>
-          </>
-        )}
-      </div>
+    <header class="space-y-4 mb-8 pb-8 border-b border-rule">
+      <p class="font-sans text-xs text-fg-muted uppercase tracking-wider">
+        {project.data.sector} {project.data.isLead ? '· Lead Research Tool' : ''}
+      </p>
 
-      <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-fg leading-[1.15] tracking-tight">
+      <h1 class="font-serif text-3xl sm:text-4xl md:text-[2.6rem] font-normal text-fg leading-[1.15] tracking-tight">
         {project.data.title}
       </h1>
 
-      <p class="text-base sm:text-lg text-fg-body leading-relaxed max-w-3xl">
+      <p class="lede">
         {project.data.summary}
       </p>
 
-      {project.data.award && (
-        <p class="font-sans text-xs text-fg-muted">
+      {project.data.isLead && project.data.award && (
+        <p class="font-sans text-xs text-fg-muted pt-1">
           {project.data.award}
         </p>
       )}
 
-      <!-- Metadata Line -->
-      <div class="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-4 font-sans text-xs border-t border-rule">
+      <!-- Metadata <dl> with 12px labels per §4 -->
+      <dl class="pt-6 grid grid-cols-1 sm:grid-cols-2 gap-6 font-sans text-xs border-t border-rule">
         <div>
-          <span class="text-fg-muted block uppercase tracking-wider text-[10px] mb-1">Role & Responsibility</span>
-          <span class="text-fg">{project.data.role}</span>
+          <dt class="text-fg-muted font-semibold uppercase tracking-wider text-xs mb-1">Role & Responsibility</dt>
+          <dd class="text-fg leading-relaxed m-0">{project.data.role}</dd>
         </div>
         <div>
-          <span class="text-fg-muted block uppercase tracking-wider text-[10px] mb-1">Research Methods</span>
-          <span class="text-fg">{project.data.methods.join(', ')}</span>
+          <dt class="text-fg-muted font-semibold uppercase tracking-wider text-xs mb-1">Research Methods</dt>
+          <dd class="text-fg leading-relaxed m-0">{project.data.methods.join(', ')}</dd>
         </div>
-      </div>
+      </dl>
     </header>
 
-    <!-- If BRIEF, render Figure with honest architecture preview -->
+    <!-- If BRIEF, render Figure with honest 11-step advisory architecture -->
     {project.data.isLead && (
-      <div class="mb-12">
+      <div class="mb-12 max-w-3xl">
         <Figure
           src="/brief-architecture.svg"
-          alt="BRIEF 11-agent architecture"
-          caption="BRIEF's agent review of a sample brief."
+          alt="BRIEF 11-step advisory review pipeline"
+          caption="BRIEF's 11-step advisory review pipeline."
           n={1}
-          href="https://github.com/shiwakshir/brief"
+          href="https://github.com/shiwakshir/brief-agent"
         />
       </div>
     )}
 
     <!-- Case Study Body -->
-    <div class="prose dark:prose-invert max-w-[38rem]">
+    <div class="prose max-w-[38rem]">
       <Content />
     </div>
 
@@ -93,8 +84,8 @@ const formattedOrder = String(project.data.order).padStart(2, '0');
         ← Back to all projects
       </a>
       {project.data.isLead && (
-        <a href="https://github.com/shiwakshir/brief" target="_blank" rel="noopener noreferrer" class="text-link underline underline-offset-2">
-          View BRIEF Repository on GitHub ↗
+        <a href="https://github.com/shiwakshir/brief-agent" target="_blank" rel="noopener noreferrer" class="text-link underline underline-offset-2">
+          View repository on GitHub ↗
         </a>
       )}
     </div>

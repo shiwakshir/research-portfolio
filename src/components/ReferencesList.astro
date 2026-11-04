@@ -14,46 +14,53 @@ interface Props {
 const { references } = Astro.props;
 ---
 {references && references.length > 0 && (
-  <section id="references" class="mt-12 pt-8 border-t border-parchment-300 dark:border-darkSurface-750">
-    <div class="flex items-center justify-between mb-6">
-      <h3 class="font-editorial-heading font-serif text-xl sm:text-2xl font-semibold text-ink-950 dark:text-ink-50">
-        References & Cited Sources
+  <section id="references" class="space-y-4">
+    <div class="flex items-baseline justify-between mb-2">
+      <h3 class="font-serif text-lg font-normal text-fg">
+        References
       </h3>
-      <a href="/evidence-checks" class="text-xs text-forest-700 dark:text-forest-400 hover:underline">
-        How I check sources →
+      <a href="/evidence-checks" class="font-sans text-xs text-link underline underline-offset-2">
+        How I check evidence
       </a>
     </div>
 
-    <ol class="space-y-4 text-sm text-ink-800 dark:text-ink-200 list-none pl-0">
+    <ol class="space-y-3 font-sans text-xs text-fg-body list-none pl-0">
       {references.map((ref) => (
-        <li id={`ref-${ref.number}`} class="flex items-start gap-3 group focus-within:ring-2 focus-within:ring-forest-600 rounded p-1">
-          <span class="shrink-0 w-6 h-6 rounded bg-parchment-200 dark:bg-darkSurface-800 text-ink-700 dark:text-ink-300 font-mono text-xs flex items-center justify-center font-semibold mt-0.5">
-            [{ref.number}]
+        <li id={`ref-${ref.number}`} class="flex items-baseline gap-2.5">
+          <span class="text-fg-muted shrink-0 font-medium">
+            {ref.number}.
           </span>
-          <div class="space-y-1 flex-1">
-            <span class="leading-relaxed block">{ref.citation}</span>
-            <div class="flex flex-wrap items-center gap-3 text-xs text-forest-700 dark:text-forest-400">
-              {ref.url && (
-                <a
-                  href={ref.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="underline hover:text-forest-800 dark:hover:text-forest-300 inline-flex items-center gap-1 focus-visible:ring-1 focus-visible:ring-forest-600"
-                >
-                  Source Link ↗
-                </a>
-              )}
+          <div class="flex-1 space-y-1">
+            <span class="leading-relaxed">{ref.citation}</span>
+            <span class="ml-1.5 inline-flex items-center gap-2">
               {ref.doi && (
                 <a
                   href={`https://doi.org/${ref.doi}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="underline font-mono text-[11px] hover:text-forest-800 dark:hover:text-forest-300 focus-visible:ring-1 focus-visible:ring-forest-600"
+                  class="text-link underline underline-offset-2"
                 >
-                  DOI: {ref.doi} ↗
+                  doi:{ref.doi}
                 </a>
               )}
-            </div>
+              {ref.url && !ref.doi && (
+                <a
+                  href={ref.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-link underline underline-offset-2"
+                >
+                  Source ↗
+                </a>
+              )}
+              <a
+                href={`#ref-back-${ref.number}`}
+                title="Return to citation in text"
+                class="text-fg-muted hover:text-fg font-sans"
+              >
+                ↩
+              </a>
+            </span>
           </div>
         </li>
       ))}

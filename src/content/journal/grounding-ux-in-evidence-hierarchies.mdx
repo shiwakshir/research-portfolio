@@ -17,36 +17,40 @@ methodsSummary: "Secondary literature review of mixed-methods research design an
 limitations: "Conceptual operational framework for product discovery; empirical user studies pending."
 references:
   - number: 1
-    citation: "Creswell, J. W., & Creswell, J. D. (2017). Research design: qualitative, quantitative, and mixed methods approaches. Thousand Oaks: SAGE Publications."
+    citation: "Creswell, J. W., & Creswell, J. D. (2017). Research design: qualitative, quantitative, and mixed methods approaches (5th ed.). SAGE Publications."
     shortCitation: "Creswell & Creswell (2017) Mixed methods research design"
     url: "https://us.sagepub.com/en-us/nam/research-design/book255675"
   - number: 2
-    citation: "Nielsen, J. (2001). First rule of usability? Don't listen to users. Nielsen Norman Group Research Note."
+    citation: "Nielsen, J. (2000). Why you only need to test with 5 users. Nielsen Norman Group."
+    shortCitation: "Nielsen (2000) Small-sample usability testing"
+    url: "https://www.nngroup.com/articles/why-you-only-need-to-test-with-5-users/"
+  - number: 3
+    citation: "Nielsen, J. (2001). First rule of usability? Don't listen to users. Nielsen Norman Group."
     shortCitation: "Nielsen (2001) Usability observation vs. self-reporting"
     url: "https://www.nngroup.com/articles/first-rule-of-usability-dont-listen-to-users/"
-  - number: 3
-    citation: "Tversky, A., & Kahneman, D. (1974). Judgment under uncertainty: Heuristics and biases. Science, 185(4157), 1124-1131."
+  - number: 4
+    citation: "Tversky, A., & Kahneman, D. (1974). Judgment under uncertainty: Heuristics and biases. Science, 185(4157), 1124–1131."
     shortCitation: "Tversky & Kahneman (1974) Cognitive heuristics & biases"
     doi: "10.1126/science.185.4157.1124"
 ---
 import EvidenceBlock from '@/components/EvidenceBlock.astro';
 
-Commercial product teams frequently oscillate between two opposing evidentiary extremes: either treating a single vocal customer interview as an indisputable mandate, or accumulating large dashboards of analytics that measure precise symptoms without understanding human motivation.<span class="margin-note">Qualitative observation surfaces the mechanisms of human friction; quantitative data verifies its prevalence across populations.</span>
+Commercial product teams frequently oscillate between two opposing evidentiary extremes: either treating a single vocal customer interview as an indisputable mandate, or accumulating large dashboards of analytics that measure precise symptoms without understanding human motivation.<span class="has-note"></span><span class="margin-note">Qualitative observation surfaces the mechanisms of human friction; quantitative data verifies its prevalence across populations.</span>
 
 Bridging this divide requires treating research not as a one-off validation checkpoint, but as a continuous calibration of confidence.
 
 <EvidenceBlock type="what-the-evidence-says">
-Research methodology literature demonstrates that qualitative and quantitative inquiries possess complementary, asymmetric strengths: qualitative inquiry excels at surfacing the mechanisms, language, and contextual boundaries of human behaviour (Creswell & Creswell, 2017), whereas quantitative surveys establish distribution, prevalence, and statistical significance across defined populations. Retrospective self-reporting remains vulnerable to post-hoc rationalisation and availability heuristics (Tversky & Kahneman, 1974).
+Research methodology literature demonstrates that qualitative and quantitative inquiries possess complementary, asymmetric strengths: qualitative inquiry excels at surfacing the mechanisms, language, and contextual boundaries of human behaviour (Creswell &amp; Creswell, 2017)<a id="ref-back-1" href="#ref-1" class="text-link underline"><sup>[1]</sup></a>, whereas quantitative surveys establish distribution, prevalence, and statistical significance across defined populations. In evaluating user accounts, behavioural science demonstrates that retrospective self-reporting remains vulnerable to availability heuristics and post-hoc rationalisation (Tversky &amp; Kahneman, 1974)<a id="ref-back-4" href="#ref-4" class="text-link underline"><sup>[4]</sup></a>.
 </EvidenceBlock>
 
-When participants describe how they navigate complex systems, their recollections are mediated by social desirability and cognitive recall limits. Direct behavioural observation, contextual inquiry, and longitudinal diary studies consistently reveal points of friction that retrospective surveys fail to capture.
+When participants describe how they navigate complex systems, their recollections are mediated by social desirability and cognitive recall limits. Direct behavioural observation, contextual inquiry, and longitudinal diary studies consistently reveal points of friction that retrospective surveys fail to capture (Nielsen, 2001)<a id="ref-back-3" href="#ref-3" class="text-link underline"><sup>[3]</sup></a>.
 
 <EvidenceBlock type="my-interpretation">
-My reading of consultancy fieldwork across international clients is that teams do not fail because they lack data; they fail because they lack an agreed standard for what constitutes proof. Without a shared evidence hierarchy, organizational hierarchy fills the vacuum: the highest-paid person's opinion becomes the working theory of the user.
+My reading of consultancy fieldwork across international clients is that teams do not fail because they lack data; they fail because they lack an agreed standard for what constitutes proof. Without a shared evidence hierarchy, organisational hierarchy fills the vacuum: the highest-paid person's opinion becomes the working theory of the user.
 </EvidenceBlock>
 
 <EvidenceBlock type="where-the-evidence-disagrees">
-A persistent debate exists between advocates of rapid, lean discovery and proponents of formal statistical validation. Ultra-lean frameworks argue that 5–8 participant interviews are sufficient to uncover the majority of usability barriers (Nielsen, 2001). However, critics note that while small cohorts surface acute interface flaws, they cannot capture non-linear routine variability, diverse lived experiences, or edge cases in high-stakes environments.
+A persistent debate exists between advocates of rapid, lean discovery and proponents of formal statistical validation. Ultra-lean frameworks argue that qualitative usability testing with as few as five users can uncover the vast majority of interface barriers in an iterative cycle (Nielsen, 2000)<a id="ref-back-2" href="#ref-2" class="text-link underline"><sup>[2]</sup></a>. However, critics correctly observe that while small-sample usability tests reliably detect acute interaction flaws, they cannot establish prevalence, validate market segments, or capture non-linear routine variability across vulnerable or fluctuating cohorts.
 </EvidenceBlock>
 
 <EvidenceBlock type="open-question">

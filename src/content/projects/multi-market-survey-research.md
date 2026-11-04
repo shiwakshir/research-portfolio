@@ -23,5 +23,5 @@ I lead survey-based research across five international markets, working collabor
 
 ### Research Scope & Methodology
 * **International Survey Architecture:** Designing balanced questionnaire instruments that accommodate regional nuances, linguistic precision, and local market contexts.
-* **Cross-Market Harmonization:** Establishing consistent measurement standards to enable valid cross-country comparisons while isolating regional behavioral variations.
+* **Cross-Market Harmonisation:** Establishing consistent measurement standards to enable valid cross-country comparisons while isolating regional behavioural variations.
 * **Consultancy Delivery:** Transforming complex multi-market datasets into executive briefings and strategic product roadmaps.

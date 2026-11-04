@@ -53,15 +53,14 @@ export const SITE: SiteConfig = {
     email: "contact@[TO CONFIRM-domain].com",
     linkedIn: "https://www.linkedin.com/in/[TO CONFIRM-profile]",
     github: "https://github.com/shiwakshir",
-    briefGithub: "https://github.com/shiwakshir/brief", // [TO CONFIRM if repository name is different]
+    briefGithub: "https://github.com/shiwakshir/brief-agent",
 
     bioShort: "Insights Manager, UX, at C Space based in London. Over five years of consultancy research experience specialising in qualitative and quantitative UX research, research design, and applied artificial intelligence.",
   },
 
-  // Main navigation (5 links per brief: Journal, Series, Projects, About, Contact)
+  // Main navigation (Journal, Projects, About, Contact - Series added once first series is public)
   navLinks: [
     { href: "/journal", label: "Journal" },
-    { href: "/series", label: "Series" },
     { href: "/projects", label: "Projects" },
     { href: "/about", label: "About" },
     { href: "/contact", label: "Contact" },

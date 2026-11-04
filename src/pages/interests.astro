@@ -1,10 +1,10 @@
 ---
 import BaseLayout from '@/layouts/BaseLayout.astro';
 
-const detailedInterests = [
+const themes = [
   {
     number: "01",
-    title: "Digital Health and Chronic Conditions",
+    title: "Digital Health & Wellbeing",
     summary: "Investigating how individuals navigate long-term, episodic, and fluctuating illnesses, and where digital tools fail to support unpredictable daily capacity.",
     questions: [
       "Why do streak-based habit loops and aggressive push notifications trigger guilt and tool abandonment during symptom flares?",
@@ -15,7 +15,7 @@ const detailedInterests = [
   },
   {
     number: "02",
-    title: "Human Behaviour and Everyday Experiences",
+    title: "Chronic & Fluctuating Conditions",
     summary: "Examining the divergence between designer assumptions, clinical protocols, and the messy, adaptive ways people organise their lives in domestic and workplace contexts.",
     questions: [
       "How do people negotiate invisible trade-offs between managing health regimens and preserving vocational or social identity?",
@@ -26,18 +26,7 @@ const detailedInterests = [
   },
   {
     number: "03",
-    title: "UX and Market Research Methods",
-    summary: "Refining mixed-methods research architectures that integrate qualitative contextual depth with quantitative statistical validity.",
-    questions: [
-      "How can practitioners structure research roadmaps so generative discovery continuously sharpens survey design?",
-      "What are the boundary conditions of small-sample usability testing when designing for complex or fluctuating user states?",
-      "How do we measure latent emotional burden rather than just task completion time?"
-    ],
-    theoreticalAnchor: "Informed by mixed-methods research design (Creswell), survey methodology, and five years of consultancy practice."
-  },
-  {
-    number: "04",
-    title: "AI-Assisted and Autonomous Research",
+    title: "Applied AI in UX & Market Research",
     summary: "Critically evaluating where large language models and autonomous agent workflows enhance research synthesis, and where they risk hallucinating false consensus.",
     questions: [
       "Can synthetic user personas ever accurately simulate the lived experience of fluctuating illness, or do they inevitably reinforce stereotypes?",
@@ -47,9 +36,20 @@ const detailedInterests = [
     theoreticalAnchor: "Informed by emerging HCI literature on human-AI collaboration, algorithmic bias, and research ethics."
   },
   {
+    number: "04",
+    title: "UX Research Methods",
+    summary: "Refining mixed-methods research architectures that integrate qualitative contextual depth with quantitative statistical validity.",
+    questions: [
+      "How can practitioners structure research roadmaps so generative discovery continuously sharpens survey design?",
+      "What are the boundary conditions of small-sample usability testing when designing for complex or fluctuating user states?",
+      "How do we measure latent emotional burden rather than just task completion time?"
+    ],
+    theoreticalAnchor: "Informed by mixed-methods research design (Creswell), survey methodology, and five years of consultancy practice."
+  },
+  {
     number: "05",
-    title: "Evidence-Informed Design & Decision Making",
-    summary: "Establishing pragmatic evidence hierarchies that help product and business teams ground strategic roadmaps in validated human truth rather than organizational bias.",
+    title: "Human Behaviour & Lived Experience",
+    summary: "Establishing pragmatic evidence hierarchies that help product and business teams ground strategic roadmaps in validated human truth rather than organisational bias.",
     questions: [
       "How do we communicate varying levels of research confidence transparently to cross-functional stakeholders?",
       "When is a prototype experiment sufficient to commit engineering resources, and when is longitudinal validation required?",
@@ -72,40 +72,40 @@ const detailedInterests = [
         Agenda & exploration
       </p>
 
-      <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-fg leading-[1.15] tracking-tight">
+      <h1 class="font-serif text-3xl sm:text-4xl md:text-[2.6rem] font-normal text-fg leading-[1.15] tracking-tight">
         Research Themes
       </h1>
 
-      <p class="text-base sm:text-lg text-fg-body leading-relaxed max-w-3xl font-normal">
+      <p class="lede">
         These are ongoing directions of inquiry, reading, and conceptual design. They represent active curiosity and structured investigation rather than claims of definitive academic authority.
       </p>
     </header>
 
     <hr class="border-t border-rule-strong my-8" />
 
-    <!-- Interest Pillars -->
+    <!-- Theme Pillars (Serif lists at 16px without left bars per §4) -->
     <div class="space-y-12">
-      {detailedInterests.map((interest) => (
+      {themes.map((theme) => (
         <section class="space-y-4 py-8 border-b border-rule first:pt-0">
           <div class="font-sans text-xs text-fg-muted">
-            Theme {interest.number}
+            Theme {theme.number}
           </div>
 
-          <h2 class="font-serif text-2xl sm:text-3xl font-normal text-fg">
-            {interest.title}
+          <h2 class="font-serif text-2xl font-normal text-fg">
+            {theme.title}
           </h2>
 
-          <p class="text-sm text-fg-body leading-relaxed max-w-3xl">
-            {interest.summary}
+          <p class="summary">
+            {theme.summary}
           </p>
 
           <div class="pt-2">
             <span class="font-sans text-xs font-semibold uppercase tracking-wider text-fg-muted block mb-2">
-              Active Questions Under Study:
+              Questions under study:
             </span>
-            <ul class="space-y-2 font-serif italic text-sm text-fg-body max-w-2xl">
-              {interest.questions.map((q) => (
-                <li class="pl-4 border-l border-rule-strong">
+            <ul class="space-y-2 font-serif italic text-base text-fg-body max-w-2xl list-disc pl-5">
+              {theme.questions.map((q) => (
+                <li class="leading-relaxed">
                   {q}
                 </li>
               ))}
@@ -114,7 +114,7 @@ const detailedInterests = [
 
           <div class="pt-2 font-sans text-xs text-fg-muted">
             <span>Theoretical anchor: </span>
-            <span class="text-fg-body">{interest.theoreticalAnchor}</span>
+            <span class="text-fg-body">{theme.theoreticalAnchor}</span>
           </div>
         </section>
       ))}
@@ -124,7 +124,7 @@ const detailedInterests = [
     <div class="pt-8 font-sans text-xs text-fg-muted flex items-center justify-between">
       <span>Investigating similar questions or have literature recommendations?</span>
       <a href="/contact" class="text-link underline underline-offset-2">
-        Reach Out for Dialogue →
+        Reach out for dialogue →
       </a>
     </div>
   </main>

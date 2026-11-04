@@ -7,23 +7,23 @@ const publicSeries = allSeries.filter(s => s.data.isPublic);
 ---
 
 <BaseLayout
-  title="Research Series"
-  description="Thematic, longitudinal inquiries exploring fluctuating health conditions and research methodology."
+  title="Research series"
+  description="Thematic series exploring fluctuating health conditions and research methodology."
 >
   <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12 md:py-16">
     
     <!-- Header -->
     <header class="space-y-4 mb-8">
       <p class="font-sans text-xs text-fg-muted uppercase tracking-wider">
-        Longitudinal inquiries
+        Thematic collections
       </p>
 
-      <h1 class="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-fg leading-[1.15] tracking-tight">
-        Research Series
+      <h1 class="font-serif text-3xl sm:text-4xl md:text-[2.6rem] font-normal text-fg leading-[1.15] tracking-tight">
+        Research series
       </h1>
 
-      <p class="text-base sm:text-lg text-fg-body leading-relaxed max-w-3xl font-normal">
-        Longitudinal inquiries group related research papers, literature syntheses, and qualitative findings into sequential trajectories.
+      <p class="lede">
+        Thematic series group related research inquiries, literature syntheses, and qualitative findings into sequential trajectories.
       </p>
     </header>
 
@@ -41,7 +41,7 @@ const publicSeries = allSeries.filter(s => s.data.isPublic);
                 {series.data.title}
               </a>
             </h2>
-            <p class="text-sm text-fg-body leading-relaxed max-w-3xl">
+            <p class="summary">
               {series.data.description}
             </p>
             <a href={`/series/${series.slug}`} class="font-sans text-xs text-link underline underline-offset-2">
@@ -53,17 +53,17 @@ const publicSeries = allSeries.filter(s => s.data.isPublic);
     ) : (
       <div class="py-12 space-y-4 border-b border-rule">
         <h2 class="font-serif text-2xl font-normal text-fg">
-          First Research Series in Preparation
+          First research series in preparation
         </h2>
-        <p class="text-sm text-fg-body leading-relaxed max-w-2xl">
-          My first independent research series—<em>Living with Fluctuating Health</em>—is currently undergoing literature reviews and synthesis. In keeping with my research standards, individual titles and manuscripts remain in private editorial planning until finalized for release.
+        <p class="summary">
+          My first independent research series—<em>Living with Fluctuating Health</em>—is currently undergoing literature reviews and synthesis. In keeping with my research standards, individual titles and manuscripts remain in private editorial planning until finalised for release.
         </p>
         <div class="pt-2">
           <a
             href="/journal"
             class="font-sans text-xs text-link underline underline-offset-2"
           >
-            Read currently published papers in the Journal →
+            Read currently published papers in the journal →
           </a>
         </div>
       </div>

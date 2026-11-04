@@ -4,7 +4,7 @@
   id="theme-toggle"
   type="button"
   aria-label="Toggle dark mode"
-  class="p-1.5 text-fg-muted hover:text-fg transition-colors focus-visible:outline-none"
+  class="min-h-8 min-w-8 p-2 text-fg-muted hover:text-fg transition-colors flex items-center justify-center rounded-sm"
 >
   <!-- Sun Icon (shown in dark mode) -->
   <svg
@@ -39,37 +39,39 @@
 </button>
 
 <script is:inline>
-  const themeToggle = document.getElementById('theme-toggle');
-  const lightIcon = document.getElementById('theme-toggle-light-icon');
-  const darkIcon = document.getElementById('theme-toggle-dark-icon');
-  const metaThemeColor = document.getElementById('theme-color-meta');
+  (() => {
+    const themeToggle = document.getElementById('theme-toggle');
+    const lightIcon = document.getElementById('theme-toggle-light-icon');
+    const darkIcon = document.getElementById('theme-toggle-dark-icon');
+    const metaThemeColor = document.getElementById('theme-color-meta');
 
-  function updateIcons(isDark) {
-    if (isDark) {
-      lightIcon?.classList.remove('hidden');
-      darkIcon?.classList.add('hidden');
-      if (metaThemeColor) metaThemeColor.setAttribute('content', '#151412');
-    } else {
-      lightIcon?.classList.add('hidden');
-      darkIcon?.classList.remove('hidden');
-      if (metaThemeColor) metaThemeColor.setAttribute('content', '#FAF7F0');
+    function updateIcons(isDark) {
+      if (isDark) {
+        lightIcon?.classList.remove('hidden');
+        darkIcon?.classList.add('hidden');
+        if (metaThemeColor) metaThemeColor.setAttribute('content', '#151412');
+      } else {
+        lightIcon?.classList.add('hidden');
+        darkIcon?.classList.remove('hidden');
+        if (metaThemeColor) metaThemeColor.setAttribute('content', '#FAF7F0');
+      }
     }
-  }
 
-  // Initial state check
-  const isDark = document.documentElement.classList.contains('dark');
-  updateIcons(isDark);
+    // Initial state check
+    const isDark = document.documentElement.classList.contains('dark');
+    updateIcons(isDark);
 
-  themeToggle?.addEventListener('click', () => {
-    const isCurrentlyDark = document.documentElement.classList.contains('dark');
-    if (isCurrentlyDark) {
-      document.documentElement.classList.remove('dark');
-      localStorage.setItem('theme', 'light');
-      updateIcons(false);
-    } else {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-      updateIcons(true);
-    }
-  });
+    themeToggle?.addEventListener('click', () => {
+      const isCurrentlyDark = document.documentElement.classList.contains('dark');
+      if (isCurrentlyDark) {
+        document.documentElement.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+        updateIcons(false);
+      } else {
+        document.documentElement.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+        updateIcons(true);
+      }
+    });
+  })();
 </script>
