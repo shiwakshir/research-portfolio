@@ -52,8 +52,8 @@ export const SITE: SiteConfig = {
     // [TO CONFIRM] Links
     email: "contact@[TO CONFIRM-domain].com",
     linkedIn: "https://www.linkedin.com/in/[TO CONFIRM-profile]",
-    github: "https://github.com/[TO CONFIRM-username]",
-    briefGithub: "https://github.com/[TO CONFIRM-brief-repo]",
+    github: "https://github.com/shiwakshir",
+    briefGithub: "https://github.com/shiwakshir/brief", // [TO CONFIRM if repository name is different]
 
     bioShort: "Insights Manager, UX, at C Space based in London. Over five years of consultancy research experience specialising in qualitative and quantitative UX research, research design, and applied artificial intelligence.",
   },
