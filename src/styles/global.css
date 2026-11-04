@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-main: #FAF7F0;
+    --bg-card: #FFFFFF;
+    --bg-muted: #F2ECE1;
+    --border-subtle: #E5DED2;
+    --border-strong: #D3C9BA;
+    --text-primary: #171A1D;
+    --text-secondary: #4A525B;
+    --text-muted: #727B84;
+    --accent-forest: #2A4C3A;
+    --accent-slate: #355168;
+  }
+
+  .dark {
+    --bg-main: #131518;
+    --bg-card: #1A1D21;
+    --bg-muted: #22262B;
+    --border-subtle: #2C3238;
+    --border-strong: #3D444C;
+    --text-primary: #F2F4F7;
+    --text-secondary: #C2C8D0;
+    --text-muted: #8E98A3;
+    --accent-forest: #528E6E;
+    --accent-slate: #5B84A6;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: #2A4C3A;
+    color: #FAF7F0;
+  }
+
+  .dark ::selection {
+    background-color: #528E6E;
+    color: #131518;
+  }
+
+  /* Accessible focus states */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid var(--accent-forest);
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+}
+
+/* Editorial typography tweaks */
+.font-editorial-heading {
+  font-family: 'Newsreader', Georgia, 'Iowan Old Style', Charter, serif;
+  font-feature-settings: 'cv01', 'cv02', 'kern', 'liga';
+}
+
+/* Custom horizontal rule divider */
+.editorial-hr {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(to right, transparent, var(--border-strong), transparent);
+  margin: 3rem 0;
+}
+
+/* Print styling for substantial research articles */
+@media print {
+  header, footer, .no-print, #reading-progress, .theme-toggle {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+    color: black !important;
+    font-size: 11pt !important;
+  }
+  a {
+    text-decoration: underline !important;
+    color: black !important;
+  }
+}

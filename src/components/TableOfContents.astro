@@ -1,0 +1,57 @@
+---
+interface HeadingItem {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: HeadingItem[];
+}
+
+const { headings } = Astro.props;
+const filteredHeadings = headings.filter(h => h.depth >= 2 && h.depth <= 3);
+---
+{filteredHeadings.length > 0 && (
+  <nav aria-label="Table of contents" class="toc-container my-6 p-4 rounded bg-parchment-150 dark:bg-ink-900/60 border border-parchment-300 dark:border-ink-800">
+    <div class="flex items-center justify-between mb-3">
+      <span class="text-xs font-semibold uppercase tracking-wider text-ink-900 dark:text-ink-100 flex items-center gap-1.5">
+        <svg class="w-3.5 h-3.5 text-forest-700 dark:text-forest-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h10M4 18h7" />
+        </svg>
+        Contents & Structure
+      </span>
+      <button
+        id="toc-toggle-btn"
+        type="button"
+        class="text-xs text-ink-500 hover:text-ink-800 dark:text-ink-400 dark:hover:text-ink-200 underline focus-visible:outline-none"
+      >
+        Collapse
+      </button>
+    </div>
+
+    <ul id="toc-list" class="space-y-1.5 text-sm transition-all duration-200">
+      {filteredHeadings.map((heading) => (
+        <li class={heading.depth === 3 ? 'pl-4 text-xs text-ink-600 dark:text-ink-400' : 'text-ink-700 dark:text-ink-300'}>
+          <a
+            href={`#${heading.slug}`}
+            class="hover:text-forest-700 dark:hover:text-forest-300 transition-colors block py-0.5"
+          >
+            {heading.text}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+)}
+
+<script is:inline>
+  const tocBtn = document.getElementById('toc-toggle-btn');
+  const tocList = document.getElementById('toc-list');
+
+  tocBtn?.addEventListener('click', () => {
+    if (!tocList) return;
+    const isHidden = tocList.classList.toggle('hidden');
+    tocBtn.textContent = isHidden ? 'Expand' : 'Collapse';
+  });
+</script>

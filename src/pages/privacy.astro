@@ -1,0 +1,75 @@
+---
+import PageLayout from '@/layouts/PageLayout.astro';
+import { SITE } from '@/config/site';
+
+const lastUpdated = "November 4, 2026";
+---
+
+<PageLayout
+  title="Privacy Notice"
+  subtitle="Commitment to Privacy & Research Ethics"
+  description="This website is built with an explicit privacy-first architecture: static hosting, no tracking scripts, no medical data collection, and no advertising cookies."
+>
+  <div class="space-y-8 text-sm sm:text-base leading-relaxed text-ink-800 dark:text-ink-200">
+    <div class="p-4 rounded bg-parchment-150 dark:bg-ink-900/60 border border-parchment-300 dark:border-ink-800 text-xs text-ink-600 dark:text-ink-400">
+      <strong>Last Updated:</strong> {lastUpdated} · <span class="text-forest-700 dark:text-forest-400">[Review and confirm before public launch]</span>
+    </div>
+
+    <section>
+      <h2 class="font-editorial-heading font-serif text-2xl font-semibold text-ink-900 dark:text-ink-100 mb-3">
+        1. Core Privacy Philosophy
+      </h2>
+      <p>
+        This personal research website exists to publish independent inquiries, literature reviews, and UX reflections. It is intentionally engineered as a static site hosted via Cloudflare Pages to minimize data exposure and eliminate unnecessary surveillance.
+      </p>
+      <ul>
+        <li><strong>No health or medical data collection:</strong> We do not ask for, store, or process personal medical histories, symptom diaries, or health records.</li>
+        <li><strong>No third-party advertising trackers:</strong> There are no advertising pixels, behavioral marketing scripts, or tracking cookies installed.</li>
+        <li><strong>No user accounts:</strong> Visitors do not need to register, create accounts, or log in to read any published research.</li>
+        <li><strong>No commercial data monetization:</strong> Your reading activity is never packaged, rented, or sold.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="font-editorial-heading font-serif text-2xl font-semibold text-ink-900 dark:text-ink-100 mb-3">
+        2. Technical Logs & Hosting Infrastructure
+      </h2>
+      <p>
+        When you visit this website, the hosting infrastructure (Cloudflare Pages) automatically logs basic network protocol requests (such as your IP address, browser user-agent, and the requested file URL) solely for operational reliability, DDoS mitigation, and network routing. These standard web server logs are retained in accordance with Cloudflare's security practices.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="font-editorial-heading font-serif text-2xl font-semibold text-ink-900 dark:text-ink-100 mb-3">
+        3. Local Storage for Theme Preference
+      </h2>
+      <p>
+        This site uses browser <code class="text-xs font-mono bg-parchment-200 dark:bg-ink-800 px-1.5 py-0.5 rounded">localStorage</code> solely to remember your chosen theme mode (light or dark). This is stored locally on your device and is never transmitted to any external server.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="font-editorial-heading font-serif text-2xl font-semibold text-ink-900 dark:text-ink-100 mb-3">
+        4. Direct Communication via Email and LinkedIn
+      </h2>
+      <p>
+        To avoid collecting sensitive information through unencrypted web forms, this website does not include online submission forms. When you contact me using the provided direct email link or via LinkedIn, you choose what information to share.
+      </p>
+      <p>
+        <strong>Reminder:</strong> Please do not include confidential clinical records or sensitive personal medical histories in email correspondence.
+      </p>
+    </section>
+
+    <section>
+      <h2 class="font-editorial-heading font-serif text-2xl font-semibold text-ink-900 dark:text-ink-100 mb-3">
+        5. Contact Information for Privacy Inquiries
+      </h2>
+      <p>
+        If you have questions regarding this privacy statement or wish to request the deletion of any email correspondence you have sent me, you may contact:
+      </p>
+      <p class="font-mono text-sm">
+        {SITE.author.name} · <a href={`mailto:${SITE.author.email}`} class="text-forest-700 dark:text-forest-400 underline">{SITE.author.email}</a>
+      </p>
+    </section>
+  </div>
+</PageLayout>

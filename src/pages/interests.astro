@@ -1,0 +1,139 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { SITE } from '@/config/site';
+
+const detailedInterests = [
+  {
+    number: "01",
+    title: "Digital Health and Chronic Conditions",
+    summary: "Investigating how individuals navigate long-term, episodic, and fluctuating illnesses, and where digital tools fail to support unpredictable daily capacity.",
+    questions: [
+      "Why do streak-based habit loops and aggressive push notifications trigger guilt and tool abandonment during symptom flares?",
+      "How can software dynamically adapt its interface complexity based on momentary cognitive bandwidth?",
+      "What is the difference between clinical treatment adherence and sustainable everyday pacing?"
+    ],
+    literatureBasis: "Informed by burden-of-treatment theory, patient-reported outcome measures, and health human-computer interaction (HCI)."
+  },
+  {
+    number: "02",
+    title: "Human Behaviour and Everyday Experiences",
+    summary: "Examining the divergence between designer assumptions, clinical models, and the messy, adaptive ways people organize their lives in domestic and workplace contexts.",
+    questions: [
+      "How do people negotiate invisible trade-offs between managing health regimens and preserving vocational or social identity?",
+      "What environmental workarounds do users invent that formal surveys routinely fail to measure?",
+      "How does retrospective recall bias distort user feedback in health and lifestyle research?"
+    ],
+    literatureBasis: "Informed by qualitative sociology (Strauss & Corbin), ecological momentary assessment, and behavioral economics."
+  },
+  {
+    number: "03",
+    title: "UX and Market Research Methods",
+    summary: "Refining mixed-methods research architectures that integrate qualitative contextual depth with quantitative statistical validity.",
+    questions: [
+      "How can practitioners structure research roadmaps so generative discovery continuously sharpens survey design?",
+      "What are the boundary conditions of small-sample usability testing when designing for diverse or neurodivergent populations?",
+      "How do we measure latent emotional burden rather than just task completion time?"
+    ],
+    literatureBasis: "Informed by mixed-methods research design (Creswell), survey methodology, and six years of professional practice."
+  },
+  {
+    number: "04",
+    title: "AI-Assisted and Autonomous Research",
+    summary: "Critically evaluating where large language models and autonomous agent workflows enhance research synthesis, and where they risk hallucinating false consensus.",
+    questions: [
+      "Can synthetic user personas ever accurately simulate the lived experience of fluctuating illness, or do they inevitably reinforce stereotypes?",
+      "How can researchers use AI tools for thematic clustering while preserving raw human nuance and counter-narratives?",
+      "What audit trails are necessary to maintain research integrity when utilizing automated qualitative tagging?"
+    ],
+    literatureBasis: "Informed by emerging HCI literature on human-AI collaboration, algorithmic bias, and research ethics."
+  },
+  {
+    number: "05",
+    title: "Evidence-Informed Design & Decision Making",
+    summary: "Establishing pragmatic evidence hierarchies that help product and business teams ground strategic roadmaps in validated human truth rather than organizational bias.",
+    questions: [
+      "How do we communicate varying levels of research confidence transparently to cross-functional stakeholders?",
+      "When is a prototype experiment sufficient to commit engineering resources, and when is longitudinal validation required?",
+      "How can teams resist the temptation of vanity analytics that measure vanity engagement rather than genuine human utility?"
+    ],
+    literatureBasis: "Informed by decision science, epistemology of evidence, and user experience strategy."
+  }
+];
+---
+
+<BaseLayout
+  title="Research Interests & Ongoing Inquiries"
+  description="Current areas of independent investigation: digital health, chronic conditions, human behaviour, research methods, and applied AI."
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+    
+    <!-- Header -->
+    <header class="mb-12 border-b border-parchment-300 dark:border-ink-800 pb-8">
+      <span class="text-xs font-semibold uppercase tracking-wider text-forest-700 dark:text-forest-400 block mb-2">
+        Agenda & Exploration
+      </span>
+      <h1 class="font-editorial-heading font-serif text-3xl sm:text-5xl font-bold tracking-tight text-ink-900 dark:text-ink-50 mb-4">
+        Research Interests
+      </h1>
+      <p class="text-base sm:text-lg text-ink-700 dark:text-ink-300 leading-relaxed max-w-2xl">
+        These are ongoing directions of inquiry, reading, and conceptual design. They represent active curiosity and structured investigation rather than claims of definitive academic authority.
+      </p>
+    </header>
+
+    <!-- Interest Pillars -->
+    <div class="space-y-12">
+      {detailedInterests.map((interest) => (
+        <section class="p-8 rounded bg-card/70 dark:bg-ink-900/40 border border-parchment-300 dark:border-ink-800 space-y-4">
+          <div class="flex items-center gap-3">
+            <span class="text-xs font-mono font-bold text-forest-700 dark:text-forest-400">
+              {interest.number}
+            </span>
+            <div class="h-px flex-1 bg-parchment-200 dark:border-ink-800"></div>
+          </div>
+
+          <h2 class="font-editorial-heading font-serif text-2xl sm:text-3xl font-semibold text-ink-900 dark:text-ink-50">
+            {interest.title}
+          </h2>
+
+          <p class="text-sm sm:text-base text-ink-700 dark:text-ink-300 leading-relaxed">
+            {interest.summary}
+          </p>
+
+          <div class="pt-4 border-t border-parchment-200 dark:border-ink-800">
+            <span class="text-xs font-semibold uppercase tracking-wider text-ink-900 dark:text-ink-200 block mb-2">
+              Active Questions Under Study:
+            </span>
+            <ul class="space-y-2 text-xs sm:text-sm text-ink-600 dark:text-ink-400">
+              {interest.questions.map((q) => (
+                <li class="flex items-start gap-2">
+                  <span class="text-forest-600 font-bold shrink-0">?</span>
+                  <span class="leading-relaxed">{q}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div class="pt-3 text-[11px] text-ink-500 italic">
+            <strong>Theoretical Anchor:</strong> {interest.literatureBasis}
+          </div>
+        </section>
+      ))}
+    </div>
+
+    <!-- Invitation -->
+    <div class="mt-16 p-8 rounded bg-parchment-150 dark:bg-ink-900/60 border border-parchment-300 dark:border-ink-800 text-center space-y-4">
+      <h3 class="font-serif text-xl font-semibold text-ink-900 dark:text-ink-50">
+        Shared Curiosity?
+      </h3>
+      <p class="text-xs sm:text-sm text-ink-700 dark:text-ink-300 max-w-lg mx-auto leading-relaxed">
+        If you are working on similar questions or have recommendations for relevant literature, I would be delighted to exchange notes.
+      </p>
+      <a
+        href="/contact"
+        class="inline-flex items-center gap-1.5 px-4 py-2 rounded bg-forest-700 text-parchment-50 text-xs font-medium hover:bg-forest-800 transition-colors"
+      >
+        Reach Out for Dialogue →
+      </a>
+    </div>
+  </div>
+</BaseLayout>

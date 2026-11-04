@@ -1,0 +1,150 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { SITE } from '@/config/site';
+
+const invitedGroups = [
+  {
+    title: "People with Lived Experience",
+    description: "Individuals navigating long-term, chronic, or fluctuating health conditions who are willing to share reflections on what digital tools get right or wrong in daily life."
+  },
+  {
+    title: "Patient Advocates & Communities",
+    description: "Representatives and community organizers working to elevate patient voice, autonomy, and reduce treatment burden."
+  },
+  {
+    title: "UX & Digital Health Researchers",
+    description: "Practitioners investigating health-related human-computer interaction (HCI), accessibility, and behavior change."
+  },
+  {
+    title: "Health & Clinical Professionals",
+    description: "Clinicians, nurses, and allied health professionals interested in improving the bridge between clinical guidance and everyday patient reality."
+  },
+  {
+    title: "Research Collaborators",
+    description: "Independent or institutional researchers interested in co-authoring literature reviews, methodological frameworks, or exploratory inquiries."
+  },
+  {
+    title: "Responsible AI Researchers",
+    description: "Teams and thinkers exploring the ethical, bias, and validity implications of deploying autonomous models and LLMs to research workflows."
+  }
+];
+---
+
+<BaseLayout
+  title="Contact & Collaboration"
+  description="Connecting with researchers, practitioners, advocates, and individuals with lived experience of chronic or fluctuating health conditions."
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+    
+    <!-- Header -->
+    <header class="mb-12 border-b border-parchment-300 dark:border-ink-800 pb-8">
+      <span class="text-xs font-semibold uppercase tracking-wider text-forest-700 dark:text-forest-400 block mb-2">
+        Open Dialogue
+      </span>
+      <h1 class="font-editorial-heading font-serif text-3xl sm:text-5xl font-bold tracking-tight text-ink-900 dark:text-ink-50 mb-4">
+        Contact & Collaboration
+      </h1>
+      <p class="text-base sm:text-lg text-ink-700 dark:text-ink-300 leading-relaxed max-w-2xl">
+        I welcome dialogue with individuals, practitioners, and researchers who care about grounding technology in real human context and lived experiences.
+      </p>
+    </header>
+
+    <!-- Important Medical Disclaimer Callout -->
+    <div class="mb-12 p-6 rounded bg-amber-50/70 dark:bg-amber-950/30 border-l-4 border-amber-600 text-xs sm:text-sm text-amber-900 dark:text-amber-200 space-y-2">
+      <div class="flex items-center gap-2 font-semibold text-amber-800 dark:text-amber-300">
+        <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
+        <span>Important Privacy & Medical Boundary Note</span>
+      </div>
+      <p class="leading-relaxed">
+        <strong>Please do not submit personal medical records, confidential clinical histories, or urgent health questions through general contact channels.</strong> I am a UX and market research professional, not a doctor or medical clinician. This website cannot evaluate symptoms or provide medical guidance.
+      </p>
+    </div>
+
+    <!-- Direct Contact Options (No forms collecting sensitive data) -->
+    <section class="mb-16">
+      <h2 class="font-editorial-heading font-serif text-xl sm:text-2xl font-semibold text-ink-900 dark:text-ink-50 mb-6">
+        Direct Contact Channels
+      </h2>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <!-- Direct Email -->
+        <div class="p-6 rounded bg-card/70 dark:bg-ink-900/40 border border-parchment-300 dark:border-ink-800 space-y-3">
+          <div class="flex items-center gap-2 text-forest-700 dark:text-forest-400">
+            <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            <span class="text-xs uppercase font-bold tracking-wider">Email Inquiry</span>
+          </div>
+          <h3 class="font-serif font-semibold text-lg text-ink-900 dark:text-ink-100">
+            Send a Direct Note
+          </h3>
+          <p class="text-xs text-ink-600 dark:text-ink-400 leading-relaxed">
+            For research discussions, literature suggestions, or professional inquiry:
+          </p>
+          <a
+            href={`mailto:${SITE.author.email}`}
+            class="inline-block text-sm font-semibold text-forest-700 dark:text-forest-300 underline break-all hover:text-forest-800"
+          >
+            {SITE.author.email}
+          </a>
+          <span class="text-[11px] text-ink-400 block italic">[Update your email in src/config/site.ts]</span>
+        </div>
+
+        <!-- LinkedIn -->
+        <div class="p-6 rounded bg-card/70 dark:bg-ink-900/40 border border-parchment-300 dark:border-ink-800 space-y-3">
+          <div class="flex items-center gap-2 text-forest-700 dark:text-forest-400">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.45 1.45 0 1 0 0-2.9 1.45 1.45 0 0 0 0 2.9m1.39 9.74v-8.37H5.07v8.37h2.78z" />
+            </svg>
+            <span class="text-xs uppercase font-bold tracking-wider">Professional Network</span>
+          </div>
+          <h3 class="font-serif font-semibold text-lg text-ink-900 dark:text-ink-100">
+            Connect on LinkedIn
+          </h3>
+          <p class="text-xs text-ink-600 dark:text-ink-400 leading-relaxed">
+            For professional networking, UX research discussions, and commentary on published pieces:
+          </p>
+          <a
+            href={SITE.author.linkedIn}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-block text-sm font-semibold text-forest-700 dark:text-forest-300 underline break-all hover:text-forest-800"
+          >
+            LinkedIn Profile ↗
+          </a>
+          <span class="text-[11px] text-ink-400 block italic">[Update your profile in src/config/site.ts]</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Who I Welcome Conversations With -->
+    <section class="border-t border-parchment-300 dark:border-ink-800 pt-12">
+      <div class="max-w-2xl mb-8">
+        <span class="text-xs font-semibold uppercase tracking-wider text-forest-700 dark:text-forest-400 block mb-1">
+          Community & Dialogue
+        </span>
+        <h2 class="font-editorial-heading font-serif text-2xl sm:text-3xl font-semibold text-ink-900 dark:text-ink-50 mb-2">
+          Who I Invite Conversations With
+        </h2>
+        <p class="text-sm text-ink-600 dark:text-ink-400">
+          I am particularly keen to connect with people across these areas of focus:
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        {invitedGroups.map((group) => (
+          <div class="p-5 rounded bg-parchment-150/60 dark:bg-ink-900/30 border border-parchment-200 dark:border-ink-800/80">
+            <h3 class="font-serif font-semibold text-base text-ink-900 dark:text-ink-100 mb-1.5">
+              {group.title}
+            </h3>
+            <p class="text-xs text-ink-600 dark:text-ink-400 leading-relaxed">
+              {group.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+  </div>
+</BaseLayout>

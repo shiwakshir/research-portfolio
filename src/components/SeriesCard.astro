@@ -1,0 +1,76 @@
+---
+import Badge from './Badge.astro';
+
+interface ProposedArticle {
+  order: number;
+  title: string;
+  status: 'Published' | 'In Progress' | 'Planned';
+  slug?: string;
+  summary?: string;
+}
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  slug: string;
+  status: string;
+  description: string;
+  proposedArticles: ProposedArticle[];
+}
+
+const { title, subtitle, slug, status, description, proposedArticles } = Astro.props;
+const publishedCount = proposedArticles.filter(a => a.status === 'Published').length;
+const totalCount = proposedArticles.length;
+---
+<div class="relative p-6 rounded bg-card/70 dark:bg-ink-900/50 border border-parchment-300 dark:border-ink-800 hover:border-slateAccent-600 transition-colors">
+  <div class="flex items-center justify-between gap-3 mb-3">
+    <Badge variant="slate">Research Series</Badge>
+    <span class="text-xs font-mono text-ink-500 dark:text-ink-400">
+      {publishedCount} of {totalCount} published
+    </span>
+  </div>
+
+  <h3 class="font-editorial-heading font-serif text-2xl font-semibold text-ink-900 dark:text-ink-50 mb-1">
+    <a href={`/series/${slug}`} class="hover:text-forest-700 dark:hover:text-forest-300 transition-colors">
+      {title}
+    </a>
+  </h3>
+
+  {subtitle && (
+    <p class="text-xs uppercase tracking-wider text-forest-700 dark:text-forest-400 font-medium mb-3">
+      {subtitle}
+    </p>
+  )}
+
+  <p class="text-sm text-ink-700 dark:text-ink-300 mb-6 leading-relaxed">
+    {description}
+  </p>
+
+  <!-- Ordered index preview -->
+  <div class="space-y-2 border-t border-parchment-200 dark:border-ink-800 pt-4 mb-6">
+    <span class="text-xs font-semibold uppercase tracking-wider text-ink-500 dark:text-ink-400 block mb-2">
+      Curated Trajectory:
+    </span>
+    {proposedArticles.slice(0, 4).map((art) => (
+      <div class="flex items-start gap-2 text-xs">
+        <span class="w-4 text-ink-400 font-mono shrink-0">{art.order}.</span>
+        <span class={art.status === 'Published' ? 'font-medium text-ink-900 dark:text-ink-100' : 'text-ink-500 dark:text-ink-400'}>
+          {art.title}
+        </span>
+        <span class="ml-auto shrink-0 text-[10px] px-1.5 py-0.2 rounded bg-parchment-200 dark:bg-ink-800 text-ink-500">
+          {art.status}
+        </span>
+      </div>
+    ))}
+    {totalCount > 4 && (
+      <p class="text-xs text-ink-500 pl-6">+ {totalCount - 4} more planned inquiries</p>
+    )}
+  </div>
+
+  <a
+    href={`/series/${slug}`}
+    class="inline-flex items-center gap-1 text-sm font-semibold text-forest-700 dark:text-forest-300 hover:text-forest-800 dark:hover:text-forest-200"
+  >
+    Explore Series Hub →
+  </a>
+</div>

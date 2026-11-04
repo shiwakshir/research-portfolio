@@ -1,0 +1,55 @@
+---
+interface ReferenceItem {
+  number: number;
+  citation: string;
+  url?: string;
+  doi?: string;
+}
+
+interface Props {
+  references: ReferenceItem[];
+}
+
+const { references } = Astro.props;
+---
+{references && references.length > 0 && (
+  <section id="references" class="mt-12 pt-8 border-t border-parchment-300 dark:border-ink-800">
+    <h3 class="font-editorial-heading font-serif text-xl font-semibold mb-6 text-ink-900 dark:text-ink-50">
+      References & Cited Sources
+    </h3>
+    <ol class="space-y-4 text-sm text-ink-700 dark:text-ink-300 list-none pl-0">
+      {references.map((ref) => (
+        <li id={`ref-${ref.number}`} class="flex items-start gap-3 group">
+          <span class="shrink-0 w-6 h-6 rounded bg-parchment-200 dark:bg-ink-800 text-ink-600 dark:text-ink-400 font-mono text-xs flex items-center justify-center font-medium">
+            [{ref.number}]
+          </span>
+          <div class="space-y-1">
+            <span class="leading-relaxed">{ref.citation}</span>
+            <div class="flex items-center gap-3 text-xs text-forest-700 dark:text-forest-400">
+              {ref.url && (
+                <a
+                  href={ref.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="underline hover:text-forest-800 dark:hover:text-forest-200 inline-flex items-center gap-1"
+                >
+                  Source Link ↗
+                </a>
+              )}
+              {ref.doi && (
+                <a
+                  href={`https://doi.org/${ref.doi}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="underline font-mono text-[11px] hover:text-forest-800 dark:hover:text-forest-200"
+                >
+                  DOI: {ref.doi} ↗
+                </a>
+              )}
+            </div>
+          </div>
+        </li>
+      ))}
+    </ol>
+  </section>
+)}

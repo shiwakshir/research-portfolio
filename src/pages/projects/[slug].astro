@@ -1,0 +1,118 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Badge from '@/components/Badge.astro';
+import ResearchCallout from '@/components/ResearchCallout.astro';
+
+export async function getStaticPaths() {
+  const projectEntries = await getCollection('projects', ({ data }) => !data.draft);
+  return projectEntries.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+---
+
+<BaseLayout
+  title={project.data.title}
+  description={project.data.summary}
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+    
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" class="mb-6 flex items-center gap-2 text-xs text-ink-500 dark:text-ink-400">
+      <a href="/projects" class="hover:text-forest-700 dark:hover:text-forest-300">Projects</a>
+      <span>/</span>
+      <Badge variant="forest">{project.data.status}</Badge>
+    </nav>
+
+    <!-- Header -->
+    <header class="mb-10 border-b border-parchment-300 dark:border-ink-800 pb-8">
+      <h1 class="font-editorial-heading font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-ink-900 dark:text-ink-50 mb-4 leading-tight">
+        {project.data.title}
+      </h1>
+      
+      <p class="text-lg text-ink-700 dark:text-ink-300 leading-relaxed mb-6">
+        {project.data.summary}
+      </p>
+
+      <!-- Meta Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-5 rounded bg-parchment-150 dark:bg-ink-900/60 text-xs border border-parchment-200 dark:border-ink-800">
+        <div>
+          <span class="text-ink-500 uppercase tracking-wider block font-semibold text-[10px] mb-1">My Role</span>
+          <span class="font-medium text-ink-900 dark:text-ink-100">{project.data.role}</span>
+        </div>
+        <div>
+          <span class="text-ink-500 uppercase tracking-wider block font-semibold text-[10px] mb-1">Timeline & Scope</span>
+          <span class="font-medium text-ink-900 dark:text-ink-100">{project.data.timeline || 'Independent Investigation'}</span>
+        </div>
+        <div class="sm:col-span-2 pt-2 border-t border-parchment-200 dark:border-ink-800">
+          <span class="text-ink-500 uppercase tracking-wider block font-semibold text-[10px] mb-2">Research Methods Applied</span>
+          <div class="flex flex-wrap gap-1.5">
+            {project.data.methods.map((method: string) => (
+              <span class="px-2.5 py-1 rounded bg-parchment-200 dark:bg-ink-800 text-ink-800 dark:text-ink-200 font-mono text-[11px]">
+                {method}
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Structured Research Pillars -->
+    <div class="space-y-8 mb-12">
+      <!-- Problem -->
+      <section class="p-6 rounded bg-card dark:bg-ink-900/40 border-l-4 border-amber-600 border border-parchment-300 dark:border-ink-800">
+        <h2 class="font-serif font-semibold text-lg text-ink-900 dark:text-ink-100 mb-2">
+          The Research Problem
+        </h2>
+        <p class="text-sm text-ink-700 dark:text-ink-300 leading-relaxed mb-0">
+          {project.data.problem}
+        </p>
+      </section>
+
+      <!-- Approach -->
+      <section class="p-6 rounded bg-card dark:bg-ink-900/40 border-l-4 border-forest-600 border border-parchment-300 dark:border-ink-800">
+        <h2 class="font-serif font-semibold text-lg text-ink-900 dark:text-ink-100 mb-2">
+          Research Approach & Framework
+        </h2>
+        <p class="text-sm text-ink-700 dark:text-ink-300 leading-relaxed mb-0">
+          {project.data.approach}
+        </p>
+      </section>
+
+      <!-- Evidence / Findings if present -->
+      {project.data.evidenceFindings && (
+        <section class="p-6 rounded bg-card dark:bg-ink-900/40 border-l-4 border-slateAccent-600 border border-parchment-300 dark:border-ink-800">
+          <h2 class="font-serif font-semibold text-lg text-ink-900 dark:text-ink-100 mb-2">
+            Synthesized Findings & Evidence
+          </h2>
+          <p class="text-sm text-ink-700 dark:text-ink-300 leading-relaxed mb-0">
+            {project.data.evidenceFindings}
+          </p>
+        </section>
+      )}
+
+      <!-- Reflections and Limitations -->
+      {project.data.reflectionsLimitations && (
+        <ResearchCallout type="limitations" title="Reflections & Methodological Boundaries">
+          <p>{project.data.reflectionsLimitations}</p>
+        </ResearchCallout>
+      )}
+    </div>
+
+    <!-- Case Study Body -->
+    <div class="prose prose-lg dark:prose-invert max-w-none pt-8 border-t border-parchment-300 dark:border-ink-800">
+      <Content />
+    </div>
+
+    <div class="mt-12 text-center">
+      <a href="/projects" class="text-xs font-semibold text-forest-700 dark:text-forest-400 hover:underline">
+        ← Back to all projects
+      </a>
+    </div>
+  </div>
+</BaseLayout>

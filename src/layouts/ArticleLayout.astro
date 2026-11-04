@@ -1,0 +1,178 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import ReadingProgress from '@/components/ReadingProgress.astro';
+import TableOfContents from '@/components/TableOfContents.astro';
+import ShareButtons from '@/components/ShareButtons.astro';
+import ReferencesList from '@/components/ReferencesList.astro';
+import ResearchCallout from '@/components/ResearchCallout.astro';
+import Badge from '@/components/Badge.astro';
+
+interface Props {
+  entry: any;
+  headings: Array<{ depth: number; slug: string; text: string }>;
+  prevPost?: any;
+  nextPost?: any;
+}
+
+const { entry, headings, prevPost, nextPost } = Astro.props;
+const { data, slug } = entry;
+
+const formattedPublishDate = data.publishDate.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const formattedUpdateDate = data.updatedDate ? data.updatedDate.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+}) : null;
+
+const currentUrl = Astro.url.href;
+---
+<BaseLayout
+  title={data.title}
+  description={data.abstract}
+  articleDate={data.publishDate}
+  articleAuthor={data.author}
+>
+  <ReadingProgress />
+
+  <article class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+    <!-- Breadcrumb & Category -->
+    <nav aria-label="Breadcrumb" class="mb-6 flex flex-wrap items-center gap-2 text-xs text-ink-500 dark:text-ink-400">
+      <a href="/journal" class="hover:text-forest-700 dark:hover:text-forest-300">Journal</a>
+      <span>/</span>
+      <Badge variant="forest">{data.category}</Badge>
+      {data.researchStatus && (
+        <>
+          <span>/</span>
+          <Badge variant="status">{data.researchStatus}</Badge>
+        </>
+      )}
+    </nav>
+
+    <!-- Series Banner if part of a series -->
+    {data.series && (
+      <div class="mb-6 p-4 rounded bg-slateAccent-50 dark:bg-slateAccent-950/40 border border-slateAccent-100 dark:border-slateAccent-800 text-xs flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <span class="font-semibold text-slateAccent-800 dark:text-slateAccent-200">
+            Series: {data.series.title}
+          </span>
+          <span class="text-ink-400">·</span>
+          <span class="text-ink-600 dark:text-ink-400">Part {data.series.order}</span>
+        </div>
+        <a href={`/series/${data.series.id}`} class="font-medium text-slateAccent-700 dark:text-slateAccent-300 hover:underline">
+          View full series →
+        </a>
+      </div>
+    )}
+
+    <!-- Article Header -->
+    <header class="mb-10 border-b border-parchment-300 dark:border-ink-800 pb-8">
+      <h1 class="font-editorial-heading font-serif text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-ink-900 dark:text-ink-50 leading-[1.2] mb-4">
+        {data.title}
+      </h1>
+
+      {data.subtitle && (
+        <p class="text-xl sm:text-2xl text-ink-700 dark:text-ink-300 font-serif font-normal italic leading-relaxed mb-6">
+          {data.subtitle}
+        </p>
+      )}
+
+      <!-- Metadata Line -->
+      <div class="flex flex-wrap items-center gap-y-2 gap-x-4 text-xs text-ink-600 dark:text-ink-400">
+        <div>
+          <span>By </span>
+          <strong class="text-ink-900 dark:text-ink-100 font-medium">{data.author}</strong>
+        </div>
+        <span class="text-ink-400">·</span>
+        <time datetime={data.publishDate.toISOString()}>Published {formattedPublishDate}</time>
+        {formattedUpdateDate && (
+          <>
+            <span class="text-ink-400">·</span>
+            <span>Updated {formattedUpdateDate}</span>
+          </>
+        )}
+        <span class="text-ink-400">·</span>
+        <span class="font-mono">{data.readingTime}</span>
+      </div>
+
+      <!-- Abstract Card -->
+      <div class="mt-8 p-5 rounded bg-parchment-150 dark:bg-ink-900/70 border-l-4 border-forest-700 dark:border-forest-500 text-sm leading-relaxed text-ink-800 dark:text-ink-200">
+        <strong class="block text-xs uppercase tracking-wider font-semibold text-forest-800 dark:text-forest-300 mb-1.5">
+          Abstract / Inquiring Summary
+        </strong>
+        <p class="italic">{data.abstract}</p>
+      </div>
+
+      <!-- Research Question Callout if defined in frontmatter -->
+      {data.researchQuestion && (
+        <div class="mt-4 p-4 rounded bg-slateAccent-50/50 dark:bg-slateAccent-950/20 border border-slateAccent-100 dark:border-slateAccent-900 text-xs text-ink-700 dark:text-ink-300">
+          <strong class="font-semibold text-slateAccent-800 dark:text-slateAccent-300 uppercase tracking-wider text-[11px] block mb-1">
+            Guiding Research Question:
+          </strong>
+          <p class="font-medium text-sm text-ink-900 dark:text-ink-100">{data.researchQuestion}</p>
+        </div>
+      )}
+    </header>
+
+    <!-- Table of Contents -->
+    <TableOfContents headings={headings} />
+
+    <!-- Optional Methods Note -->
+    {data.methodsNote && (
+      <ResearchCallout type="methods">
+        <p>{data.methodsNote}</p>
+      </ResearchCallout>
+    )}
+
+    <!-- Main Markdown Body -->
+    <div class="prose prose-lg dark:prose-invert max-w-none mt-8">
+      <slot />
+    </div>
+
+    <!-- Optional Limitations Note -->
+    {data.limitationsNote && (
+      <ResearchCallout type="limitations">
+        <p>{data.limitationsNote}</p>
+      </ResearchCallout>
+    )}
+
+    <!-- Numbered References -->
+    <ReferencesList references={data.references} />
+
+    <!-- Share Options -->
+    <ShareButtons title={data.title} url={currentUrl} />
+
+    <!-- Article Navigation (Previous / Next) -->
+    {(prevPost || nextPost) && (
+      <nav aria-label="Adjacent articles" class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8 pt-8 border-t border-parchment-300 dark:border-ink-800">
+        {prevPost ? (
+          <a
+            href={`/journal/${prevPost.slug}`}
+            class="p-4 rounded border border-parchment-300 dark:border-ink-800 hover:border-forest-600 transition-colors block text-left"
+          >
+            <span class="text-xs uppercase tracking-wider text-ink-500 block mb-1">← Previous Article</span>
+            <span class="font-serif font-semibold text-sm text-ink-900 dark:text-ink-100 line-clamp-2">
+              {prevPost.data.title}
+            </span>
+          </a>
+        ) : <div />}
+
+        {nextPost && (
+          <a
+            href={`/journal/${nextPost.slug}`}
+            class="p-4 rounded border border-parchment-300 dark:border-ink-800 hover:border-forest-600 transition-colors block text-right"
+          >
+            <span class="text-xs uppercase tracking-wider text-ink-500 block mb-1">Next Article →</span>
+            <span class="font-serif font-semibold text-sm text-ink-900 dark:text-ink-100 line-clamp-2">
+              {nextPost.data.title}
+            </span>
+          </a>
+        )}
+      </nav>
+    )}
+  </article>
+</BaseLayout>

@@ -1,0 +1,119 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { SITE } from '@/config/site';
+---
+
+<BaseLayout
+  title="About the Author"
+  description="Background in UX and market research, qualitative and quantitative methodologies, and independent research directions in digital health and applied AI."
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+    
+    <!-- Header with Photo Space -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start mb-12 pb-12 border-b border-parchment-300 dark:border-ink-800">
+      
+      <!-- Space for Professional Photograph -->
+      <div class="space-y-2">
+        <div class="relative w-48 h-48 sm:w-full sm:h-64 rounded bg-parchment-200 dark:bg-ink-900 border border-parchment-300 dark:border-ink-800 overflow-hidden flex items-center justify-center shadow-sm">
+          <img
+            src="/avatar-placeholder.svg"
+            alt={`Professional portrait of ${SITE.author.name}`}
+            class="w-full h-full object-cover"
+          />
+        </div>
+        <p class="text-[11px] text-ink-500 text-center italic">
+          [Upload your photo to /public/avatar.jpg and update this image]
+        </p>
+      </div>
+
+      <!-- Intro Summary -->
+      <div class="md:col-span-2 space-y-4">
+        <span class="text-xs font-semibold uppercase tracking-wider text-forest-700 dark:text-forest-400 block">
+          Professional Background & Perspective
+        </span>
+        <h1 class="font-editorial-heading font-serif text-3xl sm:text-4xl font-bold tracking-tight text-ink-900 dark:text-ink-50">
+          {SITE.author.name}
+        </h1>
+        <p class="text-base text-forest-800 dark:text-forest-300 font-medium">
+          {SITE.role} · Independent Researcher
+        </p>
+        <p class="text-sm text-ink-700 dark:text-ink-300 leading-relaxed">
+          I am an Insights Manager specialising in user experience (UX) and market research, with approximately six years of professional experience across consumer understanding, qualitative fieldwork, survey design, and mixed-methods research architecture.
+        </p>
+        <div class="pt-2 flex flex-wrap gap-3 text-xs">
+          <a
+            href={SITE.author.linkedIn}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded border border-parchment-300 dark:border-ink-700 hover:border-forest-600 transition-colors"
+          >
+            LinkedIn Profile ↗
+          </a>
+          <a
+            href={`mailto:${SITE.author.email}`}
+            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded border border-parchment-300 dark:border-ink-700 hover:border-forest-600 transition-colors"
+          >
+            Direct Email ↗
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Editorial Prose Body -->
+    <div class="prose prose-lg dark:prose-invert max-w-none space-y-8">
+      <section>
+        <h2 class="font-editorial-heading font-serif text-2xl font-semibold text-ink-900 dark:text-ink-100">
+          Professional Practice: Evidence Over Intuition
+        </h2>
+        <p>
+          Throughout my six years in UX and market research, my core commitment has been grounding product and service decisions in rigorous evidence rather than organizational intuition or vocal consensus.
+        </p>
+        <p>
+          My work encompasses both sides of the methodological spectrum:
+        </p>
+        <ul>
+          <li><strong>Generative Qualitative Inquiry:</strong> In-depth semi-structured interviews, contextual observation, diary studies, and usability investigations designed to reveal why people behave the way they do in real-world environments.</li>
+          <li><strong>Evaluative Quantitative Validation:</strong> Statistically sound surveys, behavioral analytics synthesis, and segmentation studies designed to determine how widespread an observed behavior truly is.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 class="font-editorial-heading font-serif text-2xl font-semibold text-ink-900 dark:text-ink-100">
+          Emerging Independent Research: Digital Health & Lived Experiences
+        </h2>
+        <p>
+          Alongside my professional practice, I dedicate substantial independent research time to investigating areas where conventional product thinking breaks down.
+        </p>
+        <p>
+          I am specifically examining:
+        </p>
+        <ol>
+          <li><strong>Chronic & Fluctuating Health Realities:</strong> How individuals navigate daily life when physical or cognitive capacity changes from day to day, and why linear habit trackers often induce fatigue or guilt.</li>
+          <li><strong>Human-Centred Health Technology:</strong> The gap between clinical protocols and domestic routines, exploring how interfaces can act as supportive scaffolding rather than burdensome chores.</li>
+          <li><strong>Applied AI in UX Research:</strong> Rigorously questioning where generative models and autonomous agents genuinely aid research synthesis, versus where they risk synthesizing superficial consensus or flattening nuanced lived experiences.</li>
+        </ol>
+      </section>
+
+      <section class="p-6 rounded bg-parchment-150 dark:bg-ink-900/60 border-l-4 border-forest-700 dark:border-forest-500">
+        <h3 class="font-serif font-semibold text-lg text-ink-900 dark:text-ink-100 mb-2">
+          Research Boundaries & Intellectual Integrity
+        </h3>
+        <p class="text-sm text-ink-700 dark:text-ink-300 mb-0">
+          I write and conduct inquiries as an Insights Manager and human-centred researcher. I do not present myself as a medical doctor, clinical researcher, academic professor, or AI software engineer. The articles and frameworks published on this website represent independent inquiry, literature reviews, and behavioral design reflections. They are intended to prompt constructive dialogue, not to provide clinical advice.
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-editorial-heading font-serif text-2xl font-semibold text-ink-900 dark:text-ink-100">
+          Questioning Assumptions
+        </h2>
+        <p>
+          The best research does not merely validate existing roadmaps; it uncovers the unexamined assumptions that quietly steer organizations in the wrong direction. Whether evaluating a new digital health feature or assessing the credibility of synthetic AI user panels, my inquiry begins with fundamental questions:
+        </p>
+        <blockquote>
+          What evidence actually supports this assumption, what context has been ignored, and how does this impact the human being on the other side of the glass?
+        </blockquote>
+      </section>
+    </div>
+  </div>
+</BaseLayout>

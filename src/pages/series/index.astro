@@ -1,0 +1,56 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import SeriesCard from '@/components/SeriesCard.astro';
+import { getCollection } from 'astro:content';
+
+const allSeries = await getCollection('series');
+const sortedSeries = allSeries.sort((a, b) => a.data.order - b.data.order);
+---
+
+<BaseLayout
+  title="Research Series Collections"
+  description="Multi-part thematic inquiries exploring fluctuating health conditions, human-centred interaction design, and applied research methods."
+>
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
+    
+    <!-- Header -->
+    <header class="max-w-3xl mb-12 border-b border-parchment-300 dark:border-ink-800 pb-8">
+      <span class="text-xs font-semibold uppercase tracking-wider text-forest-700 dark:text-forest-400 block mb-2">
+        Longitudinal Inquiries
+      </span>
+      <h1 class="font-editorial-heading font-serif text-3xl sm:text-5xl font-bold tracking-tight text-ink-900 dark:text-ink-50 mb-4">
+        Research Series
+      </h1>
+      <p class="text-base sm:text-lg text-ink-700 dark:text-ink-300 leading-relaxed">
+        Substantive research questions often cannot be resolved in a single article. Our research series group related inquiries into structured, chronological trajectories that build upon literature reviews, qualitative findings, and conceptual models.
+      </p>
+    </header>
+
+    <!-- Series Grid -->
+    <div class="space-y-8">
+      {sortedSeries.map((series) => (
+        <SeriesCard
+          title={series.data.title}
+          subtitle={series.data.subtitle}
+          slug={series.slug}
+          status={series.data.status}
+          description={series.data.description}
+          proposedArticles={series.data.proposedArticles}
+        />
+      ))}
+    </div>
+
+    <!-- Editorial Framework Callout -->
+    <div class="mt-16 p-6 rounded bg-parchment-150 dark:bg-ink-900/40 border border-parchment-300 dark:border-ink-800 text-xs text-ink-600 dark:text-ink-400 leading-relaxed">
+      <h3 class="font-serif font-semibold text-sm text-ink-900 dark:text-ink-100 mb-2">
+        How Research Series Evolve
+      </h3>
+      <p class="mb-2">
+        Each series begins with an editorial inquiry outline and guiding research questions. Proposed articles represent planned milestones in a systematic literature review and qualitative synthesis.
+      </p>
+      <p>
+        Future series are under development exploring <em>Applied AI in UX Research Workflows</em> and <em>Mixed-Methods Evidence Hierarchies</em>.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

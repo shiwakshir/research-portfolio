@@ -1,0 +1,88 @@
+---
+import Badge from './Badge.astro';
+
+interface Props {
+  title: string;
+  summary: string;
+  role: string;
+  problem: string;
+  approach: string;
+  methods: string[];
+  timeline?: string;
+  status: string;
+  slug?: string;
+}
+
+const {
+  title,
+  summary,
+  role,
+  problem,
+  approach,
+  methods,
+  timeline,
+  status,
+  slug,
+} = Astro.props;
+---
+<div class="p-6 rounded bg-card/60 dark:bg-ink-900/40 border border-parchment-300 dark:border-ink-800 space-y-4">
+  <div class="flex flex-wrap items-center justify-between gap-2">
+    <div class="flex items-center gap-2">
+      <Badge variant="forest">{status}</Badge>
+      {timeline && <span class="text-xs text-ink-500 font-mono">{timeline}</span>}
+    </div>
+    <span class="text-xs font-medium text-ink-500 dark:text-ink-400">
+      Role: <strong class="text-ink-800 dark:text-ink-200">{role}</strong>
+    </span>
+  </div>
+
+  <h3 class="font-editorial-heading font-serif text-xl sm:text-2xl font-semibold text-ink-900 dark:text-ink-50">
+    {slug ? (
+      <a href={`/projects/${slug}`} class="hover:text-forest-700 dark:hover:text-forest-300 transition-colors">
+        {title}
+      </a>
+    ) : (
+      title
+    )}
+  </h3>
+
+  <p class="text-sm text-ink-700 dark:text-ink-300 leading-relaxed">
+    {summary}
+  </p>
+
+  <!-- Problem & Approach Summary -->
+  <div class="space-y-3 pt-3 border-t border-parchment-200 dark:border-ink-800 text-xs text-ink-600 dark:text-ink-400">
+    <div>
+      <span class="font-semibold text-ink-900 dark:text-ink-200 block uppercase tracking-wider text-[11px] mb-1">
+        Research Problem
+      </span>
+      <p class="leading-relaxed">{problem}</p>
+    </div>
+    <div>
+      <span class="font-semibold text-ink-900 dark:text-ink-200 block uppercase tracking-wider text-[11px] mb-1">
+        Approach & Scope
+      </span>
+      <p class="leading-relaxed">{approach}</p>
+    </div>
+  </div>
+
+  <!-- Methods badges -->
+  <div class="pt-3 border-t border-parchment-200 dark:border-ink-800 flex flex-wrap gap-1.5">
+    {methods.map((method) => (
+      <span class="px-2 py-0.5 rounded bg-parchment-200 dark:bg-ink-800 text-[11px] text-ink-700 dark:text-ink-300 font-mono">
+        {method}
+      </span>
+    ))}
+  </div>
+
+  {slug && (
+    <div class="pt-2">
+      <a
+        href={`/projects/${slug}`}
+        class="text-xs font-semibold text-forest-700 dark:text-forest-400 hover:underline inline-flex items-center gap-1"
+      >
+        View Full Case Study & Methodology →
+      </a>
+    </div>
+  )}
+</div>
