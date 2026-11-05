@@ -40,12 +40,13 @@ function EvidenceChecks() {
       </section>
       <section className="prose max-w-[38rem] pt-6 border-t border-rule space-y-6">
         <h2 className="font-serif text-2xl font-normal text-fg">Checks before publication</h2>
-        <p>I apply four checks to my writing:</p>
+        <p>I apply five checks to my writing:</p>
         <ol>
           <li><strong>Primary sources:</strong> I trace each citation to the original publication, a working DOI or an archived copy. I do not cite a summary of a source unless I have read the source.</li>
           <li><strong>Evidence and interpretation:</strong> I keep what the research shows separate from my own interpretation as a UX practitioner. When the evidence is not conclusive, I say so.</li>
           <li><strong>Limits:</strong> I state the limits of each observation, sample and framework. I do not apply findings from a small qualitative sample to a whole population.</li>
           <li><strong>No clinical claims:</strong> When I write about chronic and fluctuating conditions, I write about user experience, interface burden and behaviour in everyday life. I do not make medical, diagnostic or clinical claims.</li>
+          <li><strong>Declared interests:</strong> I state any interest that can affect how a reader judges an article.</li>
         </ol>
         <div className="mt-8 pt-6 border-t border-rule font-sans text-xs text-fg-muted space-y-2 not-prose">
           <strong className="text-fg block uppercase tracking-wider">Correction policy</strong>

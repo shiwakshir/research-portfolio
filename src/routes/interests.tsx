@@ -32,6 +32,7 @@ const THEMES = [
     questions: [
       "How do people balance the work of managing a condition with their working, social and personal lives?",
       "Which everyday workarounds do people use that standard surveys do not capture?",
+      "How do researchers and people with long-term pain define a flare, and what does each definition leave out?",
     ],
     anchor: "Informed by Corbin and Strauss (1985) on the work of managing chronic illness at home, and Bury (1982) on biographical disruption.",
   },

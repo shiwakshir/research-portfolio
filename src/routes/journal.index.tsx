@@ -66,7 +66,7 @@ function JournalIndex() {
       {rest.length > 0 && (
         <section className="mt-8 pt-8 border-t border-rule space-y-6">
           <h2 className="font-sans text-xs uppercase tracking-wider text-fg-muted font-semibold m-0">All inquiries</h2>
-          <div>{rest.map((a, i) => <ArticleCard key={a.slug} article={a} number={i + 2} />)}</div>
+          <div>{rest.map((a) => <ArticleCard key={a.slug} article={a} number={a.data.articleNumber} />)}</div>
         </section>
       )}
 

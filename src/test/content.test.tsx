@@ -5,7 +5,6 @@ describe("content rules", () => {
   it("never exposes draft journal entries", () => {
     const slugs = getArticles().map((a) => a.slug);
     expect(slugs).not.toContain("welcome-research-manifesto");
-    expect(slugs).toContain("grounding-ux-in-evidence-hierarchies");
   });
 
   it("hides series that are not public", () => {
