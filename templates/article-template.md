@@ -11,7 +11,7 @@ publishDate: 2026-11-04
 author: "Shiwakshi Rashmi"
 articleNumber: 2 # Sequential editorial number (e.g. No. 02)
 readingTime: "8 min read"
-category: "UX Research Methods" # Options: UX Research Methods | Digital Health | Human Behaviour | Applied AI
+category: "UX Research Methods" # Options: UX Research Methods | Digital Health | Human Behaviour | Applied AI | Chronic Health
 tags: ["Methodology", "Evidence-Based Design"] # Maximum 2 tags
 
 abstract: "A concise 2 to 3 sentence abstract summarizing the central question, literature examined, and core conclusions or reflections."
@@ -41,6 +41,9 @@ researchQuestion: "What is the primary question this paper or literature review 
 # Why this matters to practitioners
 whyItMatters: "Briefly explain the practical or human significance."
 
+methodsSummary: "State the review type, databases, search terms and search dates."
+limitations: "State the real limits of the evidence and the search."
+
 # Numbered bibliography / citations
 references:
   - number: 1
@@ -61,7 +64,8 @@ Define what this paper covers and what is intentionally out of scope.
 
 ## 4. What the Literature Suggests
 Synthesize relevant studies, qualitative observations, or industry patterns.
-Cite your sources using bracketed numbers corresponding to your frontmatter references, e.g. [1].
+Cite each source with this format, and change the number for each reference:
+<a id="ref-back-1" href="#ref-1" class="text-link underline"><sup>[1]</sup></a>
 
 ## 5. Where the Evidence Disagrees
 Highlight conflicting viewpoints, contested findings, or edge cases.

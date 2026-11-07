@@ -1,0 +1,82 @@
+---
+import { roadmapStages, currentStageId } from '@/data/roadmap';
+---
+
+<div class="space-y-6">
+  <ol class="grid grid-cols-1 md:grid-cols-5 gap-4 list-none p-0 m-0">
+    {roadmapStages.map((stage) => {
+      const isCurrent = stage.id === currentStageId;
+      const isLocked = stage.isLocked;
+
+      return (
+        <li
+          class:list={[
+            "relative flex flex-col justify-between p-4 border transition-colors",
+            isCurrent
+              ? "border-fg bg-paper-warm"
+              : isLocked
+              ? "border-dashed border-rule-strong bg-paper"
+              : "border-rule bg-paper hover:border-rule-strong",
+          ]}
+          aria-current={isCurrent ? "step" : undefined}
+        >
+          <div class="space-y-3">
+            <!-- Stage Number and Status Label -->
+            <div class="flex items-center justify-between gap-2 font-sans text-xs">
+              <span class="font-semibold text-fg-muted">
+                0{stage.id}
+              </span>
+
+              {isCurrent ? (
+                <span class="inline-flex items-center px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wider bg-fg text-paper">
+                  {stage.status}
+                </span>
+              ) : (
+                <span class="inline-flex items-center px-1.5 py-0.5 text-[11px] font-medium uppercase tracking-wider border border-rule text-fg-muted">
+                  {stage.status}
+                </span>
+              )}
+            </div>
+
+            <!-- Stage Title -->
+            <h3 class:list={[
+              "font-serif text-base font-normal leading-snug",
+              isCurrent ? "text-fg font-medium" : "text-fg",
+            ]}>
+              {stage.title}
+              {isLocked && (
+                <span class="inline-block ml-1 text-xs text-fg-muted" title="Coming soon">
+                  🔒
+                </span>
+              )}
+            </h3>
+
+            <!-- Stage Description -->
+            <p class="font-sans text-xs text-fg-body leading-relaxed m-0">
+              {stage.text}
+            </p>
+          </div>
+
+          <!-- Bottom subtle indicator for current stage -->
+          {isCurrent && (
+            <div class="mt-4 pt-2 border-t border-rule font-sans text-[11px] text-fg font-medium">
+              Current stage
+            </div>
+          )}
+        </li>
+      );
+    })}
+  </ol>
+
+  <!-- Follow link below stepper -->
+  <div class="pt-2">
+    <a
+      href="https://www.linkedin.com/in/[TO-CONFIRM]"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="font-sans text-xs text-link underline underline-offset-2 hover:opacity-80"
+    >
+      Follow the research on LinkedIn ↗
+    </a>
+  </div>
+</div>
