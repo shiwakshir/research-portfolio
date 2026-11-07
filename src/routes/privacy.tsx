@@ -15,7 +15,7 @@ function Privacy() {
     <Main className="max-w-2xl">
       <PageHeader eyebrow="Privacy" title="Privacy notice" lede={DESCRIPTION} />
       <p className="font-sans text-caption text-fg-muted mb-8">
-        Last updated · <time dateTime="2026-11-04">4 November 2026</time>
+        Last updated · <time dateTime="2026-11-07">7 November 2026</time>
       </p>
       <div className="prose notice-body">
         <section>
@@ -30,7 +30,7 @@ function Privacy() {
         </section>
         <section>
           <h2>2. Server logs</h2>
-          <p>When you visit this website, my hosting provider automatically records standard request data, such as your IP address, your browser type and the page you asked for. The provider uses this data to run the website and keep it secure.</p>
+          <p>When you visit this website, my hosting provider, Cloudflare, automatically records standard request data, such as your IP address, your browser type and the page you asked for. The provider uses this data to run the website and keep it secure.</p>
         </section>
         <section>
           <h2>3. Theme setting</h2>
@@ -38,7 +38,7 @@ function Privacy() {
         </section>
         <section>
           <h2>4. When you contact me</h2>
-          <p>This website has no contact forms, so it does not store messages. If you email me or message me on LinkedIn, you choose what you share. I use your message only to reply to you. LinkedIn processes messages under its own privacy policy.</p>
+          <p>This website has no contact forms, so it does not store messages. If you message me on LinkedIn, you choose what you share. I use your message only to reply to you. LinkedIn processes messages under its own privacy policy.</p>
           <p className="not-prose font-sans text-caption text-fg-muted italic">Please do not send medical records or personal medical histories.</p>
         </section>
         <section>

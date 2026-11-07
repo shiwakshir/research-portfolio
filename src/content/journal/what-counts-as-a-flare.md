@@ -1,5 +1,5 @@
 ---
-title: "What Counts as a Flare?"
+title: "What counts as a flare?"
 subtitle: "How research defines pain flares, and what pain apps may miss"
 publishDate: 2026-11-30 # Replace with the real date
 author: "Shiwakshi Rashmi"
@@ -35,4 +35,4 @@ references: [] # Add each source after you read it
 
 ## Declared interest
 
-I am exploring early-stage ideas in digital support for fluctuating health conditions.
+I am developing a digital product for people with fluctuating health conditions. This research can inform that product.

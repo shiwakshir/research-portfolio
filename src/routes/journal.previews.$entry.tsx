@@ -13,7 +13,9 @@ export const Route = createFileRoute("/journal/previews/$entry")({
     const head = pageHead({
       path: loaderData ? `/journal/previews/${loaderData.slug}` : "/journal",
       title: loaderData ? `${loaderData.title} · Entry preview` : "Entry preview unavailable",
-      description: loaderData ? `An in-preparation Desk research notebook by Shiwakshi Rashmi. ${loaderData.subtitle}. No findings have been published yet.` : "A research entry preview is unavailable.",
+      description: loaderData
+        ? "An entry in preparation for the desk research stage. How research defines pain flares, and what pain apps may miss. No findings are published yet."
+        : "A research entry preview is unavailable.",
     });
     return { ...head, meta: [...head.meta, { name: "robots", content: "noindex, follow" }] };
   },

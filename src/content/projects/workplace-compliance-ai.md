@@ -1,7 +1,7 @@
 ---
 title: "Enterprise People and Compliance AI"
 summary: "A prototype of an AI gateway that answers workplace policy questions with access controls, citations and guardrail tests."
-role: "I designed and built this prototype."
+role: "I designed and built this prototype alone."
 sector: "Applied AI"
 order: 5
 isLead: false

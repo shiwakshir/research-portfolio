@@ -22,7 +22,7 @@ describe("Site search", () => {
   it("finds flare related previews, stages and themes", () => {
     const results = searchSite("flare");
     expect(results.length).toBeGreaterThan(0);
-    expect(results.some((r) => r.title.includes("Flare"))).toBe(true);
+    expect(results.some((r) => r.title.toLowerCase().includes("flare"))).toBe(true);
     expect(results.some((r) => r.type === "Inquiry stage")).toBe(true);
   });
 

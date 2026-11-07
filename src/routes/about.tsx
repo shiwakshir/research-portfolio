@@ -32,7 +32,7 @@ function About() {
         <h2>Methodological commitments</h2>
         <p>I follow five principles in my independent work:</p>
         <ol>
-          <li><strong>Primary evidence:</strong> Claims cite peer-reviewed papers, primary studies or named public datasets.</li>
+          <li><strong>Primary evidence:</strong> I trace each claim to the original publication, such as a peer-reviewed paper, a book or a named public dataset.</li>
           <li><strong>Separation of voice:</strong> What the research shows is kept distinct from my professional interpretation.</li>
           <li><strong>Transparent limits:</strong> Every piece notes what the method cannot answer.</li>
           <li><strong>Respect for everyday knowledge:</strong> People who live with a condition know things that clinical protocols do not capture.</li>

@@ -92,7 +92,7 @@ function JournalIndex() {
       )}
 
       <div className="mt-16 pt-8 border-t border-rule font-sans text-xs text-fg-muted flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-        <span>All citations are verified against original primary sources before publication.</span>
+        <span>I check every citation against the original publication before I publish.</span>
         <Link to="/evidence-checks" className="text-link underline underline-offset-2 shrink-0">How I check evidence →</Link>
       </div>
     </Main>

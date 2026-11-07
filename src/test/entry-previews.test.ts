@@ -25,7 +25,7 @@ describe("entry preview publishing boundaries", () => {
   });
 
   it("removes the placeholder once its matching article is published", () => {
-    const published: JournalEntry = { slug: "what-counts-as-a-flare", html: "", data: { title: "What Counts as a Flare?", publishDate: new Date("2026-11-30"), author: "Shiwakshi Rashmi", readingTime: "8 min read", category: "Chronic Health", tags: [], abstract: "", draft: false, articleNumber: 1, researchStatus: "Literature exploration", researchStage: "desk", references: [] } };
+    const published: JournalEntry = { slug: "what-counts-as-a-flare", html: "", data: { title: "What counts as a flare?", publishDate: new Date("2026-11-30"), author: "Shiwakshi Rashmi", readingTime: "8 min read", category: "Chronic Health", tags: [], abstract: "", draft: false, articleNumber: 1, researchStatus: "Literature exploration", researchStage: "desk", references: [] } };
     vi.mocked(getArticles).mockReturnValue([published]);
     expect(getEntryPreviews("desk")).toEqual([]);
     expect(getEntryPreview("what-counts-as-a-flare")).toBeUndefined();

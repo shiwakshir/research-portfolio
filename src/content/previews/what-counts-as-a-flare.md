@@ -1,7 +1,7 @@
 ---
-title: "What Counts as a Flare?"
+title: "What counts as a flare?"
 subtitle: "How research defines pain flares, and what pain apps may miss"
-entryType: "Narrative review"
+entryType: "Literature exploration"
 articleNumber: 1
 topic: "Chronic health"
 researchStage: "desk"
@@ -37,7 +37,7 @@ A verified finding and its numbered source citation will be added after the lite
 </EvidenceBlock>
 
 <EvidenceBlock type="my-interpretation" title="My interpretation">
-The author's reading of that evidence will appear here, separate from the published finding. No interpretation has been added yet.
+My reading of that evidence will appear here, separate from the published finding. No interpretation has been added yet.
 </EvidenceBlock>
 
 ## How people describe flares
@@ -66,4 +66,4 @@ These questions will inform the next research stage.
 
 ## Declared interest
 
-I am exploring early-stage ideas in digital support for fluctuating health conditions.
+I am developing a digital product for people with fluctuating health conditions. This research can inform that product.
