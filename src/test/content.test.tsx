@@ -4,7 +4,7 @@ import { getArticles, getProjects, getPublicSeries, renderBody } from "@/lib/con
 describe("content rules", () => {
   it("never exposes draft journal entries", () => {
     const slugs = getArticles().map((a) => a.slug);
-    expect(slugs).not.toContain("welcome-research-manifesto");
+    expect(slugs).not.toContain("what-counts-as-a-flare");
   });
 
   it("hides series that are not public", () => {

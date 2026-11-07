@@ -97,7 +97,7 @@ function Interests() {
           </section>
         ))}
       </div>
-      <div className="pt-8 font-sans text-xs text-fg-muted flex items-center justify-between gap-4">
+      <div className="page-footer-links pt-8 font-sans text-sm text-fg-muted">
         <span>Do you work on similar questions, or can you recommend reading?</span>
         <Link to="/contact" className="text-link underline underline-offset-2">Contact me →</Link>
       </div>

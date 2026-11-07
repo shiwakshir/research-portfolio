@@ -38,7 +38,7 @@ function SeriesIndex() {
             My first series, <em>Living with Fluctuating Health</em>, is in preparation. I am reviewing the literature for it now. I will publish each article when it is ready.
           </p>
           <div className="pt-2">
-            <Link to="/journal" className="font-sans text-xs text-link underline underline-offset-2">Read the published articles in the journal →</Link>
+            <Link to="/journal" className="font-sans text-xs text-link underline underline-offset-2">Explore the research journal →</Link>
           </div>
         </div>
       )}

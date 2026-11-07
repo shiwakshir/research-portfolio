@@ -1,6 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { getArticles, pad } from "@/lib/content";
+import { Button } from "@/components/ui/button";
+import { X } from "lucide-react";
 
 export function SearchModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [q, setQ] = useState("");
@@ -49,15 +51,15 @@ export function SearchModal({ open, onClose }: { open: boolean; onClose: () => v
   return (
     <div
       ref={dialogRef}
-      className="fixed inset-0 z-50 bg-fg/40 flex items-start justify-center pt-20 px-4"
+      className="fixed inset-0 z-50 bg-fg/40 flex items-start justify-center pt-16 sm:pt-20 px-3 sm:px-4"
       role="dialog"
       aria-modal="true"
       aria-labelledby="search-title"
       onClick={(e) => e.target === e.currentTarget && onClose()}
     >
-      <div className="w-full max-w-xl bg-paper border border-rule overflow-hidden">
+      <div className="w-full max-w-xl max-h-[calc(100dvh-5rem)] bg-paper border border-rule rounded-sm overflow-hidden">
         <h2 id="search-title" className="sr-only">Search the journal</h2>
-        <div className="border-b border-rule p-4 flex items-center gap-3">
+        <div className="border-b border-rule p-3 sm:p-4 grid grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 sm:gap-3">
           <svg className="w-4 h-4 text-fg-muted shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.75} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
           </svg>
@@ -68,12 +70,10 @@ export function SearchModal({ open, onClose }: { open: boolean; onClose: () => v
             onChange={(e) => setQ(e.target.value)}
             aria-label="Search the journal"
             placeholder="Search articles and methods"
-            className="w-full bg-transparent font-sans text-sm text-fg placeholder:text-fg-muted focus:outline-none"
+            className="min-w-0 w-full bg-transparent font-sans text-base text-fg placeholder:text-fg-muted focus:outline-none"
             autoComplete="off"
           />
-          <button type="button" onClick={onClose} aria-label="Close search" className="font-sans text-xs px-2 py-1 border border-rule text-fg-muted hover:text-fg">
-            ESC
-          </button>
+          <Button type="button" variant="ghost" size="icon" onClick={onClose} aria-label="Close search" title="Close search" className="size-11 shrink-0 text-fg-muted hover:text-fg"><X aria-hidden="true" /></Button>
         </div>
         <div aria-live="polite" className="max-h-96 overflow-y-auto p-4 space-y-2 text-sm">
           {!query ? (

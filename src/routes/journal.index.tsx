@@ -3,6 +3,10 @@ import { useState } from "react";
 import { pageHead } from "@/config/site";
 import { getArticles } from "@/lib/content";
 import { ArticleCard, FeaturedArticle, Main } from "@/components/site/bits";
+import { ResearchJourney } from "@/components/site/ResearchJourney";
+import { Button } from "@/components/ui/button";
+import { getEntryPreviews } from "@/lib/entry-previews";
+import { EntryPreviewCard } from "@/components/site/EntryPreviewCard";
 
 export const Route = createFileRoute("/journal/")({
   head: () =>
@@ -16,6 +20,7 @@ export const Route = createFileRoute("/journal/")({
 
 function JournalIndex() {
   const articles = getArticles();
+  const previews = getEntryPreviews();
   const categories = ["All", ...new Set(articles.map((a) => a.data.category))];
   // Filters only appear once at least 5 articles are published.
   const showFilters = articles.length >= 5;
@@ -31,30 +36,45 @@ function JournalIndex() {
           <span>Independent inquiries</span><span>·</span>
           <Link to="/evidence-checks" className="text-link underline underline-offset-2">How I check evidence</Link>
         </div>
-        <h1 className="font-serif text-3xl sm:text-4xl md:text-[2.6rem] font-normal text-fg leading-[1.15] tracking-tight">Research journal</h1>
+        <h1 className="page-title">Research journal</h1>
         <p className="lede">
           Articles, critical literature reviews, and methodological inquiries. Each publication separates verified evidence from professional interpretation.
         </p>
       </header>
-      <hr className="border-t border-rule-strong my-8" />
+      <section className="journal-study mb-14" aria-labelledby="journal-study-heading">
+        <div className="flex flex-wrap items-baseline justify-between gap-3 mb-6">
+          <div>
+            <p className="eyebrow mb-2">Living with flare-ups</p>
+            <h2 id="journal-study-heading" className="font-serif text-2xl font-normal text-fg">From evidence to possibility</h2>
+          </div>
+          <span className="font-serif italic text-sm text-fg-muted">An open research notebook</span>
+        </div>
+        <ResearchJourney />
+      </section>
 
       {showFilters && (
         <div className="mb-10 flex flex-wrap items-center justify-between gap-4 font-sans text-xs">
           <div className="flex flex-wrap items-center gap-2">
             {categories.map((c) => (
-              <button
+              <Button
                 key={c}
                 type="button"
+                variant="ghost"
+                size="sm"
+                aria-pressed={c === cat}
                 onClick={() => setCat(c)}
                 className={`px-2.5 py-1 border transition-colors ${c === cat ? "border-rule-strong font-medium text-fg underline underline-offset-4" : "border-rule text-fg-muted hover:text-fg"}`}
               >
                 {c}
-              </button>
+              </Button>
             ))}
           </div>
           <div className="text-fg-muted">Showing {visible.length} published {visible.length === 1 ? "entry" : "entries"}</div>
         </div>
       )}
+
+      {previews.length > 0 && <section className="mb-10" aria-label="Entries in preparation">{previews.map((entry) => <EntryPreviewCard key={entry.slug} entry={entry} />)}</section>}
+      {articles.length === 0 && previews.length === 0 && <p className="font-serif italic text-fg-secondary py-6">The first entries are taking shape in Desk research.</p>}
 
       {latest && (
         <section aria-labelledby="featured-inquiry-heading" className="space-y-4 pb-8">

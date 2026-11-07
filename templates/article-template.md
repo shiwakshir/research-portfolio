@@ -23,6 +23,10 @@ draft: true
 # Options: 'Literature exploration' | 'Research in progress' | 'Critical review'
 researchStatus: "Literature exploration"
 
+# Link this entry to a chapter of Living with flare-ups (omit for unrelated writing).
+# Options: desk | survey | interviews | design | product
+# researchStage: "desk"
+
 # Drop cap on first paragraph
 dropCap: true
 

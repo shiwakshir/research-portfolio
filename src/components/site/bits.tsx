@@ -34,18 +34,14 @@ export function PageHeader({ eyebrow, title, lede }: { eyebrow?: ReactNode; titl
 
 export function SectionHead({ id, title, to, linkLabel, number }: { id: string; title: string; to: string; linkLabel: string; number?: string }) {
   return (
-    <div className="flex items-baseline justify-between gap-4 mb-10 pb-3 border-b border-rule">
-      <h2 id={id} className="m-0 flex items-baseline gap-3">
+    <div className="section-head">
+      <h2 id={id} className="m-0">
         {number && <span className="numeral text-2xl">{number}</span>}
-        <span className="font-serif text-2xl font-normal text-fg tracking-tight">{title}</span>
+        <span className="font-serif text-2xl font-normal text-fg">{title}</span>
       </h2>
       <Link to={to} className="font-sans text-xs text-link underline underline-offset-4 hover:opacity-80 shrink-0">{linkLabel}</Link>
     </div>
   );
-}
-
-export function Ornament() {
-  return <div className="ornament-rule my-16" aria-hidden="true"><span className="numeral text-lg">§</span></div>;
 }
 
 /** Large feature block for the newest journal entry (home + journal index). */
@@ -113,8 +109,8 @@ export function ArticleCard({ article, number }: { article: JournalEntry; number
         <p className="font-serif italic text-sm text-fg-body border-l border-rule-strong pl-3 my-2">"{d.researchQuestion}"</p>
       )}
       <p className="summary">{d.abstract}</p>
-      <div className="pt-2 flex items-center justify-between font-sans text-xs">
-        <div className="flex gap-2 text-fg-muted">{d.tags.slice(0, 2).map((t) => <span key={t}>{t}</span>)}</div>
+      <div className="pt-2 grid grid-cols-[minmax(0,1fr)_auto] gap-3 font-sans text-xs">
+        <div className="min-w-0 flex flex-wrap gap-2 text-fg-muted">{d.tags.slice(0, 2).map((t) => <span key={t}>{t}</span>)}</div>
         <Link to="/journal/$slug" params={{ slug: article.slug }} className="text-link underline underline-offset-2">Read →</Link>
       </div>
     </article>
@@ -125,7 +121,7 @@ export function ReferencesList({ references }: { references: Reference[] }) {
   if (!references.length) return null;
   return (
     <section id="references" className="space-y-4">
-      <div className="flex items-baseline justify-between mb-2">
+      <div className="grid grid-cols-[minmax(0,1fr)_auto] gap-4 items-baseline mb-2">
         <h2 className="font-serif text-lg font-normal text-fg">References</h2>
         <Link to="/evidence-checks" className="font-sans text-xs text-link underline underline-offset-2">How I check evidence</Link>
       </div>
@@ -133,9 +129,9 @@ export function ReferencesList({ references }: { references: Reference[] }) {
         {[...references].sort((a, b) => a.number - b.number).map((r) => (
           <li key={r.number} id={`ref-${r.number}`} className="flex items-baseline gap-2.5">
             <span className="text-fg-muted shrink-0 font-medium">{r.number}.</span>
-            <div className="flex-1 space-y-1">
+            <div className="min-w-0 flex-1 space-y-1 break-words">
               <span className="leading-relaxed">{r.citation}</span>
-              <span className="ml-1.5 inline-flex items-center gap-2">
+              <span className="ml-1.5 inline-flex max-w-full flex-wrap items-center gap-2">
                 {r.doi && (
                   <a href={`https://doi.org/${r.doi}`} target="_blank" rel="noopener noreferrer" className="text-link underline underline-offset-2">doi:{r.doi}</a>
                 )}

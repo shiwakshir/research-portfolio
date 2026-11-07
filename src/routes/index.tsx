@@ -1,8 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { SITE, pageHead } from "@/config/site";
+import { pageHead } from "@/config/site";
 import { getArticles, getProjects } from "@/lib/content";
 import plate from "@/assets/specimen-plate.jpg";
-import { FeaturedArticle, Main, Ornament, SectionHead } from "@/components/site/bits";
+import { FlareLine } from "@/components/site/FlareLine";
+import { ResearchJourney } from "@/components/site/ResearchJourney";
+import { SelectedWork } from "@/components/site/SelectedWork";
+import { FeaturedArticle, Main, SectionHead } from "@/components/site/bits";
 
 export const Route = createFileRoute("/")({
   head: () => pageHead({ path: "/" }),
@@ -21,18 +24,16 @@ function Home() {
   const articles = getArticles();
   const latest = articles[0];
   const projects = getProjects();
-  const lead = projects.find((p) => p.data.isLead) ?? projects[0];
-  const others = projects.filter((p) => !p.data.isLead);
 
   return (
-    <Main>
-      <header className="grid grid-cols-1 md:grid-cols-12 gap-10 md:gap-12 items-center">
-        <div className="md:col-span-7 space-y-7 rise">
+    <Main className="max-w-4xl home-editorial">
+      <header className="home-lead grid grid-cols-1 md:grid-cols-12 items-center">
+        <div className="min-w-0 md:col-span-7 space-y-6 rise">
           <p className="eyebrow">Independent research journal · London</p>
-          <h1 className="font-serif font-normal text-4xl sm:text-5xl lg:text-6xl leading-[1.08] text-fg">
+          <h1 className="home-title">
             Shiwakshi Rashmi
           </h1>
-          <p className="font-serif text-xl sm:text-2xl leading-snug text-fg-secondary">
+          <p className="home-intro">
             Independent inquiry into <em className="text-link">digital health</em>, human behaviour, UX research and applied AI.
           </p>
           <p className="summary">
@@ -43,7 +44,7 @@ function Home() {
             <Link to="/evidence-checks" className="text-fg-muted hover:text-fg transition-colors">How I check evidence</Link>
           </div>
         </div>
-        <figure className="md:col-span-5 m-0 rise [animation-delay:150ms]">
+        <figure className="home-plate md:col-span-5 rise [animation-delay:150ms]">
           <div className="plate float-slow rotate-[0.6deg]">
             <img src={plate} alt="Engraved botanical specimen plate with numbered annotations" width={896} height={1120} className="w-full h-auto block" />
           </div>
@@ -55,60 +56,37 @@ function Home() {
         Insights Manager, UX <span className="mx-2 text-rule-strong">·</span> Over five years of professional UX and market research
       </p>
 
-      <Ornament />
-
-      {latest && (
-        <section className="reveal" aria-labelledby="latest-journal-heading">
-          <SectionHead id="latest-journal-heading" number="i." title="Latest in the journal" to="/journal" linkLabel="All entries" />
-          <FeaturedArticle article={latest} withNote />
-        </section>
-      )}
-
-      <Ornament />
-
-      <section aria-labelledby="selected-work-heading" className="space-y-8 reveal">
-        <SectionHead id="selected-work-heading" number="ii." title="Selected work" to="/projects" linkLabel="All projects" />
-        {lead && (
-          <article className="space-y-4">
-            <h3 className="font-serif text-2xl font-normal text-fg">{lead.data.title}</h3>
-            <p className="summary">{lead.data.summary}</p>
-            {lead.data.award && <p className="font-sans text-xs text-fg-muted">{lead.data.award}</p>}
-            <div className="flex items-center gap-4 pt-1 font-sans text-sm">
-              <Link to="/projects/$slug" params={{ slug: lead.slug }} className="text-link underline underline-offset-2">Case study</Link>
-              <a href={SITE.author.briefGithub} target="_blank" rel="noopener noreferrer" className="text-link underline underline-offset-2">Source ↗</a>
-            </div>
-          </article>
-        )}
-        <div className="pt-6 space-y-4 border-t border-rule">
-          {others.map((p) => (
-            <div key={p.slug} className="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 items-baseline py-3 border-b border-rule last:border-b-0">
-              <div className="md:col-span-7">
-                <h3 className="font-serif text-base text-fg font-normal">
-                  <Link to="/projects/$slug" params={{ slug: p.slug }} className="hover:text-link transition-colors">{p.data.title}</Link>
-                </h3>
-              </div>
-              <div className="md:col-span-5 md:text-right">
-                <p className="font-sans text-xs text-fg-muted">{p.data.sector} · {p.data.methods.slice(0, 2).join(", ")}</p>
-              </div>
-            </div>
-          ))}
+      <section className="home-section home-research reveal" aria-labelledby="latest-journal-heading">
+        <SectionHead id="latest-journal-heading" number="i." title="The research journal" to="/journal" linkLabel="All entries" />
+        <div className="research-intro">
+          <div className="space-y-3">
+            <p className="eyebrow">Current inquiry · UX research</p>
+            <h3 className="font-serif text-2xl sm:text-3xl font-normal text-fg">Living with flare-ups</h3>
+            <p className="summary">An independent study into what happens when symptoms flare, what helps, and where digital tools fall short.</p>
+          </div>
+          <div className="research-trace"><FlareLine /></div>
         </div>
+        <ResearchJourney detailed />
+        {latest && <div className="mt-10"><FeaturedArticle article={latest} withNote /></div>}
       </section>
 
-      <Ornament />
+      <section aria-labelledby="selected-work-heading" className="home-section space-y-8 reveal">
+        <SectionHead id="selected-work-heading" number="ii." title="Selected work" to="/projects" linkLabel="All projects" />
+        <SelectedWork projects={projects} />
+      </section>
 
-      <section aria-labelledby="themes-heading" className="space-y-8 reveal">
+      <section aria-labelledby="themes-heading" className="home-section space-y-8 reveal">
         <SectionHead id="themes-heading" number="iii." title="Research themes" to="/interests" linkLabel="Themes overview →" />
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
           {THEMES.map((t) => {
             const count = articles.filter((a) => a.data.category === t.category).length;
             return (
               <div key={t.title} className="space-y-1.5">
-                <h3 className="font-serif text-base text-fg font-normal">
+                <h3 className="font-serif text-lg text-fg font-normal">
                   {t.title}
                   {count > 0 && <span className="font-sans text-xs text-fg-muted font-normal ml-1">· {count}</span>}
                 </h3>
-                <p className="font-sans text-xs text-fg-muted leading-relaxed">{t.description}</p>
+                <p className="font-sans text-sm text-fg-muted leading-relaxed">{t.description}</p>
               </div>
             );
           })}

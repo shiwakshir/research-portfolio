@@ -1,5 +1,6 @@
 import { marked } from "marked";
 import { parse as parseYaml } from "yaml";
+import type { ResearchStageId } from "@/data/roadmap";
 
 export type ResearchStatus = "Literature exploration" | "Research in progress" | "Critical review";
 
@@ -26,6 +27,7 @@ export interface JournalEntry {
     draft: boolean;
     articleNumber: number;
     researchStatus: ResearchStatus;
+    researchStage?: ResearchStageId;
     series?: { id: string; title: string; order: number };
     researchQuestion?: string;
     methodsSummary?: string;
@@ -102,7 +104,7 @@ export function renderBody(body: string): string {
 }
 
 function slugOf(path: string) {
-  return path.split("/").pop()!.replace(/\.mdx?$/, "");
+  return (path.split("/").pop() ?? "").replace(/\.mdx?$/, "");
 }
 
 const journalRaw = import.meta.glob("/src/content/journal/*.{md,mdx}", {

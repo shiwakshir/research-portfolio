@@ -10,6 +10,7 @@ tags: ["Pain Flares", "Digital Health"]
 abstract: "Write this last, from your final findings."
 draft: true # Change to false when you publish
 researchStatus: "Literature exploration"
+researchStage: "desk"
 researchQuestion: "How does published research define pain flares, and do reviews of pain apps address them?"
 methodsSummary: "Narrative review. Add your databases, search terms and search dates."
 limitations: "Not a systematic review. Add the real limits of your search."

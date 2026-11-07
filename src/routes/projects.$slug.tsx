@@ -20,7 +20,8 @@ export const Route = createFileRoute("/projects/$slug")({
 
 function ProjectPage() {
   const { slug } = Route.useLoaderData();
-  const p = find(slug)!;
+  const p = find(slug);
+  if (!p) return null;
   const d = p.data;
   return (
     <Main>
@@ -30,7 +31,7 @@ function ProjectPage() {
       </nav>
       <header className="space-y-4 mb-8 pb-8 border-b border-rule">
         <p className="font-sans text-xs text-fg-muted uppercase tracking-wider">{d.sector}</p>
-        <h1 className="font-serif text-3xl sm:text-4xl md:text-[2.6rem] font-normal text-fg leading-[1.15] tracking-tight">{d.title}</h1>
+        <h1 className="page-title">{d.title}</h1>
         <p className="lede">{d.summary}</p>
         {d.isLead && d.award && <p className="font-sans text-xs text-fg-muted pt-1">{d.award}</p>}
         <dl className="pt-6 grid grid-cols-1 sm:grid-cols-2 gap-6 font-sans text-xs border-t border-rule">
@@ -46,7 +47,7 @@ function ProjectPage() {
       </header>
       {d.isLead && <BriefPipeline />}
       <div className="prose max-w-[38rem]" dangerouslySetInnerHTML={{ __html: p.html }} />
-      <div className="mt-14 pt-8 border-t border-rule flex items-center justify-between font-sans text-xs">
+      <div className="page-footer-links mt-14 pt-8 border-t border-rule font-sans text-xs">
         <Link to="/projects" className="text-link underline underline-offset-2">← Back to all projects</Link>
         {d.githubUrl && (
           <a href={d.githubUrl} target="_blank" rel="noopener noreferrer" className="text-link underline underline-offset-2">View repository on GitHub ↗</a>

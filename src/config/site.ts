@@ -41,7 +41,6 @@ export function pageHead(opts: { title?: string; description?: string; path: str
   const description = opts.description ?? SITE.description;
   const pageTitle = opts.title ? `${opts.title} · ${SITE.author.name}` : `${SITE.author.name} · ${SITE.author.role}`;
   const url = `${SITE.url}${opts.path}`;
-  const image = `${SITE.url}/og-image.png`;
   const meta: Array<Record<string, string>> = [
     { title: pageTitle },
     { name: "description", content: description },
@@ -49,12 +48,10 @@ export function pageHead(opts: { title?: string; description?: string; path: str
     { property: "og:url", content: url },
     { property: "og:title", content: title },
     { property: "og:description", content: description },
-    { property: "og:image", content: image },
     { property: "og:site_name", content: SITE.name },
     { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:title", content: title },
     { name: "twitter:description", content: description },
-    { name: "twitter:image", content: image },
   ];
   if (opts.article) {
     meta.push({ property: "article:published_time", content: opts.article.date.toISOString() });

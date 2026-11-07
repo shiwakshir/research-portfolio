@@ -29,17 +29,17 @@ function EvidenceChecks() {
       <section className="space-y-6 mb-12">
         <h2 className="font-serif text-2xl font-normal text-fg">Article status</h2>
         <p className="summary">Each article has one status. The status tells you what kind of evidence the article uses.</p>
-        <dl className="space-y-6 pt-2 font-sans text-base max-w-[38rem]">
+        <dl className="space-y-6 pt-2 font-serif max-w-[38rem]">
           {STATUSES.map(([t, d]) => (
             <div key={t} className="space-y-1 py-3 border-b border-rule">
               <dt className="font-serif text-lg font-normal text-fg">{t}</dt>
-              <dd className="text-fg-body text-base leading-relaxed m-0 pt-1">{d}</dd>
+              <dd className="prose m-0 pt-1">{d}</dd>
             </div>
           ))}
         </dl>
       </section>
-      <section className="prose max-w-[38rem] pt-6 border-t border-rule space-y-6">
-        <h2 className="font-serif text-2xl font-normal text-fg">Checks before publication</h2>
+      <section className="prose max-w-[38rem] pt-6 border-t border-rule">
+        <h2>Checks before publication</h2>
         <p>I apply five checks to my writing:</p>
         <ol>
           <li><strong>Primary sources:</strong> I trace each citation to the original publication, a working DOI or an archived copy. I do not cite a summary of a source unless I have read the source.</li>
@@ -48,14 +48,14 @@ function EvidenceChecks() {
           <li><strong>No clinical claims:</strong> When I write about chronic and fluctuating conditions, I write about user experience, interface burden and behaviour in everyday life. I do not make medical, diagnostic or clinical claims.</li>
           <li><strong>Declared interests:</strong> I state any interest that can affect how a reader judges an article.</li>
         </ol>
-        <div className="mt-8 pt-6 border-t border-rule font-sans text-xs text-fg-muted space-y-2 not-prose">
-          <strong className="text-fg block uppercase tracking-wider">Correction policy</strong>
-          <p className="m-0 leading-relaxed">When I find an error in a citation, claim or data point, I correct the text. I add a dated correction note at the end of the article.</p>
-          <p className="m-0 text-fg-muted">Last updated: 4 November 2026.</p>
+        <div className="mt-8 pt-6 border-t border-rule space-y-3 not-prose">
+          <h3 className="eyebrow">Correction policy</h3>
+          <p className="prose m-0">When I find an error in a citation, claim or data point, I correct the text. I add a dated correction note at the end of the article.</p>
+          <p className="m-0 font-sans text-caption text-fg-muted">Last updated: <time dateTime="2026-11-04">4 November 2026</time>.</p>
         </div>
-        <div className="mt-6 pt-4 border-t border-rule font-sans text-xs text-fg-muted not-prose">
-          <strong className="text-fg block mb-1">Independent publication note</strong>
-          <span>I write and edit the articles on this website myself. They come from my professional practice, my reading and my design work. They are not peer-reviewed papers or clinical trial reports.</span>
+        <div className="mt-6 pt-6 border-t border-rule space-y-3 not-prose">
+          <h3 className="eyebrow">Independent publication note</h3>
+          <p className="prose m-0">I write and edit the articles on this website myself. They come from my professional practice, my reading and my design work. They are not peer-reviewed papers or clinical trial reports.</p>
         </div>
       </section>
     </Main>

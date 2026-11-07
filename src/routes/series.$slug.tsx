@@ -20,7 +20,8 @@ export const Route = createFileRoute("/series/$slug")({
 
 function SeriesPage() {
   const { slug } = Route.useLoaderData();
-  const s = find(slug)!;
+  const s = find(slug);
+  if (!s) return null;
   const articles = getArticles().filter((a) => a.data.series?.id === slug);
   return (
     <Main>
@@ -30,7 +31,7 @@ function SeriesPage() {
       </nav>
       <header className="space-y-4 mb-8">
         <p className="font-sans text-xs text-fg-muted uppercase tracking-wider">Series {s.data.order} · {s.data.status}</p>
-        <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-normal text-fg leading-[1.15] tracking-tight">{s.data.title}</h1>
+        <h1 className="page-title">{s.data.title}</h1>
         {s.data.subtitle && <p className="font-serif italic text-lg sm:text-xl text-fg-body">{s.data.subtitle}</p>}
         <p className="text-base sm:text-lg text-fg-body leading-relaxed max-w-3xl">{s.data.description}</p>
       </header>

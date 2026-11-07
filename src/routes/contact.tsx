@@ -34,19 +34,19 @@ function Contact() {
               <a href={SITE.author.linkedIn} target="_blank" rel="noopener noreferrer" className="text-base text-link underline underline-offset-2 break-all">Shiwakshi Rashmi on LinkedIn ↗</a>
             </div>
           )}
-          <p className="m-0 leading-relaxed text-fg-body">
+          <p className="prose m-0 sm:col-span-2">
             If you’re exploring digital health, lived experience of long-term or fluctuating conditions, UX research methods, or AI in research, I’d love to exchange ideas. You’re welcome to reach out on LinkedIn with a question, a reading recommendation, or a possible collaboration.
           </p>
         </div>
       </section>
-      <section className="border-t border-b border-rule py-4 my-8 font-sans text-sm text-fg-body space-y-1">
-        <strong className="text-fg block text-xs uppercase tracking-wider">Privacy and medical scope</strong>
-        <p className="m-0 leading-relaxed text-sm">
+      <section className="max-w-[38rem] border-t border-b border-rule py-6 my-8 space-y-3">
+        <h2 className="eyebrow">Privacy and medical scope</h2>
+        <p className="prose m-0">
           Please do not send medical records, clinical histories or urgent health questions. I am a UX and market researcher, not a doctor or clinician. I cannot assess symptoms or give medical advice.
         </p>
       </section>
-      <section className="pt-4 font-sans text-sm text-fg-muted">
-        <p className="m-0 leading-relaxed">
+      <section className="pt-4">
+        <p className="prose m-0">
           I would like to hear from researchers, patient advocates, healthcare professionals and people with lived experience of long-term or fluctuating conditions. I am not recruiting study participants at present.
         </p>
       </section>
