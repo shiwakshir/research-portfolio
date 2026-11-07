@@ -2,7 +2,6 @@
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import { SITE } from '@/config/site';
 import EvidenceStatusBadge from '@/components/EvidenceStatusBadge.astro';
-import ResearchRoadmap from '@/components/ResearchRoadmap.astro';
 import { getCollection } from 'astro:content';
 
 // Only get published articles (draft: false)
@@ -12,19 +11,11 @@ const sortedArticles = allPublishedArticles.sort(
 );
 const latestArticle = sortedArticles[0];
 
-// Get approved projects in the exact specified order
-const targetProjectSlugs = [
-  'brief-agentic-evaluation',
-  'unfumble',
-  'workplace-compliance-ai',
-  'handover-studio',
-  'choicegap',
-];
-
+// Get approved projects
 const allProjects = await getCollection('projects', ({ data }) => !data.draft);
-const otherProjects = targetProjectSlugs
-  .map(slug => allProjects.find(p => p.slug === slug))
-  .filter((p): p is NonNullable<typeof p> => Boolean(p));
+const sortedProjects = allProjects.sort((a, b) => a.data.order - b.data.order);
+const leadProject = sortedProjects.find(p => p.data.isLead) || sortedProjects[0];
+const otherProjects = sortedProjects.filter(p => !p.data.isLead);
 
 // Dynamic theme counts (only show counts above zero)
 const themes = [
@@ -59,7 +50,7 @@ const themes = [
 <BaseLayout>
   <main class="max-w-4xl mx-auto px-4 sm:px-6 py-12 md:py-16">
     
-    <!-- Masthead Section -->
+    <!-- Masthead Section per §7.2 & Mock 5a -->
     <header class="space-y-6">
       <p class="font-sans text-xs text-fg-muted uppercase tracking-wider">
         Independent research journal and portfolio · London
@@ -73,7 +64,7 @@ const themes = [
         I am an Insights Manager in UX and market research. This site is the permanent home for my independent work: literature reviews, critical analyses, open research questions and, over time, original studies.
       </p>
 
-      <!-- Slim Proof Line -->
+      <!-- Slim Proof Line (no dot bullets, plain text and middots) -->
       <p class="font-sans text-xs text-fg-muted pt-2">
         Insights Manager, UX · Over five years of professional UX and market research
       </p>
@@ -81,97 +72,7 @@ const themes = [
 
     <hr class="border-t border-rule-strong my-12" />
 
-    <!-- 1. Current Work & Research Roadmap (Main Focus near the top) -->
-    <section aria-labelledby="current-work-heading" class="space-y-6">
-      <div class="space-y-3">
-        <h2 id="current-work-heading" class="font-serif text-2xl sm:text-3xl font-normal text-fg leading-tight">
-          Current work
-        </h2>
-        <p class="summary max-w-[42rem]">
-          I am researching how people living with chronic pain and fluctuating health manage difficult days, and what useful support could look like. This research will shape a product. I will share more when the evidence is ready.
-        </p>
-      </div>
-
-      <!-- Roadmap Stepper Component -->
-      <div class="pt-2">
-        <ResearchRoadmap />
-      </div>
-    </section>
-
-    <hr class="border-t border-rule-strong my-12" />
-
-    <!-- 2. Other Projects (Smaller cards, separate section below Current Work) -->
-    <section aria-labelledby="other-projects-heading" class="space-y-8">
-      <div class="flex items-center justify-between">
-        <div>
-          <h2 id="other-projects-heading" class="font-serif text-xl sm:text-2xl font-normal text-fg">
-            Other projects
-          </h2>
-          <p class="summary pt-1">
-            Independent tools and experiments I have built alongside my research.
-          </p>
-        </div>
-        <a href="/projects" class="font-sans text-xs text-link underline underline-offset-2 hover:opacity-80 shrink-0 ml-4">
-          All projects →
-        </a>
-      </div>
-
-      <!-- Smaller Project Cards Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {otherProjects.map((project) => (
-          <article class="p-5 border border-rule bg-paper flex flex-col justify-between space-y-4 hover:border-rule-strong transition-colors">
-            <div class="space-y-2">
-              <div class="font-sans text-[11px] text-fg-muted uppercase tracking-wider flex items-center justify-between gap-2">
-                <span>{project.data.sector}</span>
-                {project.data.award && (
-                  <span class="text-[10px] text-fg-muted italic truncate">{project.data.award}</span>
-                )}
-              </div>
-
-              <h3 class="font-serif text-lg font-normal text-fg leading-snug">
-                <a href={`/projects/${project.slug}`} class="hover:text-link transition-colors">
-                  {project.data.title}
-                </a>
-              </h3>
-
-              <p class="font-sans text-xs text-fg-body leading-relaxed m-0">
-                {project.data.summary}
-              </p>
-            </div>
-
-            <div class="pt-3 border-t border-rule flex items-center justify-between font-sans text-xs">
-              <div class="flex items-center gap-3">
-                <a href={`/projects/${project.slug}`} class="text-link underline underline-offset-2">
-                  Case study
-                </a>
-                {project.data.githubUrl && (
-                  <a
-                    href={project.data.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="text-link underline underline-offset-2"
-                  >
-                    Source ↗
-                  </a>
-                )}
-              </div>
-
-              <span class="text-[11px] text-fg-muted">
-                {project.data.methods.slice(0, 2).join(' · ')}
-              </span>
-            </div>
-          </article>
-        ))}
-      </div>
-
-      <p class="font-sans text-xs text-fg-muted pt-4 border-t border-rule">
-        All work on this site is my own independent work and intellectual property.
-      </p>
-    </section>
-
-    <hr class="border-t border-rule-strong my-12" />
-
-    <!-- 3. Latest in the Journal -->
+    <!-- Latest in the Journal per Mock 5a -->
     {latestArticle && (
       <section aria-labelledby="latest-journal-heading">
         <div class="flex items-center justify-between mb-8">
@@ -184,6 +85,7 @@ const themes = [
         </div>
 
         <article class="space-y-4">
+          <!-- Editorial Number, Category & Evidence Status -->
           <div class="font-sans text-xs text-fg-muted flex flex-wrap items-center gap-2">
             <span>No. {String(latestArticle.data.articleNumber ?? 1).padStart(2, '0')}</span>
             <span>·</span>
@@ -192,22 +94,26 @@ const themes = [
             <EvidenceStatusBadge status={latestArticle.data.researchStatus} />
           </div>
 
+          <!-- Article Title -->
           <h3 class="font-serif text-2xl sm:text-3xl font-normal text-fg leading-tight">
             <a href={`/journal/${latestArticle.slug}`} class="hover:text-link transition-colors">
               {latestArticle.data.title}
             </a>
           </h3>
 
+          <!-- Subtitle / Research Question -->
           {latestArticle.data.subtitle && (
             <p class="font-serif italic text-base sm:text-lg text-fg-body">
               {latestArticle.data.subtitle}
             </p>
           )}
 
+          <!-- Summary -->
           <p class="summary">
             {latestArticle.data.abstract}
           </p>
 
+          <!-- Date and Reading Time -->
           <p class="font-sans text-xs text-fg-muted pt-1">
             <time datetime={latestArticle.data.publishDate.toISOString()}>
               {latestArticle.data.publishDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
@@ -216,6 +122,7 @@ const themes = [
             <span>{latestArticle.data.readingTime}</span>
           </p>
 
+          <!-- Ruled Study Note (<dl>) with zero unverified fallbacks (§1.5) -->
           {(latestArticle.data.researchQuestion || latestArticle.data.methodsSummary || latestArticle.data.limitations) && (
             <dl class="mt-6 border-t border-rule pt-4 grid grid-cols-1 md:grid-cols-3 gap-6 font-sans text-sm">
               {latestArticle.data.researchQuestion && (
@@ -256,7 +163,70 @@ const themes = [
 
     <hr class="border-t border-rule-strong my-12" />
 
-    <!-- 4. Research Themes -->
+    <!-- Selected Work per §1.4 & Mock 5a -->
+    <section aria-labelledby="selected-work-heading" class="space-y-8">
+      <div class="flex items-center justify-between">
+        <h2 id="selected-work-heading" class="font-sans text-xs uppercase tracking-wider text-fg-muted font-semibold m-0">
+          Selected work
+        </h2>
+        <a href="/projects" class="font-sans text-xs text-link underline underline-offset-2 hover:opacity-80">
+          All projects
+        </a>
+      </div>
+
+      <!-- Lead Project: BRIEF -->
+      {leadProject && (
+        <article class="space-y-4">
+          <h3 class="font-serif text-2xl font-normal text-fg">
+            {leadProject.data.title}
+          </h3>
+
+          <p class="summary">
+            {leadProject.data.summary}
+          </p>
+
+          <!-- Stated once: Calm credit line -->
+          {leadProject.data.award && (
+            <p class="font-sans text-xs text-fg-muted">
+              {leadProject.data.award}
+            </p>
+          )}
+
+          <div class="flex items-center gap-4 pt-1 font-sans text-sm">
+            <a href={`/projects/${leadProject.slug}`} class="text-link underline underline-offset-2">
+              Case study
+            </a>
+            <a href={SITE.author.briefGithub} target="_blank" rel="noopener noreferrer" class="text-link underline underline-offset-2">
+              Source ↗
+            </a>
+          </div>
+        </article>
+      )}
+
+      <!-- Other independent projects -->
+      <div class="pt-6 space-y-4 border-t border-rule">
+        {otherProjects.map((project) => (
+          <div class="grid grid-cols-1 md:grid-cols-12 gap-2 md:gap-6 items-baseline py-3 border-b border-rule last:border-b-0">
+            <div class="md:col-span-7">
+              <h3 class="font-serif text-base text-fg font-normal">
+                <a href={`/projects/${project.slug}`} class="hover:text-link transition-colors">
+                  {project.data.title}
+                </a>
+              </h3>
+            </div>
+            <div class="md:col-span-5 md:text-right">
+              <p class="font-sans text-xs text-fg-muted">
+                {project.data.sector} · {project.data.methods.slice(0, 2).join(', ')}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <hr class="border-t border-rule-strong my-12" />
+
+    <!-- Research Themes per Mock 5a & §4 -->
     <section aria-labelledby="themes-heading" class="space-y-8">
       <div class="flex items-center justify-between">
         <h2 id="themes-heading" class="font-sans text-xs uppercase tracking-wider text-fg-muted font-semibold m-0">
