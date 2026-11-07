@@ -1,6 +1,9 @@
 @import "tailwindcss" source(none);
 @source "../src";
 @import "tw-animate-css";
+@import "@fontsource-variable/newsreader/opsz.css";
+@import "@fontsource-variable/newsreader/opsz-italic.css";
+@import "@fontsource-variable/instrument-sans/index.css";
 @plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:is(.dark *));
@@ -34,8 +37,17 @@
 }
 
 @theme inline {
-  --font-serif: "Source Serif 4", "Source Serif 4 Fallback", Georgia, serif;
-  --font-sans: system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-serif: "Newsreader Variable", "Source Serif 4", Georgia, serif;
+  --font-sans: "Instrument Sans Variable", system-ui, sans-serif;
+  --color-sage: var(--sage);
+  --color-sage-soft: var(--sage-soft);
+  --color-terracotta-soft: var(--terracotta-soft);
+  --shadow-plate: var(--shadow-plate);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
 
   --color-paper: var(--bg-main);
   --color-paper-card: var(--bg-card);
@@ -77,17 +89,17 @@
   --text-caption--line-height: 1.65;
 }
 
-:root {
-  --bg-main: oklch(0.977 0.012 85);
-  --bg-card: oklch(0.989 0.007 85);
-  --bg-muted: oklch(0.955 0.018 85);
-  --rule: oklch(0.882 0.028 80);
-  --rule-strong: oklch(0.213 0.008 250);
-  --text-primary: oklch(0.213 0.008 250);
-  --text-body: oklch(0.27 0.014 250);
-  --text-secondary: oklch(0.36 0.018 250);
-  --text-muted: oklch(0.45 0.022 250);
-  --link: oklch(0.31 0.04 155);
+:root, .dark {
+  --bg-main: oklch(0.975 0.012 85);
+  --bg-card: oklch(0.99 0.008 85);
+  --bg-muted: oklch(0.94 0.018 88);
+  --rule: oklch(0.87 0.025 90);
+  --rule-strong: oklch(0.3 0.03 140);
+  --text-primary: oklch(0.22 0.02 140);
+  --text-body: oklch(0.28 0.02 140);
+  --text-secondary: oklch(0.36 0.025 135);
+  --text-muted: oklch(0.45 0.025 120);
+  --link: oklch(0.42 0.07 145);
   color-scheme: light;
 
   --radius: 0.125rem;
@@ -103,8 +115,18 @@
   --secondary-foreground: var(--text-primary);
   --muted: var(--bg-muted);
   --muted-foreground: var(--text-muted);
-  --accent: var(--bg-muted);
-  --accent-foreground: var(--text-primary);
+  --accent: oklch(0.62 0.12 45);
+  --accent-foreground: oklch(0.98 0.01 85);
+  --sage: oklch(0.72 0.06 140);
+  --sage-soft: oklch(0.92 0.03 135);
+  --terracotta-soft: oklch(0.92 0.04 55);
+  --chart-1: oklch(0.42 0.07 145);
+  --chart-2: oklch(0.62 0.12 45);
+  --chart-3: oklch(0.72 0.06 140);
+  --chart-4: oklch(0.8 0.1 85);
+  --chart-5: oklch(0.5 0.05 60);
+  --shadow-plate: 0 30px 60px -25px oklch(0.3 0.04 100 / 0.35), 0 8px 20px -10px oklch(0.3 0.04 100 / 0.2);
+  --gradient-wash: radial-gradient(60% 50% at 85% 10%, oklch(0.92 0.04 135 / 0.7), transparent 70%), radial-gradient(50% 40% at 5% 30%, oklch(0.93 0.04 60 / 0.6), transparent 70%);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: var(--bg-main);
   --border: var(--rule);
@@ -113,16 +135,23 @@
 }
 
 .dark {
-  --bg-main: oklch(0.19 0.004 75);
-  --bg-card: oklch(0.22 0.005 85);
-  --bg-muted: oklch(0.25 0.007 90);
-  --rule: oklch(0.32 0.008 85);
-  --rule-strong: oklch(0.52 0.014 85);
-  --text-primary: oklch(0.935 0.014 85);
-  --text-body: oklch(0.866 0.014 85);
-  --text-secondary: oklch(0.84 0.016 85);
-  --text-muted: oklch(0.7 0.016 85);
-  --link: oklch(0.76 0.07 155);
+  --bg-main: oklch(0.17 0.015 150);
+  --bg-card: oklch(0.21 0.018 150);
+  --bg-muted: oklch(0.25 0.02 150);
+  --rule: oklch(0.32 0.02 150);
+  --rule-strong: oklch(0.52 0.03 140);
+  --text-primary: oklch(0.93 0.02 85);
+  --text-body: oklch(0.87 0.018 85);
+  --text-secondary: oklch(0.82 0.02 90);
+  --text-muted: oklch(0.72 0.025 100);
+  --link: oklch(0.78 0.09 140);
+  --accent: oklch(0.74 0.13 50);
+  --accent-foreground: oklch(0.17 0.015 150);
+  --sage: oklch(0.55 0.06 140);
+  --sage-soft: oklch(0.26 0.035 145);
+  --terracotta-soft: oklch(0.3 0.05 45);
+  --shadow-plate: 0 30px 70px -20px oklch(0 0 0 / 0.6), 0 0 40px -10px oklch(0.74 0.13 50 / 0.15);
+  --gradient-wash: radial-gradient(55% 45% at 85% 10%, oklch(0.35 0.06 145 / 0.55), transparent 70%), radial-gradient(45% 40% at 5% 35%, oklch(0.4 0.09 45 / 0.35), transparent 70%);
   color-scheme: dark;
 }
 
@@ -574,3 +603,75 @@ main h1, main h2, main h3, main dd, main a { overflow-wrap: break-word; }
   .roadmap-stage[data-state="current"] .roadmap-status::before, .journey-detailed .chapter-foot::before { animation: none; }
   .journey-chapter:hover, .roadmap-link:hover .roadmap-node, .journey-chapter:hover .research-glyph { transform: none; }
 }
+
+/* Botanical health accents */
+.bg-wash { background-image: var(--gradient-wash); }
+.grain::before {
+  content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 50; opacity: 0.06;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence baseFrequency='0.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+@keyframes draw-line { from { stroke-dashoffset: 600; } to { stroke-dashoffset: 0; } }
+.animate-draw { stroke-dasharray: 600; animation: draw-line 2.4s ease-out forwards; }
+@keyframes rise-up { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+.animate-rise { animation: rise-up 0.8s ease-out both; }
+@keyframes sway { 0%,100% { transform: rotate(-2deg); } 50% { transform: rotate(2deg); } }
+.animate-sway { animation: sway 8s ease-in-out infinite; transform-origin: bottom center; }
+
+html { transition: background-color .4s; }
+.plate-img { transition: filter .4s; }
+.dark .plate-img { filter: sepia(0.15) brightness(0.88) contrast(1.05); }
+@keyframes pulse-ring { 0% { transform: scale(1); opacity: .6; } 100% { transform: scale(2.6); opacity: 0; } }
+.animate-pulse-ring { animation: pulse-ring 2.2s ease-out infinite; }
+@keyframes ecg { from { stroke-dashoffset: 1400; } to { stroke-dashoffset: 0; } }
+.animate-ecg { stroke-dasharray: 1400; animation: ecg 6s linear infinite; }
+
+/* ===== Botanical redesign for inner pages ===== */
+.page-frame { position: relative; overflow: hidden; }
+.page-wash { position: absolute; inset: 0 0 auto 0; height: 640px; background-image: var(--gradient-wash); pointer-events: none; }
+.page-sprig { position: absolute; right: max(2rem, calc(50% - 34rem)); top: 3rem; width: 5rem; height: 10rem; color: var(--sage); opacity: .7; pointer-events: none; animation: sway 8s ease-in-out infinite; transform-origin: bottom center; }
+.page-ecg { position: absolute; inset-inline: 0; top: 8px; height: 3.5rem; width: 100%; opacity: .3; pointer-events: none; }
+@media (max-width: 767px) { .page-sprig, .page-ecg { display: none; } }
+
+.eyebrow { display: inline-flex !important; align-items: center; gap: .5rem; padding: .25rem .75rem; border: 1px solid var(--rule); border-radius: 999px; background: color-mix(in oklab, var(--bg-card) 70%, transparent); color: var(--accent) !important; font-weight: 600; letter-spacing: .16em !important; }
+.eyebrow::before { content: ""; width: .45rem; height: .45rem; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 0 var(--accent); animation: eyebrow-pulse 2.4s ease-out infinite; }
+@keyframes eyebrow-pulse { 0% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--accent) 60%, transparent); } 100% { box-shadow: 0 0 0 8px transparent; } }
+
+.page-title, main .display-title { font-family: var(--font-serif) !important; font-weight: 300 !important; font-size: clamp(2.75rem, 6vw, 4.75rem) !important; line-height: 1 !important; letter-spacing: -0.02em !important; color: var(--text-primary); }
+.lede, .summary { color: var(--text-secondary); }
+main hr.border-rule-strong { border: 0; height: 1px; background: linear-gradient(90deg, var(--accent), var(--rule) 30%, transparent); }
+
+.prose :where(h2) { font-weight: 400 !important; font-size: 1.9em !important; display: flex; align-items: baseline; gap: .6rem; }
+.prose :where(h2)::before { content: "❦"; color: var(--accent); font-size: .6em; }
+.prose :where(blockquote) { border-left: 2px solid var(--accent) !important; padding: .5rem 0 .5rem 1.25rem !important; background: linear-gradient(90deg, var(--terracotta-soft), transparent 80%); }
+.prose :where(ol > li)::marker { color: var(--accent); font-family: var(--font-serif); font-style: italic; }
+.prose :where(ul > li)::marker { color: var(--sage); }
+.prose :where(strong) { color: var(--text-primary); }
+.prose :where(a) { color: var(--link); text-decoration-color: color-mix(in oklab, var(--accent) 60%, transparent); text-underline-offset: 3px; }
+
+.journey-chapter { border-radius: .75rem !important; background: color-mix(in oklab, var(--bg-card) 85%, transparent) !important; box-shadow: 0 1px 0 var(--rule); }
+.journey-chapter:hover { transform: translateY(-4px); box-shadow: var(--shadow-plate); border-color: color-mix(in oklab, var(--accent) 50%, var(--rule)); }
+.journey-chapter[data-state="current"] { background: linear-gradient(180deg, var(--terracotta-soft), var(--bg-card)) !important; border-top: 2px solid var(--accent) !important; }
+.journey-chapter[data-state="current"] .journey-status, .journey-detailed .journey-chapter[data-state="current"] .chapter-foot { color: var(--accent) !important; }
+.journey-detailed .journey-chapter[data-state="current"] .chapter-foot::before { background: var(--accent) !important; }
+.journey-chapter svg { color: var(--primary); }
+
+.notebook-glance, .study-note { border-radius: .75rem; box-shadow: var(--shadow-plate); }
+main aside[aria-label="Declared interest"] { border-radius: 0 .5rem .5rem 0; border-left-color: var(--sage) !important; }
+.selected-project { border-radius: .75rem; transition: background .3s, box-shadow .3s; }
+.selected-project:hover { background: var(--bg-card); box-shadow: var(--shadow-plate); }
+.project-number { font-family: var(--font-serif); font-style: italic; color: var(--accent) !important; font-size: 1.4rem; }
+main article, main section > a { transition: transform .3s ease, box-shadow .3s ease; }
+
+/* Project art + theme numerals */
+.project-art { position: relative; overflow: hidden; border-radius: .75rem; border: 1px solid var(--rule); background: var(--sage-soft); box-shadow: var(--shadow-plate); }
+.project-art img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .8s ease, filter .4s; }
+article:hover .project-art img { transform: scale(1.05); }
+.dark .project-art img { filter: sepia(.15) brightness(.85) contrast(1.05); }
+.project-art .art-num { position: absolute; left: .75rem; top: .75rem; display: grid; place-items: center; width: 2.75rem; height: 2.75rem; border-radius: 999px; background: color-mix(in oklab, var(--bg-main) 88%, transparent); color: var(--accent); font: italic 400 1.15rem var(--font-serif); backdrop-filter: blur(4px); }
+.theme-num { font: italic 300 2.75rem/1 var(--font-serif) !important; color: var(--accent) !important; }
+.theme-label { display: inline-flex; align-items: center; gap: .6rem; color: var(--accent) !important; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+.theme-label::before { content: ""; width: 1.75rem; height: 1px; background: var(--accent); }
+
+/* Soften bright engraving plates in dark mode so they don't glare on phones */
+.dark main img:not([src$=".svg"]) { filter: brightness(0.86) contrast(1.04); transition: filter .3s; }
+.dark main a:hover img:not([src$=".svg"]) { filter: none; }

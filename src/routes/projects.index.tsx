@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { pageHead } from "@/config/site";
 import { getProjects, type ProjectEntry } from "@/lib/content";
 import { Main, PageHeader } from "@/components/site/bits";
+import { PROJECT_ART } from "@/lib/project-art";
 
 export const Route = createFileRoute("/projects/")({
   head: () =>
@@ -9,13 +10,20 @@ export const Route = createFileRoute("/projects/")({
   component: ProjectsIndex,
 });
 
-function ProjectCard({ p }: { p: ProjectEntry }) {
+function ProjectCard({ p, n }: { p: ProjectEntry; n: number }) {
   const d = p.data;
   const titleLink = (
     <Link to="/projects/$slug" params={{ slug: p.slug }} className="hover:text-link transition-colors">{d.title}</Link>
   );
   return (
-    <article className="reveal space-y-4 py-8 border-b border-rule first:pt-0">
+    <article className="reveal grid gap-6 py-8 border-b border-rule first:pt-0 md:grid-cols-[14rem_minmax(0,1fr)] md:gap-8">
+      {PROJECT_ART[p.slug] && (
+        <Link to="/projects/$slug" params={{ slug: p.slug }} className="project-art aspect-[4/3] self-start" aria-hidden="true" tabIndex={-1}>
+          <img src={PROJECT_ART[p.slug]} alt="" loading="lazy" width={1024} height={640} />
+          <span className="art-num">{String(n).padStart(2, "0")}</span>
+        </Link>
+      )}
+      <div className="min-w-0">
       {d.isLead ? (
         <div className="space-y-4">
           <div className="font-sans text-xs text-fg-muted">{d.sector}</div>
@@ -39,6 +47,7 @@ function ProjectCard({ p }: { p: ProjectEntry }) {
           </div>
         </div>
       )}
+      </div>
     </article>
   );
 }
@@ -51,7 +60,7 @@ function ProjectsIndex() {
         title="Projects"
         lede="Research and AI tools that I build independently. Each entry states what exists today. I own the intellectual property in these projects, except for third-party components under their own licences."
       />
-      <div className="space-y-4">{getProjects().map((p) => <ProjectCard key={p.slug} p={p} />)}</div>
+      <div className="space-y-4">{getProjects().map((p, i) => <ProjectCard key={p.slug} p={p} n={i + 1} />)}</div>
     </Main>
   );
 }

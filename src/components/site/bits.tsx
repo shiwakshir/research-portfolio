@@ -27,7 +27,24 @@ export function DeclaredInterestNote({ className = "" }: { className?: string })
 }
 
 export function Main({ children, className = "max-w-4xl" }: { children: ReactNode; className?: string }) {
-  return <main className={`${className} mx-auto px-4 sm:px-6 py-12 md:py-16`}>{children}</main>;
+  return (
+    <div className="page-frame">
+      <div className="page-wash" aria-hidden="true" />
+      <svg className="page-sprig" viewBox="0 0 60 120" fill="none" stroke="currentColor" strokeWidth="1.2" aria-hidden="true">
+        <path d="M30 118 C30 80 28 50 30 4" />
+        {[20, 38, 56, 74, 92].map((y, i) => (
+          <g key={y}>
+            <path d={`M30 ${y + 8} C${18 - i} ${y} 10 ${y - 2} 6 ${y - 8} C14 ${y - 6} 24 ${y - 2} 30 ${y + 8}`} />
+            <path d={`M30 ${y + 14} C${42 + i} ${y + 6} 50 ${y + 4} 54 ${y - 2} C46 ${y} 36 ${y + 4} 30 ${y + 14}`} />
+          </g>
+        ))}
+      </svg>
+      <svg className="page-ecg" viewBox="0 0 1400 160" preserveAspectRatio="none" aria-hidden="true">
+        <path className="animate-ecg" d="M0 100 H380 l20 -10 l15 10 H520 l18 -70 l22 120 l18 -60 l14 10 H760 c40 0 60 -40 100 -40 s60 40 120 40 H1400" fill="none" stroke="var(--accent)" strokeWidth="1.5" />
+      </svg>
+      <main className={`${className} relative mx-auto px-4 sm:px-6 py-12 md:py-20`}>{children}</main>
+    </div>
+  );
 }
 
 export function PageHeader({ eyebrow, title, lede }: { eyebrow?: ReactNode; title: ReactNode; lede?: ReactNode }) {

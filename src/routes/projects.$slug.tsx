@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { pageHead } from "@/config/site";
 import { getProjects } from "@/lib/content";
 import { BriefPipeline, Main } from "@/components/site/bits";
+import { PROJECT_ART } from "@/lib/project-art";
 
 const find = (slug: string) => getProjects().find((p) => p.slug === slug);
 
@@ -30,7 +31,12 @@ function ProjectPage() {
         <span>/</span><span>{d.sector}</span>
       </nav>
       <header className="space-y-4 mb-8 pb-8 border-b border-rule">
-        <p className="font-sans text-xs text-fg-muted uppercase tracking-wider">{d.sector}</p>
+        {PROJECT_ART[p.slug] && (
+          <figure className="project-art aspect-[21/9] mb-8">
+            <img src={PROJECT_ART[p.slug]} alt={`Engraving-style illustration for ${d.title}`} width={1024} height={640} />
+          </figure>
+        )}
+        <p className="eyebrow">{d.sector}</p>
         <h1 className="page-title">{d.title}</h1>
         <p className="lede">{d.summary}</p>
         {d.award && <p className="font-sans text-xs text-fg-muted pt-1">{d.award}</p>}

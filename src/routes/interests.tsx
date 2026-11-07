@@ -82,7 +82,7 @@ function Interests() {
       <div className="space-y-12">
         {THEMES.map((t) => (
           <section key={t.number} className="reveal space-y-4 py-8 border-b border-rule first:pt-0">
-            <div className="font-sans text-xs text-fg-muted">Theme {t.number}</div>
+            <div className="theme-label font-sans text-xs text-fg-muted">Theme {t.number}</div>
             <h2 className="font-serif text-2xl font-normal text-fg">{t.title}</h2>
             <p className="summary">{t.summary}</p>
             <div className="pt-2">
