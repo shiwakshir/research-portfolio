@@ -185,21 +185,29 @@ function Index() {
                     <span className="h-px w-6 bg-border" />
                     <span className="text-accent">{p.cat}</span>
                   </div>
-                  <h3 className="mt-3 font-serif text-3xl">{p.name}</h3>
-                  <button type="button" aria-expanded={openWork === i} onClick={() => setOpenWork(openWork === i ? null : i)} className="mt-3 w-fit text-sm font-medium text-primary md:hidden">{openWork === i ? "Show less −" : "Show more +"}</button>
-                  <div className={openWork === i ? "flex flex-1 flex-col" : "hidden md:flex md:flex-1 md:flex-col"}>
-                  <p className="mt-3 text-muted-foreground">{p.desc}</p>
-                  <dl className="mt-4 space-y-2 text-sm">
-                    <div><dt className="text-xs uppercase tracking-wider text-muted-foreground">My role</dt><dd className="text-foreground/80">{p.role}</dd></div>
-                    <div><dt className="text-xs uppercase tracking-wider text-muted-foreground">Approach</dt><dd className="text-foreground/80">{p.approach}</dd></div>
-                  </dl>
-                  {p.award && (
-                    <p className="mt-4 inline-flex w-fit items-center gap-2 rounded-full bg-terracotta-soft px-3 py-1 text-xs font-medium text-foreground">✦ {p.award}</p>
-                  )}
-                  <div className="mt-auto flex gap-5 pt-6 text-sm font-medium">
-                    <Link to="/projects/$slug" params={{ slug: p.slug }} className="text-primary">Case study →</Link>
-                    {p.src && <a href={p.src} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground">Source ↗</a>}
+
+                  <div className={i !== 0 ? "md:min-h-[10.5rem] flex flex-col justify-start" : ""}>
+                    <h3 className="mt-3 font-serif text-3xl">{p.name}</h3>
+                    <button type="button" aria-expanded={openWork === i} onClick={() => setOpenWork(openWork === i ? null : i)} className="mt-3 w-fit text-sm font-medium text-primary md:hidden">{openWork === i ? "Show less −" : "Show more +"}</button>
+                    <div className={openWork === i ? "block" : "hidden md:block"}>
+                      <p className="mt-3 text-muted-foreground leading-relaxed">{p.desc}</p>
+                    </div>
                   </div>
+
+                  <div className={openWork === i ? "flex flex-1 flex-col" : "hidden md:flex md:flex-1 md:flex-col"}>
+                    <dl className={`mt-5 space-y-2 text-sm ${i !== 0 ? "md:min-h-[6.5rem]" : ""}`}>
+                      <div><dt className="text-xs uppercase tracking-wider text-muted-foreground">My role</dt><dd className="text-foreground/80">{p.role}</dd></div>
+                      <div><dt className="text-xs uppercase tracking-wider text-muted-foreground">Approach</dt><dd className="text-foreground/80">{p.approach}</dd></div>
+                    </dl>
+                    <div className={i !== 0 ? "md:min-h-[2.25rem] flex items-center mt-4" : "mt-4"}>
+                      {p.award ? (
+                        <p className="inline-flex w-fit items-center gap-2 rounded-full bg-terracotta-soft px-3 py-1 text-xs font-medium text-foreground">✦ {p.award}</p>
+                      ) : null}
+                    </div>
+                    <div className="mt-auto flex gap-5 pt-6 text-sm font-medium">
+                      <Link to="/projects/$slug" params={{ slug: p.slug }} className="text-primary">Case study →</Link>
+                      {p.src && <a href={p.src} target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-foreground">Source ↗</a>}
+                    </div>
                   </div>
                 </div>
               </article>
