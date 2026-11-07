@@ -8,7 +8,7 @@ export const Route = createFileRoute("/interests")({
       path: "/interests",
       title: "Research themes",
       description:
-        "The questions Shiwakshi Rashmi explores in digital health, chronic and fluctuating conditions, applied AI, UX research methods and human behaviour.",
+        "The questions Shiwakshi Rashmi explores in digital health, chronic and fluctuating conditions, applied AI, UX research methods and self-report and behaviour.",
     }),
   component: Interests,
 });
@@ -61,7 +61,7 @@ const THEMES = [
   {
     number: "05",
     title: "Self-report and behaviour",
-    summary: "The gap between self-report and behaviour, including recall bias and social desirability bias.",
+    summary: "How what people report about their health and routines differs from what they do, including recall bias and social desirability bias.",
     questions: [
       "How does recall bias change what people report about their health and daily routines?",
       "When do observation or in-the-moment methods give a more accurate account than retrospective self-report?",
