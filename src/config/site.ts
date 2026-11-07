@@ -17,7 +17,7 @@ export const SITE = {
     location: "London",
     experienceSummary: "Working in UX and market research since 2021.",
     award: "Hack for Good Award at Microsoft Agents League @ AI Skills Fest 2026 for BRIEF",
-    email: "contact@[TO CONFIRM-domain].com",
+    email: "mail@shiwakshi.com",
     linkedIn: "https://www.linkedin.com/in/shiwakshi/",
     github: "https://github.com/shiwakshir",
     briefGithub: "https://github.com/shiwakshir/brief-agent",

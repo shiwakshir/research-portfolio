@@ -35,7 +35,7 @@ function Contact() {
             </div>
           )}
           <p className="prose m-0 sm:col-span-2">
-            If you’re exploring digital health, lived experience of long-term or fluctuating conditions, UX research methods, or AI in research, I’d love to exchange ideas. You’re welcome to reach out on LinkedIn with a question, a reading recommendation, or a possible collaboration.
+            If you’re exploring digital health, lived experience of long-term or fluctuating conditions, UX research methods, or AI in research, I’d love to exchange ideas. You're welcome to email me or reach out on LinkedIn with a question, a reading recommendation, or a possible collaboration.
           </p>
         </div>
       </section>

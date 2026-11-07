@@ -38,7 +38,7 @@ function Privacy() {
         </section>
         <section>
           <h2>4. When you contact me</h2>
-          <p>This website has no contact forms, so it does not store messages. If you message me on LinkedIn, you choose what you share. I use your message only to reply to you. LinkedIn processes messages under its own privacy policy.</p>
+          <p>This website has no contact forms, so it does not store messages. If you email me at <a href="mailto:mail@shiwakshi.com">mail@shiwakshi.com</a> or message me on LinkedIn, you choose what you share. I use your message only to reply to you. Google stores my emails under its own privacy policy. LinkedIn processes messages under its own privacy policy.</p>
           <p className="not-prose font-sans text-caption text-fg-muted italic">Please do not send medical records or personal medical histories.</p>
         </section>
         <section>
@@ -51,11 +51,11 @@ function Privacy() {
         </section>
         <section>
           <h2>7. Your rights</h2>
-          <p>Under UK data protection law, you can ask for a copy of the personal data I hold about you. You can also ask me to correct or delete it, or object to how I use it. If you are not satisfied with my answer, you can complain to the Information Commissioner's Office (ICO) at <a href="https://ico.org.uk/" target="_blank" rel="noopener noreferrer">ico.org.uk</a>.</p>
+          <p>Under UK data protection law, you can ask for a copy of the personal data I hold about you. You can also ask me to correct or delete it, or object to how I use it. To make a request, email me at <a href="mailto:mail@shiwakshi.com">mail@shiwakshi.com</a>. If you are not satisfied with my answer, you can complain to the Information Commissioner's Office (ICO) at <a href="https://ico.org.uk/" target="_blank" rel="noopener noreferrer">ico.org.uk</a>.</p>
         </section>
         <section>
           <h2>8. Privacy questions</h2>
-          <p>If you have a question about this notice, <Link to="/contact">contact me</Link>. You can also send me a message on <a href={SITE.author.linkedIn} target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
+          <p>If you have a question about this notice, email me at <a href="mailto:mail@shiwakshi.com">mail@shiwakshi.com</a>. You can also send me a message on <a href="https://www.linkedin.com/in/shiwakshi/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
           <p className="not-prose font-sans text-sm text-fg-muted">
             {SITE.author.name}
             {isConfirmed(SITE.author.email) && (
