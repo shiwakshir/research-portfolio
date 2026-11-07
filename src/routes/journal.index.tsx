@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { pageHead } from "@/config/site";
 import { getArticles } from "@/lib/content";
-import { ArticleCard, FeaturedArticle, Main } from "@/components/site/bits";
+import { ArticleCard, DeclaredInterestNote, FeaturedArticle, Main } from "@/components/site/bits";
 import { ResearchJourney } from "@/components/site/ResearchJourney";
 import { Button } from "@/components/ui/button";
 import { getEntryPreviews } from "@/lib/entry-previews";
@@ -49,6 +49,7 @@ function JournalIndex() {
           </div>
           <span className="font-serif italic text-sm text-fg-muted">An open research notebook</span>
         </div>
+        <DeclaredInterestNote className="mb-6" />
         <ResearchJourney />
       </section>
 

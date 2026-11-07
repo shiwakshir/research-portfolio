@@ -60,8 +60,8 @@ const THEMES = [
   },
   {
     number: "05",
-    title: "Human behaviour and lived experience",
-    summary: "The gap between what people say they do and what they do, and how research methods can make that gap smaller.",
+    title: "Self-report and behaviour",
+    summary: "The gap between self-report and behaviour, including recall bias and social desirability bias.",
     questions: [
       "How does recall bias change what people report about their health and daily routines?",
       "When do observation or in-the-moment methods give a more accurate account than retrospective self-report?",

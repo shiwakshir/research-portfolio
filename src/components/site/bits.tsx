@@ -15,6 +15,17 @@ export function StatusBadge({ status }: { status: string }) {
   );
 }
 
+export function DeclaredInterestNote({ className = "" }: { className?: string }) {
+  return (
+    <aside
+      className={`border-l-2 border-link bg-[var(--research-wash)] px-4 py-3 font-sans text-xs leading-relaxed text-fg-secondary ${className}`}
+      aria-label="Declared interest"
+    >
+      <strong className="font-semibold text-fg">Declared interest:</strong> I am developing a digital product for people with fluctuating health conditions. This research can inform that product.
+    </aside>
+  );
+}
+
 export function Main({ children, className = "max-w-4xl" }: { children: ReactNode; className?: string }) {
   return <main className={`${className} mx-auto px-4 sm:px-6 py-12 md:py-16`}>{children}</main>;
 }

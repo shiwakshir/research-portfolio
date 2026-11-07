@@ -24,7 +24,7 @@ function About() {
       </header>
       <hr className="border-t border-rule-strong my-8" />
       <div className="prose max-w-[38rem]">
-        <p>I’m an Insights Manager with over five years of professional experience in UX and market research. My academic background in philosophy and sociology informs the questions I bring to my work, which spans qualitative and quantitative methods, survey design and multi-market research.</p>
+        <p>I’m an Insights Manager with about five years of professional experience in UX and market research. My academic background in philosophy and sociology informs the questions I bring to my work, which spans qualitative and quantitative methods, survey design and multi-market research.</p>
         <p>This is a home for my independent work—a place to share research, consider open questions and exchange ideas. It does not represent my employer and contains no employer or client work.</p>
         <h2>What I research</h2>
         <p>I study what happens when people live with conditions that change from day to day, and how digital tools help or add to the work. I also study how research teams use AI, and where AI weakens the evidence. Two further themes are UX research methods and the gap between what people say they do and what they do.</p>

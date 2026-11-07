@@ -5,7 +5,7 @@ import plate from "@/assets/specimen-plate.jpg";
 import { FlareLine } from "@/components/site/FlareLine";
 import { ResearchJourney } from "@/components/site/ResearchJourney";
 import { SelectedWork } from "@/components/site/SelectedWork";
-import { FeaturedArticle, Main, SectionHead } from "@/components/site/bits";
+import { DeclaredInterestNote, FeaturedArticle, Main, SectionHead } from "@/components/site/bits";
 
 export const Route = createFileRoute("/")({
   head: () => pageHead({ path: "/" }),
@@ -17,7 +17,7 @@ const THEMES = [
   { title: "Chronic and fluctuating conditions", category: "Chronic Health", description: "Everyday life with conditions that change from day to day, including pacing and workarounds." },
   { title: "Applied AI in UX and market research", category: "Applied AI", description: "Synthetic respondents, AI-assisted synthesis and audit trails for research agents." },
   { title: "UX research methods", category: "UX Research Methods", description: "Mixed-methods design, small-sample testing and how to show research confidence." },
-  { title: "Human behaviour and lived experience", category: "Human Behaviour", description: "The gap between self-report and behaviour, including recall bias and social desirability bias." },
+  { title: "Self-report and behaviour", category: "Human Behaviour", description: "The gap between self-report and behaviour, including recall bias and social desirability bias." },
 ];
 
 function Home() {
@@ -53,7 +53,7 @@ function Home() {
       </header>
 
       <p className="mt-14 font-sans text-xs text-fg-muted text-center tracking-wide">
-        Insights Manager, UX <span className="mx-2 text-rule-strong">·</span> Over five years of professional UX and market research
+        Insights Manager, UX <span className="mx-2 text-rule-strong">·</span> About five years of professional UX and market research
       </p>
 
       <section className="home-section home-research reveal" aria-labelledby="latest-journal-heading">
@@ -66,6 +66,7 @@ function Home() {
           </div>
           <div className="research-trace"><FlareLine /></div>
         </div>
+        <DeclaredInterestNote className="my-6" />
         <ResearchJourney detailed />
         {latest && <div className="mt-10"><FeaturedArticle article={latest} withNote /></div>}
       </section>

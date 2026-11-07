@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowRight, PencilLine } from "lucide-react";
 import { pageHead } from "@/config/site";
 import { getResearchStage, ROADMAP_STAGES, stageLabel, stageState } from "@/data/roadmap";
 import { getStageArticles } from "@/lib/research";
-import { ArticleCard, Main } from "@/components/site/bits";
+import { ArticleCard, DeclaredInterestNote, Main } from "@/components/site/bits";
 import { ResearchJourney } from "@/components/site/ResearchJourney";
 import { ResearchGlyph } from "@/components/site/ResearchGlyph";
 import { Button } from "@/components/ui/button";
@@ -45,6 +45,7 @@ function StagePage() {
         </div>
         <ResearchGlyph stage={stage.id} className="chapter-cover" />
       </header>
+      <DeclaredInterestNote className="mt-8 mb-4" />
       <section className="mt-10" aria-labelledby="chapter-entries-heading">
         <div className="grid grid-cols-1 sm:grid-cols-[minmax(0,1fr)_auto] items-baseline gap-3 mb-5">
           <h2 id="chapter-entries-heading" className="font-serif text-2xl font-normal text-fg">{current ? "The first inquiries" : "Research notes"}</h2>
