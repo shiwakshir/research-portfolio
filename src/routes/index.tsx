@@ -77,10 +77,6 @@ function Index() {
   return (
     <div className="grain relative min-h-screen overflow-hidden bg-background">
       <div className="pointer-events-none absolute inset-x-0 top-0 h-[900px] bg-wash" />
-      <svg className="pointer-events-none absolute inset-x-0 top-[820px] h-24 w-full opacity-40" viewBox="0 0 1400 160" preserveAspectRatio="none" aria-hidden>
-        <path className="animate-ecg" d="M0 100 H380 l20 -10 l15 10 H520 l18 -70 l22 120 l18 -60 l14 10 H760 c40 0 60 -40 100 -40 s60 40 120 40 H1400" fill="none" stroke="var(--accent)" strokeWidth="1.5" />
-      </svg>
-
 
       <main className="relative mx-auto max-w-6xl px-6">
         {/* Hero */}
@@ -119,7 +115,10 @@ function Index() {
         </p>
 
         {/* Journal */}
-        <section className="py-16">
+        <section className="relative py-16">
+          <svg className="pointer-events-none absolute inset-x-0 -top-3 h-20 w-full opacity-40 md:-top-5 md:h-24" viewBox="0 0 1400 160" preserveAspectRatio="none" aria-hidden>
+            <path className="animate-ecg" d="M0 100 H380 l20 -10 l15 10 H520 l18 -70 l22 120 l18 -60 l14 10 H760 c40 0 60 -40 100 -40 s60 40 120 40 H1400" fill="none" stroke="var(--accent)" strokeWidth="1.5" />
+          </svg>
           <SectionHead num="i." title="The research journal" link="All entries" to="/journal" />
           <div className="mt-10 overflow-hidden rounded-lg border border-border bg-card/80 p-8 md:p-12">
             <div className="grid items-center gap-10 md:grid-cols-[1fr_1fr]">
