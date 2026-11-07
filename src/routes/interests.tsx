@@ -13,14 +13,14 @@ export const Route = createFileRoute("/interests")({
   component: Interests,
 });
 
-const THEMES = [
+export const THEMES = [
   {
     number: "01",
     title: "Digital health and wellbeing",
     summary: "How people manage long-term, episodic and fluctuating conditions with digital tools, and where those tools do not fit a capacity that changes from day to day.",
     questions: [
-      "Do streaks and frequent notifications contribute to app abandonment during symptom flares? If so, how?",
-      "Can an app reduce what it asks of a person on days when that person has less capacity?",
+      "Do streaks and frequent notifications in health self-management apps contribute to app abandonment during symptom flares? If so, how?",
+      "Can a health self-management app ask for less, such as fewer logs or reminders, on days when a person has less capacity?",
       "How do clinical ideas of treatment adherence differ from the way people pace themselves day to day?",
     ],
     anchor: "Informed by Burden of Treatment Theory (May et al., 2014) and research on lapses in personal tracking (Epstein et al., 2015).",
@@ -61,11 +61,11 @@ const THEMES = [
   {
     number: "05",
     title: "Self-report and behaviour",
-    summary: "How what people report about their health and routines differs from what they do, including recall bias and social desirability bias.",
+    summary: "How people's reports about their health and routines can differ from what they do, and how recall bias and social desirability bias shape those reports.",
     questions: [
       "How does recall bias change what people report about their health and daily routines?",
       "When do observation or in-the-moment methods give a more accurate account than retrospective self-report?",
-      "How does social desirability affect answers about health behaviour?",
+      "How does social desirability bias affect answers about health behaviour?",
     ],
     anchor: "Informed by research on ecological momentary assessment (Shiffman, Stone and Hufford, 2008) and social desirability bias (Krumpal, 2013).",
   },

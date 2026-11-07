@@ -33,15 +33,15 @@ function ProjectPage() {
         <p className="font-sans text-xs text-fg-muted uppercase tracking-wider">{d.sector}</p>
         <h1 className="page-title">{d.title}</h1>
         <p className="lede">{d.summary}</p>
-        {d.isLead && d.award && <p className="font-sans text-xs text-fg-muted pt-1">{d.award}</p>}
+        {d.award && <p className="font-sans text-xs text-fg-muted pt-1">{d.award}</p>}
         <dl className="pt-6 grid grid-cols-1 sm:grid-cols-2 gap-6 font-sans text-xs border-t border-rule">
           <div>
             <dt className="text-fg-muted font-semibold uppercase tracking-wider text-xs mb-1">Role</dt>
             <dd className="text-fg leading-relaxed m-0">{d.role}</dd>
           </div>
           <div>
-            <dt className="text-fg-muted font-semibold uppercase tracking-wider text-xs mb-1">Methods</dt>
-            <dd className="text-fg leading-relaxed m-0">{d.methods.join(", ")}</dd>
+            <dt className="text-fg-muted font-semibold uppercase tracking-wider text-xs mb-1">Approach</dt>
+            <dd className="text-fg leading-relaxed m-0">{d.methods.join(" · ")}</dd>
           </div>
         </dl>
       </header>

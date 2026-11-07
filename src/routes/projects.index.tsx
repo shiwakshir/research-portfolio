@@ -30,8 +30,9 @@ function ProjectCard({ p }: { p: ProjectEntry }) {
       ) : (
         <div className="space-y-3">
           <h2 className="font-serif text-xl sm:text-2xl font-normal text-fg">{titleLink}</h2>
-          <p className="font-sans text-xs text-fg-muted">{d.sector} · {d.methods.slice(0, 2).join(", ")}</p>
+          <p className="font-sans text-xs text-fg-muted">{d.sector} · {d.methods.join(" · ")}</p>
           <p className="summary">{d.summary}</p>
+          {d.award && <p className="font-sans text-xs text-fg-muted">{d.award}</p>}
           <div className="pt-1 flex flex-wrap gap-4 font-sans text-xs">
             {d.githubUrl && <a href={d.githubUrl} target="_blank" rel="noopener noreferrer" className="text-link underline underline-offset-2">Source ↗</a>}
             <Link to="/projects/$slug" params={{ slug: p.slug }} className="text-link underline underline-offset-2">Read project case study →</Link>

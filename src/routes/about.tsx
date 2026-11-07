@@ -36,7 +36,7 @@ function About() {
           <li><strong>Separation of voice:</strong> What the research shows is kept distinct from my professional interpretation.</li>
           <li><strong>Transparent limits:</strong> Every piece notes what the method cannot answer.</li>
           <li><strong>Respect for everyday knowledge:</strong> People who live with a condition know things that clinical protocols do not capture.</li>
-          <li><strong>No client overlap:</strong> My independent research addresses different questions and domains from my employer's work.</li>
+          <li><strong>Separate from my employment:</strong> I do not use client data, client projects or confidential information from my employer in this work.</li>
         </ol>
       </div>
     </Main>
