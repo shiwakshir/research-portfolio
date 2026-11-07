@@ -53,7 +53,7 @@ function Home() {
       </header>
 
       <p className="mt-14 font-sans text-xs text-fg-muted text-center tracking-wide">
-        Insights Manager, UX <span className="mx-2 text-rule-strong">·</span> About five years of professional UX and market research
+        Insights Manager, UX <span className="mx-2 text-rule-strong">·</span> Working in UX and market research since 2021
       </p>
 
       <section className="home-section home-research reveal" aria-labelledby="latest-journal-heading">

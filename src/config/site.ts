@@ -15,7 +15,7 @@ export const SITE = {
     role: "Insights Manager, UX",
     fullTitle: "Insights Manager, UX",
     location: "London",
-    experienceSummary: "About five years of professional UX and market research.",
+    experienceSummary: "Working in UX and market research since 2021.",
     award: "Hack for Good Award at Microsoft Agents League @ AI Skills Fest 2026 for BRIEF",
     email: "contact@[TO CONFIRM-domain].com",
     linkedIn: "https://www.linkedin.com/in/shiwakshi/",

@@ -15,7 +15,7 @@ export const CURRENT_STAGE = 1;
 export const ROADMAP_STAGES: RoadmapStage[] = [
   { id: "desk", title: "Desk research", laterLabel: "Next", text: "Reviewing published evidence on flare-ups, self-management and digital support." },
   { id: "survey", title: "Exploratory survey", laterLabel: "Next", text: "Asking people with lived experience what happens during a flare and what helps." },
-  { id: "interviews", title: "Follow-up interviews", laterLabel: "Later", text: "Exploring the survey findings in depth." },
+  { id: "interviews", title: "Deeper inquiry", laterLabel: "Later", text: "Exploring the survey findings in more depth." },
   { id: "design", title: "Design and testing", laterLabel: "Later", text: "Turning the evidence into design decisions and testing them." },
   { id: "product", title: "Something new", laterLabel: "Coming later", text: "Built from this research.", locked: true },
 ];
