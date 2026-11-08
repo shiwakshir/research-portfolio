@@ -5,7 +5,13 @@ import { Button } from "@/components/ui/button";
 
 function ThemeToggle() {
   const [dark, setDark] = useState(false);
-  useEffect(() => setDark(document.documentElement.classList.contains("dark")), []);
+  useEffect(() => {
+    const update = () => setDark(document.documentElement.classList.contains("dark"));
+    update();
+    const obs = new MutationObserver(update);
+    obs.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+    return () => obs.disconnect();
+  }, []);
   const toggle = () => {
     const next = !dark;
     document.documentElement.classList.toggle("dark", next);

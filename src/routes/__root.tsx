@@ -15,6 +15,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { SearchModal } from "@/components/site/SearchModal";
+import { DarkModeCallout } from "@/components/site/DarkModeCallout";
 import { SITE } from "@/config/site";
 
 const THEME_INIT = `(() => {
@@ -132,6 +133,7 @@ function RootComponent() {
         <Outlet />
       </div>
       <SiteFooter />
+      <DarkModeCallout />
       <SearchModal open={searchOpen} onClose={closeSearch} />
     </QueryClientProvider>
   );
