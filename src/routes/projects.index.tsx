@@ -19,7 +19,7 @@ function ProjectCard({ p, n }: { p: ProjectEntry; n: number }) {
     <article className="reveal grid gap-6 py-8 border-b border-rule first:pt-0 md:grid-cols-[14rem_minmax(0,1fr)] md:gap-8">
       {PROJECT_ART[p.slug] && (
         <Link to="/projects/$slug" params={{ slug: p.slug }} className="project-art aspect-[4/3] self-start" aria-hidden="true" tabIndex={-1}>
-          <img src={PROJECT_ART[p.slug]} alt="" loading="lazy" width={1024} height={640} />
+          <img src={PROJECT_ART[p.slug]} alt={p.slug === "treatment-timeline" ? "Engraving-style illustration for Treatment Timeline" : ""} loading="lazy" width={1024} height={640} />
           <span className="art-num">{String(n).padStart(2, "0")}</span>
         </Link>
       )}

@@ -2,12 +2,13 @@ import { useState } from "react";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import plate from "@/assets/botanical-plate.jpg";
 import img1 from "@/assets/project-1.jpg";
+import imgTT from "@/assets/project-treatment-timeline.jpg";
 import img2 from "@/assets/project-2.jpg";
 import img3 from "@/assets/project-3.jpg";
 import img4 from "@/assets/project-4.jpg";
 import img5 from "@/assets/project-5.jpg";
 
-const projectImages = [img1, img2, img3, img4, img5];
+const projectImages = [img1, imgTT, img2, img3, img4, img5];
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,6 +33,7 @@ const stages = [
 ];
 const projects = [
   { name: "BRIEF", slug: "brief-agentic-evaluation", cat: "Applied AI", desc: "BRIEF audits what AI already assumes about a research topic, before any fieldwork begins. Eleven specialised agents run on Microsoft Foundry, with Foundry IQ grounding through Azure AI Search.", role: "I designed and built BRIEF alone.", approach: "Multi-agent system · Assumption audit", award: "Hack for Good Award, Microsoft Agents League @ AI Skills Fest 2026", src: "https://github.com/shiwakshir/brief-agent", tone: "bg-sage-soft" },
+  { name: "Treatment Timeline", slug: "treatment-timeline", cat: "Digital health", desc: "Treatment Timeline is a prototype that helps a patient record a mental health medication history in Hindi, English or Hinglish. It turns the answers into a timeline for a clinician and keeps the patient's own words beside each interpretation.", role: "I designed and built Treatment Timeline alone.", approach: "Multilingual extraction · Safety checks · Patient confirmation", src: "https://github.com/shiwakshir/treatment-timeline", tone: "bg-terracotta-soft" },
   { name: "ChoiceGap", slug: "choicegap", cat: "Research methods", desc: "ChoiceGap turns a research brief and hypotheses into a survey and an AI-moderated interview. The researcher approves the study before participants take part. Participants can correct the AI's summary, and each finding links to the exact responses.", role: "I designed and built ChoiceGap alone.", approach: "Adaptive surveys · AI-moderated interviews · Participant corrections", award: "Built for the Meta Global AI Developer Hackathon 2026", src: "https://github.com/shiwakshir/choicegap", tone: "bg-terracotta-soft" },
   { name: "Handover Studio", slug: "handover-studio", cat: "Workplace tools", desc: "Handover Studio is a prototype that turns the markers and transcript of a work task into handover materials, including a written procedure, slides and a flowchart.", role: "I designed and built Handover Studio alone.", approach: "Rule-based workflow pipeline · Workflow capture", src: "https://github.com/shiwakshir/handover-studio", tone: "bg-secondary" },
   { name: "Unfumble", slug: "unfumble", cat: "Applied AI", desc: "Unfumble is a privacy-first file tool. It builds custom file workflows from plain English, and it diagnoses and repairs files that an upload portal rejects.", role: "I designed and built Unfumble alone.", approach: "Natural-language workflow building · Portal rule checks · Local file processing", src: "https://github.com/shiwakshir/unfumble", tone: "bg-sage-soft" },
@@ -175,7 +177,7 @@ function Index() {
             {projects.map((p, i) => (
               <article key={p.name} className={`group relative flex flex-col rounded-lg border border-border bg-card p-5 md:p-7 transition-all duration-300 hover:-translate-y-1 hover:shadow-plate ${i === 0 ? "md:col-span-2 md:flex-row md:gap-10" : ""}`}>
                 <div className={`relative mb-6 overflow-hidden rounded-md ${p.tone} ${openWork === i ? "" : "hidden md:block"} ${i === 0 ? "aspect-[16/10] md:mb-0 md:aspect-auto md:w-1/2" : "aspect-[16/10]"}`}>
-                  <img src={projectImages[i]} alt={`Illustration for ${p.name}`} loading="lazy" width={1024} height={640} className="plate-img h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <img src={projectImages[i]} alt={p.name === "Treatment Timeline" ? "Engraving-style illustration for Treatment Timeline" : `Illustration for ${p.name}`} loading="lazy" width={1024} height={640} className="plate-img h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
                   <span className="absolute left-4 top-4 grid h-14 w-14 place-items-center rounded-full bg-background/90 font-serif text-2xl italic text-accent shadow-plate backdrop-blur">{String(i + 1).padStart(2, "0")}</span>
                 </div>
                 <div className="flex flex-1 flex-col">

@@ -13,6 +13,16 @@ describe("Site search", () => {
     expect(types.has("Page")).toBe(true);
   });
 
+  it("finds Treatment Timeline and Hinglish", () => {
+    const results = searchSite("Treatment Timeline");
+    expect(results.length).toBeGreaterThan(0);
+    expect(results.some((r) => r.title === "Treatment Timeline" && r.type === "Project")).toBe(true);
+
+    const hinglishResults = searchSite("Hinglish");
+    expect(hinglishResults.length).toBeGreaterThan(0);
+    expect(hinglishResults.some((r) => r.title === "Treatment Timeline")).toBe(true);
+  });
+
   it("finds BRIEF and related projects and themes", () => {
     const results = searchSite("BRIEF");
     expect(results.length).toBeGreaterThan(0);

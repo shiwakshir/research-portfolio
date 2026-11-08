@@ -3,7 +3,7 @@ title: "Handover Studio"
 summary: "Handover Studio is a prototype that turns the markers and transcript of a work task into handover materials, including a written procedure, slides and a flowchart."
 role: "I designed and built Handover Studio alone."
 sector: "Workplace tools"
-order: 3
+order: 4
 isLead: false
 methods:
   - "Rule-based workflow pipeline"

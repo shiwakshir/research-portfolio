@@ -36,6 +36,7 @@ describe("App routing", () => {
 
   it.each([
     "brief-agentic-evaluation",
+    "treatment-timeline",
     "choicegap",
     "handover-studio",
     "unfumble",

@@ -3,7 +3,7 @@ title: "ChoiceGap"
 summary: "ChoiceGap turns a research brief and hypotheses into a survey and an AI-moderated interview. The researcher approves the study before participants take part. Participants can correct the AI's summary, and each finding links to the exact responses."
 role: "I designed and built ChoiceGap alone."
 sector: "Research methods"
-order: 2
+order: 3
 isLead: false
 award: "Built for the Meta Global AI Developer Hackathon 2026"
 methods:

@@ -3,7 +3,7 @@ title: "Unfumble"
 summary: "Unfumble is a privacy-first file tool. It builds custom file workflows from plain English, and it diagnoses and repairs files that an upload portal rejects."
 role: "I designed and built Unfumble alone."
 sector: "Applied AI"
-order: 4
+order: 5
 isLead: false
 methods:
   - "Natural-language workflow building"
