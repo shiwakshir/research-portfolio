@@ -153,13 +153,13 @@ function Index() {
             <ol className="relative mt-12 grid gap-6 md:grid-cols-5">
               <div className="absolute left-0 right-0 top-[7px] hidden h-px bg-border md:block" />
               {stages.map((st, i) => (
-                <li key={st.n} className="relative">
-                  <Link to="/journal/stages/$stage" params={{ stage: st.id }} className="group block rounded-md transition-colors hover:text-primary">
-                  <span className={`relative block h-3.5 w-3.5 rounded-full border-2 ${i === 0 ? "border-accent bg-accent ring-4 ring-accent/20" : "border-border bg-card"}`} />
-                  <p className="mt-4 text-xs uppercase tracking-wider text-muted-foreground">{st.n} · {st.s}</p>
-                  <p className={`mt-1 font-serif text-xl ${i === 0 ? "text-foreground" : "text-foreground/60"}`}>{st.t}</p>
-                  <p className="mt-1 text-sm text-muted-foreground">{st.d}</p>
-                  <p className={`mt-3 text-xs ${i === 0 ? "text-accent" : "text-muted-foreground"}`}>{i === 0 && "● "}{st.f} <span className="inline-block transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span></p>
+                <li key={st.n} className="relative flex flex-col">
+                  <Link to="/journal/stages/$stage" params={{ stage: st.id }} className="group flex flex-1 flex-col rounded-md transition-colors hover:text-primary">
+                    <span className={`relative block h-3.5 w-3.5 rounded-full border-2 ${i === 0 ? "border-accent bg-accent ring-4 ring-accent/20" : "border-border bg-card"}`} />
+                    <p className="mt-4 text-xs uppercase tracking-wider text-muted-foreground">{st.n} · {st.s}</p>
+                    <p className={`mt-1 font-serif text-xl md:min-h-[3.5rem] ${i === 0 ? "text-foreground" : "text-foreground/60"}`}>{st.t}</p>
+                    <p className="mt-1 flex-1 text-sm text-muted-foreground">{st.d}</p>
+                    <p className={`mt-auto pt-4 text-xs ${i === 0 ? "text-accent" : "text-muted-foreground"}`}>{i === 0 && "● "}{st.f} <span className="inline-block transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">↗</span></p>
                   </Link>
                 </li>
               ))}
